@@ -18,7 +18,7 @@ client = genai.Client(api_key=apiKey)
 
 def handle_general_questions(prompt):
 
-  with open("prompts/ask_product.txt", "r") as file:
+  with open("prompts/ask_general_questions.txt", "r") as file:
     system_instruction_text = file.read()
 
   response = client.models.generate_content(
@@ -36,26 +36,67 @@ def handle_general_questions(prompt):
   print(response)
   return response
   
+def handle_log_data(prompt):
 
-def handle_log_data(prompt, intent):
+  with open("prompts/ask_log_report.txt", "r") as file:
+    system_instruction_text = file.read()
 
   response = client.models.generate_content(
       model=model,
       config=types.GenerateContentConfig(
-          system_instruction=""
+          system_instruction=system_instruction_text
   ),  
-      contents=intent
+      contents=prompt
   )
 
+  cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.IGNORECASE).strip()
+
+  # Convert to JSON (i.e., Python dict)
+  response = json.loads(cleaned)
+  print(response)
   return response
 
-def handle_requested_file(prompt, intent):
+def handle_requested_file(response):
   
-  file = "/path/here/file1.pdf"
+  # Sample response
+  # {
+  #   'id': 4, 
+  #   'confidence': 0.95, 
+  #   'response': {
+  #     'message': 'Narito po ang guide natin para sa pagbasa ng FCR. Sana makatulong ito!', 
+  #     'file_type': 'pdf', 
+  #     'subject': 'training_tips',
+  #     'topic': "broiler_starter_feeding"
+  #     }
+  # }
 
-  return file
+  # search in db which selects the subject and topic these are predefines so no problem for flexibilty return not found if no resource available
+  # for now we only have "broiler_starter_feeding" so just return that 
+  # but prepare a search in db
 
-def handle_support_forms(prompt, intent):
+  
+
+  return 1
+
+def handle_support_forms(response):
+
+  # Sample response
+  # {
+  #   'id': 5, 
+  #   'confidence': 0.95, 
+  #   'response': {
+  #     'message': 'Sige po, tutulungan namin kayo. Anong klaseng tulong ang kailangan ninyo?', 
+  #     'field': 'vet_assistance'
+  #     }
+  # }
+
+  # if applicable, get what vet assistance we have in database
+  # if none just create pre defined org for vet assitance, technical consult and customer support(this is going to be our company)
+  # other pre define fields
+  #   i. "vet_assistance" – if the request involves veterinary help
+  #   ii. "technical_consultation" – for feed or farm management consultation
+  #   iii. "customer_support" – for general support or company contact
+
 
   return 1
 
@@ -64,29 +105,15 @@ def handle_support_forms(prompt, intent):
 # general question prompt
 # log prompt
 # requeste document prompt
-def get_intent(prompt):    
+def get_intent(prompt):
+
+  with open("prompts/ask_intent.txt", "r") as file:
+    system_instruction_text = file.read()
+
   response = client.models.generate_content(
       model=model,
       config=types.GenerateContentConfig(
-          system_instruction="" \
-          "You are an intent classifier for a smart farming assistant that supports Filipino farmers. " \
-          "Use the intents below and refer to description."
-          "Intent - Description"
-          "1. Ask Product or Feed Questions or Guidance - When the farmer ask questions about feeding programs, timing, types of feed, mixing practices, effects on poultry performance, and feed form (pellets vs crumble), etc" \
-          "2. Report Health Issues - When the farmer reports sickness, death, or abnormal behavior in flocks for logging or advice (e.g., 'may namatay', 'hindi kumakain', 'lima ang namatay')" \
-          "3. Share Local Practices or Ask If Safe - When the farmer share DIY, local practices or ask if those practices/DIY are safe" \
-          "4. Download Guide or Request Training Content - When the farmer request downloadable guides, videos, or training materials." \
-          "5. Request Help Vet or Support Team - When the farmer is actively asking for help, check-up, consultation, or expert opinion (e.g., 'pwede bang may tumingin', 'kailangan ng tulong', 'patingin vet')" \
-          "6. Out of Scope - if not related to agriculture or other brand/competitors mentioned. Do not promote/compare brands" \
-          "Understand the input in English, Tagalog, Bisaya, or any Filipino dialect. " \
-          "If the intent is out of scope respond in a neutral manner (put it in note and respond in taglish and make it natural)" \
-          "Respond only with a clean JSON." \
-          "Example Output:" \
-          "{" \
-          "id: [index of the intent]" \
-          "confidence: [0.92]" \
-          "response: [message about the prompt, if the index of the intent is 4, 5, and 6 otherwise null]" \
-          "}"         
+          system_instruction=system_instruction_text
   ),  
       contents=prompt
   )
@@ -102,7 +129,7 @@ def get_intent(prompt):
   return intent
 
 # @router.post("/farmer/chat")
-def process(prompt):
+def chat_service(prompt):
 
   try:
     # Get intent index and perform specific action for those intents
@@ -135,10 +162,16 @@ def process(prompt):
 
   except Exception as e:
     print(f"An error occurred: {e}")
-  
 
 
-input = "Anong susunod sa Starter?" 
+#@router.post("/farmer/logs")
+def log_service():
 
-# process(input)
-handle_general_questions(input)
+
+  return 1
+
+
+prompt = "Nilalagyan ko ng kalamansi at bawang yung feed para sa manok ko araw-araw. Parang lumalakas naman sila pero gusto ko malaman kung safe talaga."
+
+# process(prompt)
+handle_log_data(prompt)
