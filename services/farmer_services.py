@@ -4,6 +4,9 @@ from google import genai
 from google.genai import types
 import re
 import json
+from fastapi import APIRouter
+
+router = APIRouter()
 
 load_dotenv()
 
@@ -13,8 +16,28 @@ model = "gemini-2.0-flash"
 # Use the API key
 client = genai.Client(api_key=apiKey)
 
+def handle_general_questions(prompt):
 
-def general_questions(intent):
+  with open("prompts/ask_product.txt", "r") as file:
+    system_instruction_text = file.read()
+
+  response = client.models.generate_content(
+      model=model,
+      config=types.GenerateContentConfig(
+          system_instruction=system_instruction_text
+  ),  
+      contents=prompt
+  )
+
+  cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.IGNORECASE).strip()
+
+  # Convert to JSON (i.e., Python dict)
+  response = json.loads(cleaned)
+  print(response)
+  return response
+  
+
+def handle_log_data(prompt, intent):
 
   response = client.models.generate_content(
       model=model,
@@ -26,33 +49,22 @@ def general_questions(intent):
 
   return response
 
-def log_data(intent):
-
-  response = client.models.generate_content(
-      model=model,
-      config=types.GenerateContentConfig(
-          system_instruction=""
-  ),  
-      contents=intent
-  )
-
-  return response
-
-def get_requested_file(intent):
+def handle_requested_file(prompt, intent):
   
   file = "/path/here/file1.pdf"
 
   return file
+
+def handle_support_forms(prompt, intent):
+
+  return 1
 
 # get intent of the user based from their prompt
 # 3 core intents
 # general question prompt
 # log prompt
 # requeste document prompt
-
-def get_intent(prompt):
-  
-  
+def get_intent(prompt):    
   response = client.models.generate_content(
       model=model,
       config=types.GenerateContentConfig(
@@ -71,9 +83,9 @@ def get_intent(prompt):
           "Respond only with a clean JSON." \
           "Example Output:" \
           "{" \
-          "intent: [Log Farm Performance]," \
+          "id: [index of the intent]" \
           "confidence: [0.92]" \
-          "notes: [Mentions FCR and weight logging]" \
+          "response: [message about the prompt, if the index of the intent is 4, 5, and 6 otherwise null]" \
           "}"         
   ),  
       contents=prompt
@@ -88,12 +100,45 @@ def get_intent(prompt):
   intent = json.loads(cleaned)
 
   return intent
-  
+
+# @router.post("/farmer/chat")
 def process(prompt):
+
+  try:
+    # Get intent index and perform specific action for those intents
+    # 1 = general_questions
+    # 2,3 = log_data
+    # 4 get_requested_file
+    # 5 return help support forms and details
+    # 6 just return
+    
+    intent = get_intent(prompt)
+    print(intent)
+
+    # Early return for out of scope       
+    if (intent["id"] == 6):
+      return intent
+
+  #   dispatch = {
+  #     1: handle_general_questions,
+  #     2: handle_log_data,
+  #     3: handle_log_data,
+  #     4: handle_requested_file,
+  #     5: handle_support_forms,  
+  #   }
+  #   handler = dispatch.get(intent["id"])
+
+  #   if (handler):
+  #     return handler(prompt, intent)
+  #   else:
+  #     raise ValueError("Intent id cannot be found.")
+
+  except Exception as e:
+    print(f"An error occurred: {e}")
   
-  intent = get_intent(prompt)
 
-  print(intent["intent"])
 
-input = "Today is weight is 1.6kg?" 
-process(input)
+input = "Anong susunod sa Starter?" 
+
+# process(input)
+handle_general_questions(input)
