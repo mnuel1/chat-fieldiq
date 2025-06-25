@@ -5,3 +5,6 @@ Scripts
 
 .env
 pyvenv.cfg
+
+**/__pycache__/
+**/*.py[cod]
