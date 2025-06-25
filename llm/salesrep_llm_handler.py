@@ -28,13 +28,13 @@ def handle_general_questions(prompt):
   # Convert to JSON (i.e., Python dict)
   response = json.loads(cleaned)
 
-  chat.add_message(response["response"])
+  # chat.add_message(response["response"])
   
   return response
 
 def handle_log_data(prompt):
   
-  with open("prompts/ask_farmer_log_report.txt", "r") as file:
+  with open("prompts/ask_salesrep_log_report.txt", "r") as file:
     system_instruction_text = file.read()
 
   response = client.models.generate_content(
@@ -44,6 +44,8 @@ def handle_log_data(prompt):
   ),  
       contents=prompt
   )
+
+  print(response.text)
 
   cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.IGNORECASE).strip()
 
@@ -96,7 +98,7 @@ def handle_support_forms(response):
 
 def get_intent(prompt):
 
-  with open("prompts/ask_farmer_intent.txt", "r") as file:
+  with open("prompts/ask_salesrep_intent.txt", "r") as file:
     system_instruction_text = file.read()
 
   response = client.models.generate_content(

@@ -7,10 +7,12 @@ class Chat:
         self.client = get_supabase_client()
 
     def create_conversation(self, user_id: int) -> Dict:        
-        response = self.client.table("chat_conversation").insert({
+        response = self.client.table("chat_conversations").insert({
             "user_id": user_id,            
         }).execute()
-        return response.data[0] if response.data else None
+        
+        # return the id
+        return response.data[0]["id"] if response.data[0] else None
 
     def add_message(self, conversation_id: int, sender_type: str, message: str, metadata: Optional[Dict] = None) -> Dict:
         now = datetime.now(datetime.timezone.utc)

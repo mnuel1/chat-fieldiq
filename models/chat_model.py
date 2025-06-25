@@ -2,6 +2,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional, Dict
 
+from pydantic import BaseModel
+from typing import Optional
 
 @dataclass
 class ChatConversation:
@@ -19,3 +21,10 @@ class ChatMessage:
     message: str
     message_metadata: Optional[Dict]
     created_at: datetime
+
+
+
+class ChatRequest(BaseModel):
+    prompt: str
+    user_id: int
+    chat_id: Optional[int] = None

@@ -1,4 +1,7 @@
 from fastapi import APIRouter
+
+from models.chat_model import ChatRequest
+from core.chat_core import Chat
 from llm.farmer_llm_handler import (
   get_intent,
   handle_general_questions,
@@ -7,46 +10,58 @@ from llm.farmer_llm_handler import (
   handle_support_forms
 )
 
+
 router = APIRouter()
 
 
-# @router.post("/farmer/chat")
-def chat_service(prompt, user_id, chat_id=None):
-    try:
-        # Get intent index and perform specific action for those intents
-        # 1 = general_questions
-        # 2,3 = log_data
-        # 4 get_requested_file
-        # 5 return help support forms and details
-        # 6 just return
+@router.post("/farmer/chat")
+def chat_service(body: ChatRequest):
+  try:
+    chat = Chat()
+    # Get intent index and perform specific action for those intents
+    # 1 = general_questions
+    # 2,3 = log_data
+    # 4 get_requested_file
+    # 5 return help support forms and details
+    # 6 just return
 
-        if (chat_id != None):
-            # create chat conversation
-            print("created")
-        
-        intent = get_intent(prompt)
-        
-        # Early return for out of scope       
-        if (intent["id"] == 6):
-            # record_message()
-            print("recorded")
+    chat_id = body.chat_id
+    if (chat_id == None):
+        # create chat conversation
+        chat_id = chat.create_conversation(body.user_id)
+        if chat_id is None:
+          raise Exception("Failed to create conversation")
 
-    #   dispatch = {
-    #     1: handle_general_questions,
-    #     2: handle_log_data,
-    #     3: handle_log_data,
-    #     4: handle_requested_file,
-    #     5: handle_support_forms,  
-    #   }
-    #   handler = dispatch.get(intent["id"])
+    # intent = get_intent(body.prompt)
+    intent = {
+        "id": 6,
+        "confidence": 0.92,
+        "response": "Out of scope"
+    }
+    # Early return for out of scope       
+    if (intent["id"] == 6):        
+      return {"message": "Success", "data": intent}
+    
+    # record user message
+    chat.add_message(chat_id, "user", body.prompt)
 
-    #   if (handler):
-    #     return handler(prompt, intent)
-    #   else:
-    #     raise ValueError("Intent id cannot be found.")
+    dispatch = {
+      1: lambda: handle_general_questions(body.prompt),
+      2: lambda: handle_log_data(body.prompt),
+      3: lambda: handle_log_data(body.prompt),
+      4: lambda: handle_requested_file(intent),
+      5: lambda: handle_support_forms(intent),
+    }
 
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    handler = dispatch.get(intent["id"])
+    if handler is None:
+      raise Exception("Handler for intent not found")
+
+    return {"message": "Success", "data": handler()}
+
+  except Exception as e:
+    print(f"An error occurred: {e}")
+    return {"message": "Something went wrong", "data": None}
 
 #@router.post("/farmer/logs")
 def log_service():
