@@ -8,7 +8,7 @@ from core.chat_core import Chat
 model = get_llm_model()
 client = get_gemini_client()
 
-def handle_general_questions(prompt):
+def handle_general_questions(chat_id, prompt):
   
   chat = Chat()
 
@@ -28,11 +28,13 @@ def handle_general_questions(prompt):
   # Convert to JSON (i.e., Python dict)
   response = json.loads(cleaned)
 
-  chat.add_message(response["response"])
+  chat.add_message(chat_id, "system", response["response"])
   
   return response
 
-def handle_log_data(prompt):
+def handle_log_data(chat_id, prompt):
+  
+  chat = Chat()
   
   with open("prompts/ask_farmer_log_report.txt", "r") as file:
     system_instruction_text = file.read()
@@ -49,6 +51,8 @@ def handle_log_data(prompt):
 
   # Convert to JSON (i.e., Python dict)
   response = json.loads(cleaned)
+
+  chat.add_message(chat_id, "system", response["response"])
   
   return response
 

@@ -14,7 +14,7 @@ from llm.farmer_llm_handler import (
 router = APIRouter()
 
 
-@router.post("/farmer/chat")
+@router.post("/chat")
 def chat_service(body: ChatRequest):
   try:
     chat = Chat()
@@ -27,17 +27,13 @@ def chat_service(body: ChatRequest):
 
     chat_id = body.chat_id
     if (chat_id == None):
-        # create chat conversation
-        chat_id = chat.create_conversation(body.user_id)
-        if chat_id is None:
-          raise Exception("Failed to create conversation")
+      # create chat conversation
+      chat_id = chat.create_conversation(body.user_id)
+      if chat_id is None:
+        raise Exception("Failed to create conversation")
 
-    # intent = get_intent(body.prompt)
-    intent = {
-        "id": 6,
-        "confidence": 0.92,
-        "response": "Out of scope"
-    }
+    intent = get_intent(body.prompt)
+  
     # Early return for out of scope       
     if (intent["id"] == 6):        
       return {"message": "Success", "data": intent}
@@ -46,9 +42,9 @@ def chat_service(body: ChatRequest):
     chat.add_message(chat_id, "user", body.prompt)
 
     dispatch = {
-      1: lambda: handle_general_questions(body.prompt),
-      2: lambda: handle_log_data(body.prompt),
-      3: lambda: handle_log_data(body.prompt),
+      1: lambda: handle_general_questions(chat_id, body.prompt),
+      2: lambda: handle_log_data(chat_id, body.prompt),
+      3: lambda: handle_log_data(chat_id, body.prompt),
       4: lambda: handle_requested_file(intent),
       5: lambda: handle_support_forms(intent),
     }
@@ -63,6 +59,6 @@ def chat_service(body: ChatRequest):
     print(f"An error occurred: {e}")
     return {"message": "Something went wrong", "data": None}
 
-#@router.post("/farmer/logs")
+#@router.post("/logs")
 def log_service():
     return 1
