@@ -4,37 +4,70 @@ import json
 
 from config.config import get_gemini_client, get_llm_model
 from core.chat_core import Chat
+from core.faq_core import Faq
+from core.farmer_core import Farmer
 
 model = get_llm_model()
 client = get_gemini_client()
 
-def handle_general_questions(chat_id, prompt):
+def store_message_faq(chat_id, prompt, response, category): 
+  chat = Chat()
+  faq = Faq()
+
+  # record user message
+  chat.add_message(chat_id, "user", prompt)
+  chat.add_message(chat_id, "model", response)
+
+  # record faq
+  faq.insert_faq(prompt, response, category)
+
+
+def handle_general_questions(chat_id, user_id, prompt):
   
   chat = Chat()
+  farmer = Farmer()
 
   with open("prompts/ask_general_questions.txt", "r") as file:
     system_instruction_text = file.read()
 
+  days_on_feed, current_feed = farmer.get_feed_use(user_id)
+
+  history = chat.get_recent_messages(chat_id, max_messages=6)
+
+   # Append the current prompt as a user message
+  history.append({
+      "role": "user",
+      "parts": [
+          {"text": f"{prompt}\n\nDays on feed: {days_on_feed}\nCurrent feed: {current_feed}"}
+      ]
+  })
+
+
+  # Make the request to the model
   response = client.models.generate_content(
       model=model,
       config=types.GenerateContentConfig(
           system_instruction=system_instruction_text
-  ),  
-      contents=prompt
+      ),
+      contents=history
   )
+
+  print("Response:", response)
 
   cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.IGNORECASE).strip()
 
   # Convert to JSON (i.e., Python dict)
   response = json.loads(cleaned)
 
-  chat.add_message(chat_id, "system", response["response"])
+  # store_message_faq(chat_id, prompt, response["response"], response["log_type"])
   
   return response
 
-def handle_log_data(chat_id, prompt):
-  
-  chat = Chat()
+prompt = "what is my farmer name?"
+response = handle_general_questions(8, 1, prompt)
+print("text1" , response)
+
+def handle_log_data(chat_id, user_id, prompt):
   
   with open("prompts/ask_farmer_log_report.txt", "r") as file:
     system_instruction_text = file.read()
@@ -52,8 +85,8 @@ def handle_log_data(chat_id, prompt):
   # Convert to JSON (i.e., Python dict)
   response = json.loads(cleaned)
 
-  chat.add_message(chat_id, "system", response["response"])
-  
+  store_message_faq(chat_id, prompt, response["response"], response["log_type"])
+
   return response
 
 def handle_requested_file(response):

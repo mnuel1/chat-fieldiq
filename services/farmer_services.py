@@ -10,9 +10,7 @@ from llm.farmer_llm_handler import (
   handle_support_forms
 )
 
-
 router = APIRouter()
-
 
 @router.post("/chat")
 def chat_service(body: ChatRequest):
@@ -26,9 +24,11 @@ def chat_service(body: ChatRequest):
     # 6 just return
 
     chat_id = body.chat_id
+    user_id = body.user_id
+
     if (chat_id == None):
       # create chat conversation
-      chat_id = chat.create_conversation(body.user_id)
+      chat_id = chat.create_conversation(user_id)
       if chat_id is None:
         raise Exception("Failed to create conversation")
 
@@ -37,14 +37,11 @@ def chat_service(body: ChatRequest):
     # Early return for out of scope       
     if (intent["id"] == 6):        
       return {"message": "Success", "data": intent}
-    
-    # record user message
-    chat.add_message(chat_id, "user", body.prompt)
-
+        
     dispatch = {
-      1: lambda: handle_general_questions(chat_id, body.prompt),
-      2: lambda: handle_log_data(chat_id, body.prompt),
-      3: lambda: handle_log_data(chat_id, body.prompt),
+      1: lambda: handle_general_questions(chat_id, user_id, body.prompt),
+      2: lambda: handle_log_data(chat_id, user_id, body.prompt),
+      3: lambda: handle_log_data(chat_id, user_id, body.prompt),
       4: lambda: handle_requested_file(intent),
       5: lambda: handle_support_forms(intent),
     }
