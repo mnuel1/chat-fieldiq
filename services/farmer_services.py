@@ -26,7 +26,7 @@ def chat_service(body: ChatRequest):
     chat_id = body.chat_id
     user_id = body.user_id
 
-    if (chat_id == None):
+    if (chat_id == None or chat_id == 0):
       # create chat conversation
       chat_id = chat.create_conversation(user_id)
       if chat_id is None:
