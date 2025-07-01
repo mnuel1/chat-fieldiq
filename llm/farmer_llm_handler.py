@@ -42,7 +42,6 @@ def handle_general_questions(chat_id, user_id, prompt):
       ]
   })
 
-
   # Make the request to the model
   response = client.models.generate_content(
       model=model,
@@ -52,20 +51,17 @@ def handle_general_questions(chat_id, user_id, prompt):
       contents=history
   )
 
-  print("Response:", response)
+  print(response.text)
 
   cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.IGNORECASE).strip()
 
   # Convert to JSON (i.e., Python dict)
   response = json.loads(cleaned)
 
-  # store_message_faq(chat_id, prompt, response["response"], response["log_type"])
+  store_message_faq(chat_id, prompt, response["response"], response["log_type"])
   
   return response
 
-prompt = "what is my farmer name?"
-response = handle_general_questions(8, 1, prompt)
-print("text1" , response)
 
 def handle_log_data(chat_id, user_id, prompt):
   
@@ -79,6 +75,8 @@ def handle_log_data(chat_id, user_id, prompt):
   ),  
       contents=prompt
   )
+
+  print(response.text)
 
   cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.IGNORECASE).strip()
 
@@ -144,6 +142,7 @@ def get_intent(prompt):
       contents=prompt
   )
 
+  print(response.text)
   # clean response
   # remove the json block to return only the json object
   cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.IGNORECASE).strip()

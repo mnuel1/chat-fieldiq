@@ -37,7 +37,7 @@ def chat_service(body: ChatRequest):
     # Early return for out of scope       
     if (intent["id"] == 6):        
       return {"message": "Success", "data": intent}
-        
+    
     dispatch = {
       1: lambda: handle_general_questions(chat_id, user_id, body.prompt),
       2: lambda: handle_log_data(chat_id, user_id, body.prompt),
