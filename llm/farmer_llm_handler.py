@@ -128,7 +128,25 @@ def handle_health_log(chat_id, user_id, prompt):
 
 def handle_local_practice_log(chat_id, user_id, prompt):
 
-    return True
+    with open("prompts/ask_farmer_diy_log.txt", "r", encoding='utf-8') as file:
+        system_instruction_text = file.read()
+
+    response = client.models.generate_content(
+        model=model,
+        config=types.GenerateContentConfig(
+            system_instruction=system_instruction_text
+    ),  
+        contents=prompt
+    )
+
+    cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.IGNORECASE).strip()
+
+    # Convert to JSON (i.e., Python dict)
+    response = json.loads(cleaned)
+
+    store_message_faq(chat_id, prompt, response["response"], response["log_type"])
+
+    return response
 
 def handle_requested_file(response):
 

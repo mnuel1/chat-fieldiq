@@ -17,13 +17,7 @@ router = APIRouter()
 def chat_service(body: ChatRequest):
   try:
     chat = Chat()
-    # Get intent index and perform specific action for those intents
-    # 1 = general_questions
-    # 2,3 = log_data
-    # 4 get_requested_file
-    # 5 return help support forms and details
-    # 6 just return
-
+      
     chat_id = body.chat_id
     user_id = body.user_id
 
