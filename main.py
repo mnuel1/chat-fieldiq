@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from services import farmer_services
+from services import farmer_services, salesrep_services
 
 app = FastAPI(
     title="My FastAPI App",
@@ -24,6 +24,7 @@ app.add_middleware(
 
 # Include routes from services
 app.include_router(farmer_services.router, prefix="/farmer", tags=["Farmer"])
+app.include_router(salesrep_services.router, prefix="/salesrep", tags=["Sales Rep"])
 
 # Root endpoint
 @app.get("/")

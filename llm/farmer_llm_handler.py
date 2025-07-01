@@ -69,7 +69,7 @@ def handle_health_log(chat_id, user_id, prompt):
     farmer = Farmer()
 
     # Get the form data value from farmer chat_conversation record
-    convo_res = farmer.get_conversations_record(chat_id)
+    convo_res = chat.get_conversations_record(chat_id)
     form_data = convo_res.get("form_data") or {}
 
     # Get recent chat message history limit to 10 or kung ilan anong mas optimal at accurate

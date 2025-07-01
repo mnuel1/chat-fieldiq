@@ -15,15 +15,6 @@ class Farmer:
         data = response.data[0] if response.data else {}
         return data.get("days_on_feed", 0), data.get("current_feed", "")
 
-    # Get conversation record
-    def get_conversations_record(self, convo_id: int):
-        convo = self.client.table("chat_conversations").select(
-            "*").eq("id", convo_id).single().execute()
-        print("Convo:", convo.data)
-        if convo.data:
-            return convo.data
-        return None
-
     def create_health_incident(self, farmer_user_profile_id: int, form_data: Dict):
         self.client.table("health_incidents").insert({
             "farmer_user_profile_id": farmer_user_profile_id,

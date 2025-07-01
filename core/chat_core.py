@@ -65,3 +65,11 @@ class Chat:
         ]
 
         return formatted_messages
+    
+    def get_conversations_record(self, convo_id: int):
+        convo = self.client.table("chat_conversations").select(
+            "*").eq("id", convo_id).single().execute()
+        print("Convo:", convo.data)
+        if convo.data:
+            return convo.data
+        return None

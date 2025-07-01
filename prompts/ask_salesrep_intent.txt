@@ -36,7 +36,9 @@ If intent = 4, return in response: (JSON format)
 Respond only with a clean JSON.
 Example Output:
 {
-  id: <index of the intent>
-  confidence: <0.92>
-  response: <Taglish response to the user. Should be warm, clear, and supportive. Include full guidance, not brief. Do not sound robotic or too formal. Avoid awkward code-switching, if the index of the intent is 4, 5, and 6 otherwise null>
+  "id": <index of the intent>
+  "confidence": <0.92>
+  "response": "<Taglish response to the user. Should be warm, clear, and supportive. 
+  Include full guidance, not brief. Do not sound robotic or too formal. Avoid awkward code-switching, 
+  if the index of the intent is 4, 5, or 6 otherwise null>"
 }

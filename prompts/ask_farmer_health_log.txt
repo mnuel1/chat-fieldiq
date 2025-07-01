@@ -56,6 +56,6 @@ Step 1: Log the Health Incident
         "requires_vet_visit": true
       },
       "next_action": "<ask_next or log_complete>",
-      "intent": 2
+      "intent": "if the next_action is ask_next put '3', else put 'None'"
     }
   ```

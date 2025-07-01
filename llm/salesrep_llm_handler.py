@@ -4,23 +4,47 @@ import json
 
 from config.config import get_gemini_client, get_llm_model
 from core.chat_core import Chat
+from core.faq_core import Faq
+from core.salesrep_core import SalesRep
 
 model = get_llm_model()
 client = get_gemini_client()
 
-def handle_general_questions(prompt):
+def store_message_faq(chat_id, prompt, response, category, metadata = None):
+    chat = Chat()
+    faq = Faq()
+
+    # record user message
+    chat.add_message(chat_id, "user", prompt, metadata)
+    chat.add_message(chat_id, "model", response, metadata)
+
+    # record faq
+    faq.insert_faq(prompt, response, category)
+
+def handle_general_questions(chat_id, prompt):
   
   chat = Chat()
 
-  with open("prompts/ask_general_questions.txt", "r") as file:
+  with open("prompts/ask_general_questions.txt", "r", encoding='utf-8') as file:
     system_instruction_text = file.read()
 
+  history = chat.get_recent_messages(chat_id, max_messages=6)
+
+  # Append the current prompt as a user message
+  history.append({
+      "role": "user",
+      "parts": [
+          {"text": f"{prompt}"}
+      ]
+  })
+
+  # Make the request to the model
   response = client.models.generate_content(
       model=model,
       config=types.GenerateContentConfig(
           system_instruction=system_instruction_text
-  ),  
-      contents=prompt
+      ),
+      contents=history
   )
 
   cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.IGNORECASE).strip()
@@ -28,31 +52,142 @@ def handle_general_questions(prompt):
   # Convert to JSON (i.e., Python dict)
   response = json.loads(cleaned)
 
-  # chat.add_message(response["response"])
+  store_message_faq(chat_id, prompt, response["response"], response["log_type"])
   
   return response
 
-def handle_log_data(prompt):
-  
-  with open("prompts/ask_salesrep_log_report.txt", "r") as file:
-    system_instruction_text = file.read()
 
+def handle_field_product_log(chat_id, user_id, prompt):
+  
+  with open("prompts/ask_salesrep_product_field_log.txt", "r", encoding='utf-8') as file:
+    system_instruction = file.read()
+
+  chat = Chat()
+  salesrep = SalesRep()
+
+  convo_res = chat.get_conversations_record(chat_id)
+  form_data = convo_res.get("form_data") or {}
+
+  # Get recent chat message history limit to 10 or kung ilan anong mas optimal at accurate
+  chat_history = chat.get_recent_messages(chat_id, 10)
+
+  # Form summary para ma track ni gemini yung mga nasagot na sa form for health incident
+  form_summary = "\n".join([
+      f"{k.replace('_', ' ').capitalize()}: {v}"
+      for k, v in form_data.items() if v
+  ]) or "None yet"
+
+  # Latest prompt + form summary...
+  chat_history.append({
+      "role": "user",
+      "parts": [
+          {"text": f"{prompt}\n\n(Previously collected info):\n{form_summary}"}
+      ]
+  })
+
+  # Feed gemini with the chat history and system instruction and latest prompt
   response = client.models.generate_content(
-      model=model,
-      config=types.GenerateContentConfig(
-          system_instruction=system_instruction_text
-  ),  
-      contents=prompt
+    model=model,
+    config={"system_instruction": system_instruction},
+    contents=chat_history
   )
+  match = re.search(r"```json\s*(\{.*?\})\s*```",
+                    response.text.strip(), re.DOTALL)
+  if not match:
+    raise ValueError("No JSON block found in the response.")
+  json_str = match.group(1)
+  parsed = json.loads(json_str)
 
-  print(response.text)
 
-  cleaned = re.sub(r"^```json|```$", "", response.text.strip(), flags=re.IGNORECASE).strip()
+  # Merge new fields from Gemini into form_data
+  new_fields = parsed.get("incident_details", {})
+  form_data.update({k: v for k, v in new_fields.items()
+                    if v is not None and v != ""})
 
-  # Convert to JSON (i.e., Python dict)
-  response = json.loads(cleaned)
+  # Save updated form_data to chat_conversations
+  status = "active" if parsed["next_action"] != "log_complete" else "completed"
+  chat.update_conversation(
+      chat_id, form_data=form_data)
+
+  # Save yung latest user prompt and model response
+  store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"], metadata={"form_data": form_data, "next_action": parsed["next_action"]})
   
-  return response
+  # Final submission to health_incidents table pag yung form_data sa chat_conversation na filled na lahat
+  if parsed["next_action"] == "log_complete":
+    salesrep.create_field_product_incident(
+        user_id,
+        form_data,
+        parsed["tag"]
+    )
+    chat.update_conversation(chat_id, None)
+
+  return parsed
+
+def handle_dealer_log(chat_id, user_id, prompt):
+  
+  with open("prompts/ask_salesrep_dealer_log.txt", "r", encoding='utf-8') as file:
+    system_instruction = file.read()
+
+  chat = Chat()
+  salesrep = SalesRep()
+
+  convo_res = chat.get_conversations_record(chat_id)
+  form_data = convo_res.get("form_data") or {}
+
+  # Get recent chat message history limit to 10 or kung ilan anong mas optimal at accurate
+  chat_history = chat.get_recent_messages(chat_id, 10)
+
+  # Form summary para ma track ni gemini yung mga nasagot na sa form for health incident
+  form_summary = "\n".join([
+      f"{k.replace('_', ' ').capitalize()}: {v}"
+      for k, v in form_data.items() if v
+  ]) or "None yet"
+
+  # Latest prompt + form summary...
+  chat_history.append({
+      "role": "user",
+      "parts": [
+          {"text": f"{prompt}\n\n(Previously collected info):\n{form_summary}"}
+      ]
+  })
+
+  # Feed gemini with the chat history and system instruction and latest prompt
+  response = client.models.generate_content(
+    model=model,
+    config={"system_instruction": system_instruction},
+    contents=chat_history
+  )
+  match = re.search(r"```json\s*(\{.*?\})\s*```",
+                    response.text.strip(), re.DOTALL)
+  if not match:
+    raise ValueError("No JSON block found in the response.")
+  json_str = match.group(1)
+  parsed = json.loads(json_str)
+
+
+  # Merge new fields from Gemini into form_data
+  new_fields = parsed.get("incident_details", {})
+  form_data.update({k: v for k, v in new_fields.items()
+                    if v is not None and v != ""})
+
+  # Save updated form_data to chat_conversations
+  status = "active" if parsed["next_action"] != "log_complete" else "completed"
+  chat.update_conversation(
+      chat_id, form_data=form_data)
+
+  # Save yung latest user prompt and model response
+  store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"], metadata={"form_data": form_data, "next_action": parsed["next_action"]})
+  
+  # Final submission to health_incidents table pag yung form_data sa chat_conversation na filled na lahat
+  if parsed["next_action"] == "log_complete":
+    salesrep.create_dealer_incident(
+      user_id,
+      form_data,
+      parsed["tag"]
+    )
+    chat.update_conversation(chat_id, None)
+
+  return parsed
 
 def handle_requested_file(response):
   

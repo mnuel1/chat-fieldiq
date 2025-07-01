@@ -5,7 +5,8 @@ from core.chat_core import Chat
 from llm.salesrep_llm_handler import (
   get_intent,
   handle_general_questions,
-  handle_log_data,
+  handle_field_product_log,
+  handle_dealer_log,
   handle_requested_file,
   handle_support_forms
 )
@@ -19,32 +20,33 @@ def chat_service(body: ChatRequest):
     chat = Chat()
 
     chat_id = body.chat_id
-    if (chat_id == None):
+    user_id = body.user_id
+    
+    if (chat_id == None or chat_id == 0):
         # create chat conversation
         chat_id = chat.create_conversation(body.user_id)
         if chat_id is None:
           raise Exception("Failed to create conversation")
-
-    intent = get_intent(body.prompt)
+        
+    intent_id = body.intent_id
+    intent = {}
+    if (intent_id == None or intent_id == 0):
+      intent = get_intent(body.prompt)    
+      intent_id = intent["id"]
 
     # Early return for out of scope       
-    if (intent["id"] == 6):        
+    if (intent_id == 6):        
       return {"message": "Success", "data": intent}
-
-    print(intent)
-    
-    # record user message
-    chat.add_message(chat_id, "user", body.prompt)
-
+  
     dispatch = {
-      1: lambda: handle_general_questions(body.prompt),
-      2: lambda: handle_log_data(body.prompt),
-      3: lambda: handle_log_data(body.prompt),
+      1: lambda: handle_general_questions(chat_id, body.prompt),
+      2: lambda: handle_dealer_log(chat_id, user_id, body.prompt),
+      3: lambda: handle_field_product_log(chat_id, user_id, body.prompt),
       4: lambda: handle_requested_file(intent),
       5: lambda: handle_support_forms(intent),    
     }
 
-    handler = dispatch.get(intent["id"])
+    handler = dispatch.get(intent_id)
     if handler is None:
       raise Exception("Handler for intent not found")
 
