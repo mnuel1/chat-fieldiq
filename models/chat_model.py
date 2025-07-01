@@ -28,3 +28,4 @@ class ChatRequest(BaseModel):
     prompt: str
     user_id: int
     chat_id: Optional[int] = None
+    intent: Optional[int] = None

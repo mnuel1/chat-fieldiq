@@ -5,7 +5,8 @@ from core.chat_core import Chat
 from llm.farmer_llm_handler import (
   get_intent,
   handle_general_questions,
-  handle_log_data,
+  handle_health_log,
+  handle_local_practice_log,
   handle_requested_file,
   handle_support_forms
 )
@@ -26,7 +27,7 @@ def chat_service(body: ChatRequest):
     chat_id = body.chat_id
     user_id = body.user_id
 
-    if (chat_id == None):
+    if (chat_id == None or chat_id == 0):
       # create chat conversation
       chat_id = chat.create_conversation(user_id)
       if chat_id is None:
@@ -40,8 +41,8 @@ def chat_service(body: ChatRequest):
     
     dispatch = {
       1: lambda: handle_general_questions(chat_id, user_id, body.prompt),
-      2: lambda: handle_log_data(chat_id, user_id, body.prompt),
-      3: lambda: handle_log_data(chat_id, user_id, body.prompt),
+      2: lambda: handle_health_log(chat_id, user_id, body.prompt),
+      3: lambda: handle_local_practice_log(chat_id, user_id, body.prompt),
       4: lambda: handle_requested_file(intent),
       5: lambda: handle_support_forms(intent),
     }
