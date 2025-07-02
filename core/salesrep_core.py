@@ -23,6 +23,21 @@ class SalesRep:
             "updated_at": "now()", }).execute()
         return None
     
+    def create_sales_report(self, reported_by: int, form_data: Dict):
+        self.client.table("sales_reports").insert({            
+            **form_data,            
+            "reported_by": reported_by,
+            "updated_at": "now()", }).execute()
+        return None
+    
+    def create_visit_report(self, reported_by: int, form_data: Dict):
+        self.client.table("visit_reports").insert({            
+            **form_data,            
+            "reported_by": reported_by,
+            "updated_at": "now()", }).execute()
+        return None
+    
+
     def get_alert_incidents(self, user_id: int) -> Dict[str, List[Dict]]:        
         field_incidents_resp = self.client.table("field_product_incidents").select("*").eq("reported_by", user_id).execute()
         dealer_incidents_resp = self.client.table("dealer_incidents").select("*").eq("reported_by", user_id).execute()

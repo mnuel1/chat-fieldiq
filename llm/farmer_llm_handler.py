@@ -148,6 +148,71 @@ def handle_local_practice_log(chat_id, user_id, prompt):
 
     return response
 
+def handle_general_log(chat_id, user_id, prompt):
+    with open("prompts/ask_farmer_log.txt", "r", encoding='utf-8') as file:
+        system_instruction = file.read()
+  
+    chat = Chat()
+    farmer = Farmer()
+
+    # Get the form data value from farmer chat_conversation record
+    convo_res = chat.get_conversations_record(chat_id)
+    form_data = convo_res.get("form_data") or {}
+
+    # Get recent chat message history limit to 10 or kung ilan anong mas optimal at accurate
+    chat_history = chat.get_recent_messages(chat_id, 10)
+
+    # Form summary para ma track ni gemini yung mga nasagot na sa form for health incident
+    form_summary = "\n".join([
+        f"{k.replace('_', ' ').capitalize()}: {v}"
+        for k, v in form_data.items() if v
+    ]) or "None yet"
+
+    # Latest prompt + form summary...
+    chat_history.append({
+        "role": "user",
+        "parts": [
+            {"text": f"{prompt}\n\n(Previously collected info):\n{form_summary}"}
+        ]
+    })
+
+    # Feed gemini with the chat history and system instruction and latest prompt
+    response = client.models.generate_content(
+        model=model,
+        config={"system_instruction": system_instruction},
+        contents=chat_history
+    )
+    
+    match = re.search(r"```json\s*(\{.*?\})\s*```",
+                      response.text.strip(), re.DOTALL)
+    if not match:
+        raise ValueError("No JSON block found in the response.")
+    json_str = match.group(1)
+    parsed = json.loads(json_str)
+
+    # Merge new fields from Gemini into form_data
+    new_fields = parsed.get("incident_details", {})
+    form_data.update({k: v for k, v in new_fields.items()
+                     if v is not None and v != ""})
+
+    # Save updated form_data to chat_conversations
+    status = "active" if parsed["next_action"] != "log_complete" else "completed"
+    chat.update_conversation(
+        chat_id, form_data=form_data)
+
+    # Save yung latest user prompt and model response
+    store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"], metadata={"form_data": form_data, "next_action": parsed["next_action"]})
+   
+    # Final submission to health_incidents table pag yung form_data sa chat_conversation na filled na lahat
+    if parsed["next_action"] == "log_complete":
+        # farmer.create_health_incident(
+        #     farmer_user_profile_id=user_id,
+        #     form_data=form_data
+        # )
+        chat.update_conversation(chat_id, None)
+
+    return parsed
+
 def handle_requested_file(response):
 
     # Sample response

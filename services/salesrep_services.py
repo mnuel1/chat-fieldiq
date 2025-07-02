@@ -8,19 +8,22 @@ from llm.salesrep_llm_handler import (
   handle_field_product_log,
   handle_dealer_log,
   handle_requested_file,
-  handle_support_forms
+  handle_support_forms,
+  handle_sales_log,
+  handle_farm_log,
 )
 
 
 router = APIRouter()
 
-@router.post("/salesrep/chat")
+@router.post("/chat")
 def chat_service(body: ChatRequest):
   try:
     chat = Chat()
 
     chat_id = body.chat_id
     user_id = body.user_id
+    prompt = body.prompt
     
     if (chat_id == None or chat_id == 0):
         # create chat conversation
@@ -31,7 +34,7 @@ def chat_service(body: ChatRequest):
     intent_id = body.intent_id
     intent = {}
     if (intent_id == None or intent_id == 0):
-      intent = get_intent(body.prompt)    
+      intent = get_intent(prompt)    
       intent_id = intent["id"]
 
     # Early return for out of scope       
@@ -39,11 +42,14 @@ def chat_service(body: ChatRequest):
       return {"message": "Success", "data": intent}
   
     dispatch = {
-      1: lambda: handle_general_questions(chat_id, body.prompt),
-      2: lambda: handle_dealer_log(chat_id, user_id, body.prompt),
-      3: lambda: handle_field_product_log(chat_id, user_id, body.prompt),
+      1: lambda: handle_general_questions(chat_id, prompt),
+      2: lambda: handle_dealer_log(chat_id, user_id, prompt),
+      3: lambda: handle_field_product_log(chat_id, user_id, prompt),
       4: lambda: handle_requested_file(intent),
-      5: lambda: handle_support_forms(intent),    
+      5: lambda: handle_support_forms(intent),
+      7: lambda: handle_sales_log(chat_id, user_id, prompt),
+      8: lambda: handle_farm_log(chat_id, user_id, prompt),
+      
     }
 
     handler = dispatch.get(intent_id)
@@ -55,10 +61,7 @@ def chat_service(body: ChatRequest):
     print(f"An error occurred: {e}")
     return {"message": "Something went wrong", "data": None}
 
-#@router.post("/salesrep/logs")
-def log_service():
-  return 1
 
-#@router.post("/salesrep/request/collateral")
+#@router.post("/request/collateral")
 def request_collateral():
   return 1

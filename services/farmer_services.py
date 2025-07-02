@@ -8,7 +8,8 @@ from llm.farmer_llm_handler import (
   handle_health_log,
   handle_local_practice_log,
   handle_requested_file,
-  handle_support_forms
+  handle_support_forms,
+  handle_general_log
 )
 
 router = APIRouter()
@@ -20,6 +21,7 @@ def chat_service(body: ChatRequest):
       
     chat_id = body.chat_id
     user_id = body.user_id
+    prompt = body.prompt
 
     if (chat_id == None or chat_id == 0):
       # create chat conversation
@@ -30,7 +32,7 @@ def chat_service(body: ChatRequest):
     intent_id = body.intent_id
     intent = {}
     if (intent_id == None or intent_id == 0):
-      intent = get_intent(body.prompt)  
+      intent = get_intent(prompt)  
       intent_id = intent["id"]
 
     # Early return for out of scope       
@@ -38,11 +40,12 @@ def chat_service(body: ChatRequest):
       return {"message": "Success", "data": intent}
     
     dispatch = {
-      1: lambda: handle_general_questions(chat_id, user_id, body.prompt),
-      2: lambda: handle_health_log(chat_id, user_id, body.prompt),
-      3: lambda: handle_local_practice_log(chat_id, user_id, body.prompt),
+      1: lambda: handle_general_questions(chat_id, user_id, prompt),
+      2: lambda: handle_health_log(chat_id, user_id, prompt),
+      3: lambda: handle_local_practice_log(chat_id, user_id, prompt),
       4: lambda: handle_requested_file(intent),
       5: lambda: handle_support_forms(intent),
+      7: lambda: handle_general_log(chat_id, user_id, prompt)
     }
 
     handler = dispatch.get(intent_id)
@@ -54,7 +57,3 @@ def chat_service(body: ChatRequest):
   except Exception as e:
     print(f"An error occurred: {e}")
     return {"message": "Something went wrong", "data": None}
-
-#@router.post("/logs")
-def log_service():
-    return 1
