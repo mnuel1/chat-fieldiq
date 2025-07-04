@@ -1,7 +1,8 @@
-from datetime import datetime
+from datetime import datetime, date
 from typing import List, Optional, Dict
 from config.config import get_supabase_client
-
+from collections import defaultdict
+from calendar import month_abbr
 
 class SalesRep:
     def __init__(self):
@@ -37,15 +38,169 @@ class SalesRep:
             "updated_at": "now()", }).execute()
         return None
     
+    def get_monthly_sales(self, user_id: int) -> Dict[str, float]:
+        response = (
+            self.client
+            .table("sales_reports")
+            .select("*")
+            .eq("reported_by", user_id)
+            .execute()
+        )
+        data = response.data
 
-    def get_alert_incidents(self, user_id: int) -> Dict[str, List[Dict]]:        
-        field_incidents_resp = self.client.table("field_product_incidents").select("*").eq("reported_by", user_id).execute()
-        dealer_incidents_resp = self.client.table("dealer_incidents").select("*").eq("reported_by", user_id).execute()
+        monthly_sales = defaultdict(float)
+        total_sales = 0.0
 
-        field_incidents = field_incidents_resp.data if hasattr(field_incidents_resp, "data") else []
-        dealer_incidents = dealer_incidents_resp.data if hasattr(dealer_incidents_resp, "data") else []
+        for row in data:
+            sales_date_str = row.get("sales_date")
+            if not sales_date_str:
+                continue
+
+            # Parse ISO 8601 datetime string
+            sales_date = datetime.fromisoformat(sales_date_str.replace("Z", "+00:00"))
+            month_number = sales_date.month
+            total = row.get("total", 0.0)
+
+            monthly_sales[month_number] += total
+            total_sales += total
+
+        result = []
+        for month_num in sorted(monthly_sales):
+            result.append({
+                "month": month_abbr[month_num],  # e.g., "Jan"
+                "volumeInfluenced": 0,           # You can update this if needed
+                "closedSales": monthly_sales[month_num]
+            })
+        month_count = len(monthly_sales)
+        avg_sales = total_sales / month_count if month_count else 0.0
 
         return {
-            "field_product_incidents": field_incidents,
-            "dealer_incidents": dealer_incidents
+            "monthly_sales": result,
+            "average_sales": avg_sales
         }
+
+    def get_farms(self, user_id: int) -> Dict[str, object]:
+        response = (
+            self.client
+            .table("visit_reports")
+            .select("farm_name, location, visit_date, visit_type")
+            .eq("reported_by", user_id)
+            .execute()
+        )
+        data = response.data
+
+        farm_data = []
+        planned_count = 0
+        completed_count = 0
+
+        for row in data:
+            raw_date = row.get("visit_date")
+            visit_type = row.get("visit_type")
+
+            if raw_date:
+                dt = datetime.fromisoformat(raw_date.replace("Z", "+00:00"))
+                formatted_date = dt.strftime("%b %d, %Y")   
+                formatted_time = dt.strftime("%I:%M %p").lstrip("0")
+            else:
+                formatted_date = None
+                formatted_time = None
+
+            farm_data.append({
+                "farm_name": row.get("farm_name"),
+                "location": row.get("location"),
+                "visit_type": visit_type,
+                "visit_date": formatted_date,
+                "visit_time": formatted_time
+            })
+
+            if visit_type == "planned_visit":
+                planned_count += 1
+            elif visit_type == "completed_visit":
+                completed_count += 1
+
+        return {
+            "farms": farm_data,
+            "planned_count": planned_count,
+            "completed_count": completed_count
+        }
+    
+    def get_visits(self, user_id: int) -> List[Dict]:
+        response = (
+            self.client
+            .table("visit_reports")
+            .select("id, farm_name, location, visit_type, visit_date, purpose, observations, notes")
+            .eq("reported_by", user_id)
+            .execute()
+        )
+        data = response.data or []
+
+        status_map = {
+            "planned_visit": "scheduled",
+            "completed_visit": "completed",
+            "overdue": "overdue"
+        }
+
+        visits = []
+
+        for row in data:
+            visit_type = row.get("visit_type")
+            visit_date_str = row.get("visit_date")
+
+            if not visit_date_str:
+                continue
+
+            # Parse and format date
+            visit_dt = datetime.fromisoformat(visit_date_str.replace("Z", "+00:00"))
+
+            visit_entry = {
+                "id": row.get("id"),
+                "farmName": row.get("farm_name"),
+                "location": row.get("location"),
+                "status": status_map.get(visit_type, "overdue"),
+                "scheduledDate": visit_dt.isoformat(),
+                "notes": row.get("purpose"),
+                "observations": row.get("observations"),
+                "notes1": row.get("notes"),
+                "contactPerson": "Juan dela Cruz",
+                "phoneNumber": "+63 917 123 4567",
+                "priority": "high",
+                "gpsCoordinates": {
+                    "lat": 14.1693,
+                    "lng": 121.2416
+                },
+                "type": "visit"
+            }
+
+            visits.append(visit_entry)
+
+        return visits
+
+    def get_alert_incidents(self, user_id: int) -> Dict[str, List[Dict]]:
+        def fetch_tagged_data(table: str, tag: str):
+            response = (
+                self.client
+                .table(table)
+                .select("id", "problem", "description, created_at")
+                .eq("reported_by", user_id)
+                .execute()
+            )
+            data = getattr(response, "data", []) or []
+            return [
+            {
+                "id": item.get("id", ""),
+                "type": tag,
+                "title": item.get("problem") or "New Sales",
+                "description": item.get("description", ""),
+                "timestamp": item.get("created_at", ""),
+                
+            }
+            for item in data
+        ]
+
+        field_data = fetch_tagged_data("field_product_incidents", "warning")
+        dealer_data = fetch_tagged_data("dealer_incidents", "warning")
+        sales_data = fetch_tagged_data("sales_reports", "success")
+        
+        all_data = field_data + dealer_data + sales_data
+
+        return {"data": all_data}

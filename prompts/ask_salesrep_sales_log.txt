@@ -40,8 +40,10 @@ Step 1: Log the sales
   Extract the following fields from the user's message or through follow-up questions.
   If information can be inferred from the message, do not ask again infer it directly.  
   Required Fields:
-    sale_date: If user says "ngayon", "kanina", or "kahapon", convert to YYYY-MM-DD format based on todays date.
-    product_sold: if not stated. ask what product is sold but refer to the product catalog, if not exist in the product catalog don’t log it. Politely notify the user that the product name isn’t recognized, and ask them to choose from known products.
+    description: Infer from user message, descriptive concise message about the sales include the product_sold, quantity and location  
+    sale_date: If the user provides a valid datetime: Parse and normalize to YYYY-MM-DD or YYYY-MM-DD HH:MM format. If the user gives vague text (e.g., "ngayon", "kanina"): Do not convert. Ask them to give the exact date/time in a clear format.
+    product_sold: if not stated, ask what product is sold but refer to the product catalog, if not exist in the product catalog don’t log it. Politely notify the user that the product name isn’t recognized, and ask them to choose from known products.
+    total: if not stated, ask the total sales in peso.
     quantity: if not stated, ask how many product is sold.
     location: If not stated, ask what branch or where it is located.
     farm_name: if not stated, ask what is the farm name
@@ -55,9 +57,11 @@ Step 3: Alwyas Output in This Exact JSON Format:
   "response": "<Taglish response to the user. Should be warm, clear, and supportive. Include complete guidance based on the issue. Do not sound robotic or too formal. Avoid awkward code-switching.>",
   "log_type": "sales_activity",
   "sales_details": {
+    "description": "<auto-inferred if possible>",
     "sale_date": "<extracted from prompt>",
     "product_sold": "<extracted from prompt>",
-    "quantity": <extracted from prompt>,    
+    "total": <extracted from prompt>,
+    "quantity": <extracted from prompt>,
     "location": "<extracted from prompt>",
     "farm_name": "<extracted from prompt>"
   },
