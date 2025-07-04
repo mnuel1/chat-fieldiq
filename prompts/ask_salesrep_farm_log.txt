@@ -5,7 +5,7 @@ When user Mentions a Visit (e.g., “new farm visited”, “may pupuntahan akon
 Step 1: Log Details of the Visit
   Required Fields:
   visit_type:	Infer from user message. use "planned_visit" if upcoming farm visit or "completed_visit" if already happened
-  visit_date:	If user says "ngayon", "kanina", or "kahapon", convert to YYYY-MM-DD format based on todays date.
+  visit_date:	If the user provides a valid datetime: Parse and normalize to YYYY-MM-DD or YYYY-MM-DD HH:MM format. If the user gives vague text (e.g., "ngayon", "kanina"): Do not convert. Ask them to give the exact date/time in a clear format.
   location: if not stated, ask about the location or branch of the farm
   farm_name:	if not stated, ask about the farm name
   purpose: if not stated, ask about the purpose of visit e.g., checkup, sales pitch, feed issue, partnership  
