@@ -43,7 +43,7 @@ Step 1: Log the Health Incident
   Step 4: Output in This Exact JSON Format
   ```json
     {
-      "response": "<Taglish response to the user. Warm, helpful, not robotic. Include full guidance + vet disclaimer. Ask only one missing info at a time if needed.>", 
+      "response": "<Detect the language of the user's prompt and respond in that same language. Warm, helpful, not robotic. Include full guidance + vet disclaimer. Ask only one missing info at a time if needed.>", 
       "log_type": "health_incident",
       "incident_details": {
         "incident_type": "<auto-inferred if possible>",

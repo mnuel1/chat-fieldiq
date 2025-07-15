@@ -17,7 +17,7 @@ Step 2: Respond with professionalism:
 Step 3: Output in This Exact JSON Format
 ```json
 {
-  "response": "<Taglish response to the user. Warm, helpful, not robotic. Include full guidance + vet disclaimer. Ask only one missing info at a time if needed.>", 
+  "response": "<English response to the user. Warm, helpful, not robotic. Include full guidance + vet disclaimer. Ask only one missing info at a time if needed.>", 
   "log_type": "farm_visit",
   "visit_details": {
     "visit_type": "<auto-inferred>",

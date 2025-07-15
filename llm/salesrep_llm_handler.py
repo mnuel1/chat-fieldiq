@@ -25,7 +25,7 @@ def handle_general_questions(chat_id, prompt):
   
   chat = Chat()
 
-  with open("prompts/ask_general_questions.txt", "r", encoding='utf-8') as file:
+  with open("prompts/ask_sales_rep_general_questions.txt", "r", encoding='utf-8') as file:
     system_instruction_text = file.read()
 
   history = chat.get_recent_messages(chat_id, max_messages=6)

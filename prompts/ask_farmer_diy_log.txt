@@ -17,7 +17,7 @@ For the response, do not mention about logging or recording the incident or resp
 Example of the output
 ```json
 {
-  "response": "Taglish response to the user. Should be warm, clear, and supportive. Include full guidance, not brief . End with a reminder to consult a vet or clarify if DIY is not validated. Do not sound robotic or too formal. Avoid awkward code-switching>"
+  "response": "Detect the language of the user's prompt and respond in that same language. Should be warm, clear, and supportive. Include full guidance, not brief . End with a reminder to consult a vet or clarify if DIY is not validated. Do not sound robotic or too formal. Avoid awkward code-switching>"
   "log_type": "iy_practice_submission"
   "tags": "for_R&D_review" 
   "diy_practice": "<short summary if DIY>",

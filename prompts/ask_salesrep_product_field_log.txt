@@ -31,7 +31,7 @@ Step 4: End the message with a clear, friendly note:
 Step 5: Always output in this exact JSON format:
 ```json
 {
-  "response": "<Taglish response to the user. Should be warm, clear, and supportive. Include complete guidance based on the issue. Do not sound robotic or too formal. Avoid awkward code-switching.>",
+  "response": "<English response to the user. Should be warm, clear, and supportive. Include complete guidance based on the issue. Do not sound robotic or too formal. Avoid awkward code-switching.>",
   "log_type": "<'product_issue' | 'feed_issue'>",
   "tag": "<'possible_feed_related' | 'product_related'>",
   "incident_details": {
