@@ -34,7 +34,7 @@ def chat_service(body: ChatRequest):
     if (intent_id == None or intent_id == 0):
       intent = get_intent(prompt)  
       intent_id = intent["id"]
-
+    
     # Early return for out of scope       
     if (intent_id == 6): 
       return {"message": "Success", "data": intent}
@@ -47,7 +47,7 @@ def chat_service(body: ChatRequest):
       5: lambda: handle_support_forms(intent),
       7: lambda: handle_general_log(chat_id, user_id, prompt)
     }
-
+    
     handler = dispatch.get(intent_id)
     if handler is None:
       raise Exception("Handler for intent not found")
