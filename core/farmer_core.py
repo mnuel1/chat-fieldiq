@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional, Dict
 from config.config import get_supabase_client
 
@@ -22,3 +22,26 @@ class Farmer:
             "reported_by": farmer_user_profile_id,
             "updated_at": "now()", }).execute()
         return None
+
+    def create_feed_calculation_log(self, user_profile_id: int, log_data: Dict) -> Dict:
+        payload = {
+            "user_profile_id": user_profile_id,
+            **log_data
+        }
+
+        response = self.client.table(
+            "feed_calculation_logs").insert(payload).execute()
+        return response.data[0] if response.data else {}
+
+    def update_feed_calculation_log(self, log_id: int, updated_data: Dict) -> Dict:
+        payload = {
+            **updated_data,
+            "updated_at": datetime.now(timezone.utc)
+        }
+
+        response = self.client.table("feed_calculation_logs") \
+            .update(payload) \
+            .eq("id", log_id) \
+            .execute()
+
+        return response.data[0] if response.data else {}
