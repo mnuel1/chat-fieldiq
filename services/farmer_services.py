@@ -57,3 +57,9 @@ def chat_service(body: ChatRequest):
   except Exception as e:
     print(f"An error occurred: {e}")
     return {"message": "Something went wrong", "data": None}
+  
+
+
+# history not working properly
+# ano ang pinapakain sa 5 months
+# ilang beses ito pinapakain
