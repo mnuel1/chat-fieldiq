@@ -56,7 +56,6 @@ def handle_general_questions(chat_id, prompt):
   
   return response
 
-
 def handle_field_product_log(chat_id, user_id, prompt):
   
   with open("prompts/ask_salesrep_product_field_log.txt", "r", encoding='utf-8') as file:
@@ -288,6 +287,9 @@ def handle_farm_log(chat_id, user_id, prompt):
     config={"system_instruction": system_instruction},
     contents=chat_history
   )
+
+  print(response.text)
+
   match = re.search(r"```json\s*(\{.*?\})\s*```",
                     response.text.strip(), re.DOTALL)
   if not match:
@@ -309,15 +311,25 @@ def handle_farm_log(chat_id, user_id, prompt):
   # Save yung latest user prompt and model response
   store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"], metadata={"form_data": form_data, "next_action": parsed["next_action"]})
   
-  # Final submission to health_incidents table pag yung form_data sa chat_conversation na filled na lahat
-  if parsed["next_action"] == "log_complete":
-    salesrep.create_visit_report(
-      user_id,
-      form_data
-    )
-    chat.update_conversation(chat_id, None)
+  visit_details = parsed["visit_details"]
+  visit_type = visit_details["visit_type"]
+  ticket_number = visit_details.get("ticket_number")
+
+  if visit_type == "planned_visit" and not ticket_number:
+    ticket_number = salesrep.generate_ticket_number(user_id)
+    visit_details["ticket_number"] = ticket_number
+    if parsed.get("next_action") == "log_complete":
+      salesrep.create_visit_report(user_id, form_data)
+      chat.update_conversation(chat_id, None)
+
+  elif visit_type == "completed_visit" and ticket_number:
+    if salesrep.check_ticket_number_validity(ticket_number, user_id) and parsed.get("next_action") == "log_complete":
+      salesrep.update_visit_report(ticket_number, user_id, form_data)
+      chat.update_conversation(chat_id, None)
 
   return parsed
+
+
 
 def handle_requested_file(response):
   
