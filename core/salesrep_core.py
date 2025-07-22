@@ -52,7 +52,7 @@ class SalesRep:
         total_sales = 0.0
 
         for row in data:
-            sales_date_str = row.get("sales_date")
+            sales_date_str = row.get("sale_date")
             if not sales_date_str:
                 continue
 
@@ -68,7 +68,7 @@ class SalesRep:
         for month_num in sorted(monthly_sales):
             result.append({
                 "month": month_abbr[month_num],  # e.g., "Jan"
-                "volumeInfluenced": 0,           # You can update this if needed
+                "volumeInfluenced": 14500,           # You can update this if needed
                 "closedSales": monthly_sales[month_num]
             })
         month_count = len(monthly_sales)
