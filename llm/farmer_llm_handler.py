@@ -27,12 +27,12 @@ def handle_general_questions(chat_id, user_id, prompt):
     chat = Chat()
     farmer = Farmer()
 
-    with open("prompts/ask_general_questions.txt", "r", encoding='utf-8') as file:
+    with open("prompts/ask_farmer_general_questions.txt", "r", encoding='utf-8') as file:
         system_instruction_text = file.read()
 
     days_on_feed, current_feed = farmer.get_feed_use(user_id)
 
-    history = chat.get_recent_messages(chat_id, max_messages=6)
+    history = chat.get_recent_messages(chat_id, max_messages=10)
 
     # Append the current prompt as a user message
     history.append({
@@ -231,7 +231,7 @@ def handle_requested_file(response):
     # for now we only have "broiler_starter_feeding" so just return that
     # but prepare a search in db
 
-    return 1
+    return 4
 
 def handle_support_forms(response):
 
@@ -252,7 +252,7 @@ def handle_support_forms(response):
     #   ii. "technical_consultation" – for feed or farm management consultation
     #   iii. "customer_support" – for general support or company contact
 
-    return 1
+    return 5
 
 
 def get_intent(prompt):

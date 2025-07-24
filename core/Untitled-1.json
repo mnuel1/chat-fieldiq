@@ -1,0 +1,1129 @@
+[
+  {
+    "id": 201,
+    "question": "u done>",
+    "answer": "Noted with thanks! I have recorded the completed visit to check the farm"s feed supplies on 2020-07-08, ticket number TKT-0001-2. Please remember that I am not a veterinarian, so this information should not substitute professional veterinary advice. Always consult with a qualified vet for animal health concerns.", "category": "farm_visit", "status": "active", "priority": 4, "views": 3475, "lastUpdated": "2025-07-18T03: 18: 10.607578+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 200, "question": "u done", "answer": "Okay, na-record ko na po ang farm visit. Salamat po!", "category": "farm_visit", "status": "active", "priority": 2, "views": 2182, "lastUpdated": "2025-07-18T03: 17: 42.436259+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 199, "question": "done?", "answer": "Okay, I have successfully recorded the farm visit details with Ticket Number TKT-0001-2.  If you have more farm visits to log, just let me know! Please note that I am not a substitute for a licensed veterinarian. Always consult with a vet for animal health concerns.", "category": "farm_visit", "status": "active", "priority": 4, "views": 1947, "lastUpdated": "2025-07-18T03: 16: 58.888712+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 198, "question": "are you done now?", "answer": "Yes, I have recorded the visit details based on ticket number TKT-0001-2. Thank you for the update!", "category": "farm_visit", "status": "active", "priority": 4, "views": 4534, "lastUpdated": "2025-07-18T03: 15: 48.531047+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 197, "question": "u done recording it?", "answer": "Yes, I have successfully recorded the information from the farm visit with ticket number TKT-0001-2. If you have any more farm visits to record or need further assistance, please let me know! Just a reminder, I am not a veterinarian. For any animal health concerns, please consult with a licensed veterinarian.", "category": "farm_visit", "status": "active", "priority": 1, "views": 3671, "lastUpdated": "2025-07-18T03: 14: 33.128182+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 196, "question": "record it again", "answer": "Okay, I"ve recorded the visit details. I have successfully noted the ticket number, visit type, visit date, purpose, and the notes you provided. Is there anything else I can assist you with?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 1,
+    "views": 3287,
+    "lastUpdated": "2025-07-18T03:13:34.12713+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 195,
+    "question": "you dont need that information",
+    "answer": "Okay, naitala na po ang 
+farm visit. Salamat po!", "category": "farm_visit", "status": "active", "priority": 3, "views": 4794, "lastUpdated": "2025-07-18T03: 12: 37.797682+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 194, "question": "have u recorded it?", "answer": "Yes, I"m recording this visit now. To complete the record, may I confirm the location and farm name?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 1,
+    "views": 4622,
+    "lastUpdated": "2025-07-18T03:12:01.204117+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 193,
+    "question": "have u recorded it >",
+    "answer": "Yes, I have recorded the information you provided. Thank you!",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 2,
+    "views": 717,
+    "lastUpdated": "2025-07-18T03:09:15.828953+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 192,
+    "question": "you dont need that",
+    "answer": "Naitala na po ang farm visit na may ticket number na TKT-0001-2. Salamat po!",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 2793,
+    "lastUpdated": "2025-07-18T03:07:34.159968+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 191,
+    "question": "went theere 7/8/2020 and my pirpose is to check their feed suplies",
+    "answer": "Noted po. Para ma-log ang visit report niyo, paki-kumpleto na lang ang mga detalye na ito:\n\n*   Visit Date: (YYYY-MM-DD)\n*   Farm Name:\n*   Location:",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 3,
+    "views": 3114,
+    "lastUpdated": "2025-07-18T03:06:26.143174+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 190,
+    "question": "i did a visit this is my ticket number TKT-0001-2",
+    "answer": "Hello! Thanks for providing the ticket number. To complete the visit log, could you please provide the following details?\n\n*   **Visit Date:** When did the visit occur? Please provide the date in YYYY-MM-DD format.\n*   **Purpose:** What was the main purpose of the visit (e.g., check feeds, follow-up, sales call)?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 1,
+    "views": 4055,
+    "lastUpdated": "2025-07-18T03:05:51.494728+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 189,
+    "question": "i went there last 7/20/2005 and the purpose is to check their feed supplies",
+    "answer": "Okay, naitala ko po na bumisita kayo sa farm noong July 20, 2005 para icheck ang feed supplies nila. Para makumpleto ang farm visit details, pwede ko bang malaman kung saan ang location at farm name?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 1,
+    "views": 4714,
+    "lastUpdated": "2025-07-18T03:03:18.605797+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 188,
+    "question": "i did a visit this is my ticket number TKT-0001-2",
+    "answer": "Thank you for providing the ticket number! To properly log this completed visit, I need a bit more information. Please provide the date of the visit and a brief note about the purpose of the visit.",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 1465,
+    "lastUpdated": "2025-07-18T03:02:42.471287+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 187,
+    "question": "visit date 7/20/2005, i visited 
+there for checking supplies ", "answer": "Noted! I need a little more information to properly log this visit. Could you please provide the following:\n\n*   **Location of the farm you visited:** (e.g., Barangay, Municipality)\n*   **Farm name:** (e.g., Dela Cruz Farm)\n", "category": "farm_visit", "status": "active", "priority": 4, "views": 511, "lastUpdated": "2025-07-18T03: 01: 00.222374+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 186, "question": "ticket number TKT-0001-2", "answer": "Okay, dahil may ticket number ka na, pwede na nating irecord ang farm visit mo. Para makumpleto ang visit report, kailangan ko rin ang mga sumusunod:  *   **Visit Date:** Kailan ang farm visit? *   **Purpose:** Ano ang layunin ng pagbisita?", "category": "farm_visit", "status": "active", "priority": 2, "views": 3421, "lastUpdated": "2025-07-18T03: 00: 30.719371+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 185, "question": "i did a visit", "answer": "Para maitala ang detalye ng inyong pagbisita, kailangan ko po ng karagdagang impormasyon. Maaari niyo po bang ibigay ang mga sumusunod? - Petsa ng pagbisita: (YYYY-MM-DD) format - Lokasyon: - Pangalan ng Farm: - Purpose ng pagbisita: - Maari niyo rin bang ibigay ang Ticket ID kung meron (format: TKT-000ID-COUNT, e.g., TKT-00023-1).", "category": "farm_visit", "status": "active", "priority": 3, "views": 2743, "lastUpdated": "2025-07-18T03: 00: 11.999054+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 184, "question": "i did a visit", "answer": "Okay, naiintindihan ko po na nag-site visit kayo. Para ma-record ang visit bilang *planned_visit*, paki-bigay po ang mga sumusunod na impormasyon para makumpleto natin ito.\n\n", "category": "farm_visit", "status": "active", "priority": 3, "views": 4027, "lastUpdated": "2025-07-18T02: 59: 26.659506+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 183, "question": "i did a visit on that date", "answer": "Okay, I can help you log this farm visit. To proceed, I need the visit date, farm name, location, and purpose of your visit. If you have a ticket number, please provide it as well.", "category": "farm_visit", "status": "active", "priority": 4, "views": 613,
+    "lastUpdated": "2025-07-18T02:58:11.892207+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 182,
+    "question": "7/20/2005",
+    "answer": "Okay po. Bale ang date na ibinigay ninyo ay July 20, 2005. Mayroon po ba kayong farm visit na nais i-log para sa araw na iyon? Kung meron, kailangan ko po ng karagdagang impormasyon para maitala ito.",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 4116,
+    "lastUpdated": "2025-07-18T02:56:42.413444+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 181,
+    "question": "ticket number TKT-0001-2",
+    "answer": "Noted po sa ticket number na TKT-0001-2. Kailan po ang petsa ng inyong pagbisita sa farm?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 4282,
+    "lastUpdated": "2025-07-18T02:56:10.251943+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 180,
+    "question": "i did a visit",
+    "answer": "Okay, naiintindihan ko po na nag-site visit kayo. Para maitala ito, kailangan ko lang po ng ilang detalye. Mayroon po ba kayong ticket number para sa visit na ito? (format: TKT-000ID-COUNT, e.g., TKT-00023-1). Kung wala, pwede rin tayong gumawa ng visit report.",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 1,
+    "views": 3938,
+    "lastUpdated": "2025-07-18T02:55:38.20109+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 179,
+    "question": "i did a visit",
+    "answer": "Okay! Para maitala natin ang detalye ng pagbisita mo, kailangan ko lang ng ilang impormasyon. Was this a planned visit or was it completed?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 1,
+    "views": 2059,
+    "lastUpdated": "2025-07-18T02:52:50.086662+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 178,
+    "question": "I do not have a ticket number yet so i will create a visit report",
+    "answer": "Okay po! Naiintindihan ko na wala pa kayong ticket number. I-log ko na ang farm visit report. Nakalista na po ang visit date sa August 29, 2025, location sa Manila, farm name na Chick Farm at purpose na check the feeds. Dagdag ko rin sa notes na Sales rep will check the chicks. Okay na po ba?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 3,
+    "views": 3201,
+    "lastUpdated": "2025-07-18T02:31:18.036225+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 177,
+    "question": "my purpose is to check their feeds",
+    "answer": "Okay, I understand that you will check their feeds, visit date is on 2025-08-29, location is in Manila and the farm name is Chick Farm. Before I can proceed, I need to ask for the ticket number. Please provide the ticket number (format: TKT-000ID-COUNT, e.g., TKT-00023-1).",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 1973,
+    "lastUpdated": "2025-07-18T02:30:51.328878+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 176,
+    "question": "i said i will check their feeds",
+    "answer": "Okay, naitala ko po na pupuntahan ninyo ang farm para icheck ang feeds. Para makumpleto ang log, ano po ang layunin ng pagbisita ninyo bukod sa pagcheck ng feeds?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 1,
+    "views": 4205,
+    "lastUpdated": "2025-07-18T02:30:36.038332+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 175,
+    "question": "i will check theirfeeds",
+    "answer": "Okay, naitala ko na po na pupuntahan ninyo ang farm para icheck ang feeds. Para makumpleto ang log, maaari ko bang malaman ang layunin ng pagbisita?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 2,
+    "views": 2849,
+    "lastUpdated": "2025-07-18T02:29:42.885182+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 174,
+    "question": "i will see their chicks",
+    "answer": "Okay, naiintindihan ko na bibisitahin mo ang Chick Farm sa Manila sa August 29, 2025 para tignan ang mga sisiw. Para makumpleto ang details, ano po ang purpose ng visit na ito?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 3561,
+    "lastUpdated": "2025-07-18T02:29:21.239489+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 173,
+    "question": "i will go to check their chicks",
+    "answer": "Okay, I understand you"re going to check the chicks at Chick Farm in Manila on August 29, 2025. To complete the log, what is the purpose of your visit?", "category": "farm_visit", "status": "active", "priority": 4, "views": 2797, "lastUpdated": "2025-07-18T02: 27: 50.510423+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 172, "question": "sinabi ko na yan", "answer": "I apologize for the oversight! I am still under development, and I am always improving.\n\nSince we are planning a farm visit, I need to know the purpose of the visit. Can you please tell me why you are planning to visit Chick Farm in Manila on 2025-08-29?", "category": "farm_visit", "status": "active", "priority": 3, "views": 2370, "lastUpdated": "2025-07-18T02: 27: 23.903447+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 171, "question": "irerecord ko ang mga chicks", "answer": "Okay! Para ma-record ko po nang tama ang detalye ng iyong pupuntahan, maaari ko bang malaman ang layunin ng iyong pagbisita bukod sa pag check sa kanilang mga sisiw at lokasyon ng farm?", "category": "farm_visit", "status": "active", "priority": 1, "views": 3041, "lastUpdated": "2025-07-18T02: 25: 35.398945+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 170, "question": "i will check their chicks", "answer": "Okay, naiintindihan ko po na pupuntahan niyo ang Chick Farm sa Manila bukas, August 29,
+    2025, para i-check ang mga sisiw. Para makumpleto ang log, kailangan ko lang po malaman kung bakit niyo gustong i-check ang mga sisiw? Mayroon po bang specific na dahilan?", "category": "farm_visit", "status": "active", "priority": 1, "views": 2558, "lastUpdated": "2025-07-18T02: 24: 55.093723+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 169, "question": "i dont have ticket number", "answer": "Noted po! Since wala pa pong ticket number, ang visit type po ay naka set as planned_visit. Para po ma kumpleto, ano po ang purpose ng visit niyo po?", "category": "farm_visit", "status": "active", "priority": 3, "views": 3453, "lastUpdated": "2025-07-18T02: 24: 35.812801+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 168, "question": "i dont have ticket number", "answer": "Okay po. Para sa naplanong pagbisita sa Chick Farm sa Manila sa August 29,
+    2025, at para sa layunin na tingnan ang kanilang mga sisiw, kailangan ko lang ng ticket number. Please provide the ticket number (format: TKT-000ID-COUNT, e.g., TKT-00023-1).", "category": "farm_visit", "status": "active", "priority": 1, "views": 4411, "lastUpdated": "2025-07-18T02: 23: 42.887087+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 167, "question": "i will go to manila to visit the Chick Farm on 8/29/2025. I will just going to check their chicks", "answer": "Okay, naitala ko na po na bibisitahin ninyo ang Chick Farm sa Manila sa August 29,
+    2025 para icheck ang kanilang mga sisiw. Para makumpleto ang log, maaari ko bang malaman ang ticket number ng visit (format: TKT-000ID-COUNT, e.g., TKT-00023-1)? Kung wala pa kayong ticket number, mag-create muna tayo ng visit report para dito.", "category": "farm_visit", "status": "active", "priority": 3, "views": 3165, "lastUpdated": "2025-07-18T02: 22: 35.752467+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 166, "question": "i dont have a ticket number", "answer": "Okay, I understand you don"t have a ticket number. To proceed, I will need to create a visit report first. However, since you don"t have a ticket number, this will be logged as a planned visit. To complete the log, can you please provide the date of the visit? If the visit is for a future date please specify. \n\nDisclaimer: This information is intended for general guidance only, and should not be substituted for professional veterinary advice. Always consult with a qualified veterinarian for any health concerns regarding your animals.", "category": "farm_visit", "status": "active", "priority": 3, "views": 2005, "lastUpdated": "2025-07-18T02: 21: 09.305808+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 165, "question": "i dont have", "answer": "Okay, I need a few more details to complete the log. Please provide the visit date, location, farm name, purpose of the visit, and the ticket ID. (e.g., TKT-00023-1).", "category": "farm_visit", "status": "active", "priority": 3, "views": 4148, "lastUpdated": "2025-07-18T02: 17: 03.649148+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 164, "question": "tapos na ako mag visit", "answer": "Noted on the farm visit. Do you have a ticket ID for this visit? (e.g., TKT-00023-1)", "category": "farm_visit", "status": "active", "priority": 4, "views": 3327, "lastUpdated": "2025-07-18T02: 16: 42.317923+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 163, "question": "i said i just check their equipments", "answer": "Okay, I"ve recorded that you checked the equipments during your farm visit today, June 9, 2025 with ticket number TKT-0001-1. Just to confirm, is there anything else I should add regarding the visit? If not, we"re all set!", "category": "farm_visit", "status": "active", "priority": 3, "views": 1331, "lastUpdated": "2025-07-18T02: 15: 08.912392+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 162, "question": "i visited there 6/9/2025 and i just check their equipments", "answer": "Okay, naitala ko na ang iyong pagbisita sa farm para sa ticket TKT-0001-1. Kailangan ko lang ng ilang detalye para makumpleto ang log. Maaari mo bang ibigay ang layunin ng iyong pagbisita? ", "category": "farm_visit", "status": "active", "priority": 3, "views": 4053, "lastUpdated": "2025-07-18T02: 14: 14.237791+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 161, "question": "TKT-0001-1", "answer": "Hi! To complete the farm visit log, I need a few more details.\n\nCan you provide the visit date and the purpose of the visit? Thanks!", "category": "farm_visit", "status": "active", "priority": 3, "views": 3220, "lastUpdated": "2025-07-18T02: 13: 05.457206+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 160, "question": "ticket-01-1", "answer": "Noted po! Para po masigurado, paki-kumpleto po ang mga detalye para sa farm visit log. Pakisuyo po ang ticket ID format na TKT-000ID-COUNT po. Salamat po!", "category": "farm_visit", "status": "active", "priority": 4, "views": 1028, "lastUpdated": "2025-07-18T02: 11: 36.60314+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 159, "question": "TICKET 1, tapos ko na navisit", "answer": "Salamat po! Para ma-record ang farm visit niyo, pwede niyo po bang ibigay ang kumpletong ticket ID (e.g., TKT-00023-1)?", "category": "farm_visit", "status": "active", "priority": 4, "views": 4901, "lastUpdated": "2025-07-18T02: 11: 16.145164+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 158, "question": "i will go to manila to visit Tol farm on 12/12/2025 to check their feeds", "answer": "Okay, naitala ko na pupunta kayo sa Tol farm sa Manila sa December 12, 2025, para i-check ang kanilang feeds. Tama po ba?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 2555,
+    "lastUpdated": "2025-07-18T01:58:35.193641+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 157,
+    "question": "i will check their feeds",
+    "answer": "Okay, nai-record ko na pupunta ka sa farm para i-check ang feeds. Just to confirm, ito yung details:\n\n*   Visit Date: 2025-08-20\n*   Location: Manila\n*   Farm Name: Koto\n*   Purpose: Check feeds\n\nIngat po sa byahe! I-update mo na lang ako pagkatapos ng visit.",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 4648,
+    "lastUpdated": "2025-07-18T01:56:39.265466+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 156,
+    "question": "I will go to manila to check farm koto on 8/20/2025. I will check their feeds.",
+    "answer": "Okay po! Naitala ko na pupunta kayo sa farm koto sa Manila sa August 20, 2025, para i-check ang feeds nila. Para mas kumpleto ang detalye, pwede ko bang malaman ang pangalan ng farm at ano ang purpose ng visit? Salamat po!",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 1544,
+    "lastUpdated": "2025-07-18T01:55:47.499339+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 155,
+    "question": "i will check theirfeeds",
+    "answer": "Okay, nakuha ko po. So, ang purpose ng visit ninyo sa Farmman sa Manila sa July 20, 2025 ay para i-check ang feeds nila. Tama po ba? Kung may iba pa kayong gustong idagdag, sabihin niyo lang po.",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 1,
+    "views": 3560,
+    "lastUpdated": "2025-07-18T01:53:37.825974+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 154,
+    "question": "ang farmname ay farmman, i will check their feeds",
+    "answer": "Okay po, Farmman ang farm name. Para makumpleto ang log, ano po ang purpose ng visit niyo sa Farmman?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 3,
+    "views": 760,
+    "lastUpdated": "2025-07-18T01:52:54.312939+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 153,
+    "question": "its in manila, i will visit the manfarm to check their feeds",
+    "answer": "Okay, para mas kumpleto ang detalye ng iyong pagbisita, maaari ko bang malaman ang pangalan ng farm na iyong pupuntahan? Ano rin ang purpose ng pagbisita?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 3,
+    "views": 1312,
+    "lastUpdated": "2025-07-18T01:51:32.632489+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 152,
+    "question": "i will visit man farm on 7/20/2025",
+    "answer": "Okay, naitala ko na po ang iyong planong pagbisita sa farm. Para po sa kumpletong detalye, maaari ko bang malaman kung saan ang lokasyon at pangalan ng farm na iyong bibisitahin? At ano po ang layunin ng iyong pagbisita? Tandaan po na ako ay isang AI assistant lamang at hindi pwedeng magbigay ng medical advice. Konsultahin ang vet para sa tamang diagnosis.",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 3,
+    "views": 1119,
+    "lastUpdated": "2025-07-18T01:48:54.030129+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 151,
+    "question": "my purpose is to check their feeds",
+    "answer": "Okay, recorded na po ang purpose. Salamat po!",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 4838,
+    "lastUpdated": "2025-07-18T01:45:14.055249+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 150,
+    "question": "i said i will check their feeds",
+    "answer": "Okay, I understand that you will check their feeds. To complete the log for the farm visit scheduled on July 18, 2025 at Farmkoto in Manila, could you please specify the purpose of the visit? Knowing the reason for the visit will help complete the log. Thank you!",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 2,
+    "views": 3664,
+    "lastUpdated": "2025-07-18T01:44:20.837072+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 149,
+    "question": "i will check their feeds",
+    "answer": "Okay po! Para ma-log po natin nang tama ang farm visit na ito, ano po ang purpose ng pagbisita ninyo sa Farmkoto sa Manila sa 2025-07-18?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 2,
+    "views": 4936,
+    "lastUpdated": "2025-07-18T01:43:37.477763+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 148,
+    "question": "sa manila, farmkoto",
+    "answer": "Okay, I see you have a farm visit in Manila to Farmkoto planned for July 18, 2025. Just to confirm, what is the purpose of your visit?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 3,
+    "views": 4141,
+    "lastUpdated": "2025-07-18T01:39:00.667351+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 147,
+    "question": "visit ako sa farm koto on 7/18/2025",
+    "answer": "Okay, I"ve noted that you have a farm visit scheduled. To complete the log, I need a bit more information. Could you please provide the location and farm name? This will help me accurately record the visit details. Thank you!", "category": "farm_visit", "status": "active", "priority": 3, "views": 3347, "lastUpdated": "2025-07-18T01: 37: 21.94155+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 71, "question": "New farm visited in Pangasinan", "answer": "Okay po, naitala ko na po na may farm visit kayo sa Pangasinan. Para po makumpleto ang detalye ng pagbisita, ano po ang pangalan ng farm na binisita ninyo?", "category": "farm_visit", "status": "active", "priority": 2, "views": 4052, "lastUpdated": "2025-07-05T01: 33: 57.814572+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 65, "question": "hindi pa tapos ang visit, kaya wala pa akong obserbasyon pero ang visit date ay july 2 2025 ang purpose ay site visit", "answer": "Okay po, nakuha ko na po ang mga detalye. Naitala ko na ang site visit sa Farmkoto, Pangasinan sa July 2, 2025. Wala pa 
+tayong obserbasyon dahil hindi pa tapos ang visit. Paki-update na lang po ako pagkatapos para makumpleto natin ang log. Salamat po!", "category": "farm_visit", "status": "active", "priority": 3, "views": 1609, "lastUpdated": "2025-07-02T19: 07: 11.395242+00: 00", "createdBy": "Chat AI Assistant", "tags": ["farm_visit"]}, {"id": 64, "question": "mag site visit lang kami", "answer": "Sige po! Para po mas kumpleto ang ating log, pakisagot lang po ang ilang tanong. Kailan po ang site visit? Ano po ang layunin ng pagbisita? At pagkatapos, ano po ang inyong mga obserbasyon o napag-usapan? Please remember that I am here to assist and do not provide veterinary advice. Konsultahin ang vet para sa tamang diagnosis at treatment.", "category": "farm_visit", "status": "active",
+    "priority": 2,
+    "views": 3997,
+    "lastUpdated": "2025-07-02T19:05:26.58663+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 63,
+    "question": "farmkoto ang name",
+    "answer": "Sige po. Para po mas kumpleto ang detalye ng farm visit ninyo, ano po ang purpose ng pagbisita ninyo sa Farmkoto sa Pangasinan?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 1,
+    "views": 1600,
+    "lastUpdated": "2025-07-02T19:04:58.563224+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 62,
+    "question": "bibisita ako sa pangasinan farm",
+    "answer": "Okay po! Nai-record ko na may pupuntahan kayong farm sa Pangasinan. Para mas kumpleto ang details, ano pong pangalan ng farm na bibisitahin ninyo?",
+    "category": "farm_visit",
+    "status": "active",
+    "priority": 4,
+    "views": 1008,
+    "lastUpdated": "2025-07-02T19:04:30.906492+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "farm_visit"
+    ]
+  },
+  {
+    "id": 135,
+    "question": "feed for my chicks",
+    "answer": "Para sa mga sisiw ninyo, ang Chick Booster Crumble ang pinakamainam. Ang Chick Booster Crumble ay para sa mga sisiw mula Day 1 hanggang 3 weeks old. Ito ay nagtataglay ng balanseng protina at mga bitamina A, D, at E na makakatulong sa pagpapalakas ng kanilang resistensya at buto.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 2,
+    "views": 1324,
+    "lastUpdated": "2025-07-17T09:03:51.49722+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 134,
+    "question": "feedfor my chicks",
+    "answer": "I understand you"re looking for feed for your chicks! To give you the best recommendation, could you tell me what kind of chicks you have (broiler or layer)? Also, how old are they?", "category": "product_matching", "status": "active", "priority": 3, "views": 3621, "lastUpdated": "2025-07-17T09: 02: 35.862344+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 133, "question": "feed for my chicks", "answer": "Para sa inyong mga sisiw, ang pinaka-angkop ay ang Chick Booster Crumble. Ito ay para sa Day 1 hanggang 3 weeks at makakatulong para sa kanilang immunity at bone strength dahil balanse ang protina at may vitamins A, D, at E.", "category": "product_matching", "status": "active", "priority": 4, "views": 3842, "lastUpdated": "2025-07-17T09: 02: 11.673479+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 132, "question": "feed for my chicks", "answer": "Para sa mga sisiw, mayroon tayong dalawang produkto na pwedeng pagpilian depende sa inyong pangangailangan. Kung gusto ninyo ng mabilisang paglaki at pagpapalakas ng resistensya, ang Chick Booster Crumble ang siyang mainam. Ito ay gawa para sa mga sisiw mula Day 1 hanggang 3 weeks. Kung broiler naman ang inyong 
+alaga, Broiler Pre-Starter Crumble ang iminumungkahi namin, para sa early growth (Day 1-7)", "category": "product_matching", "status": "active", "priority": 2, "views": 4580, "lastUpdated": "2025-07-17T08: 59: 42.955786+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 131, "question": "feed for my chicks", "answer": "Para sa mga sisiw, ang Chick Booster Crumble ang pinakamainam. Ito ay para sa Day 1 hanggang 3 weeks, para magkaroon sila ng malakas na resistensya at buto dahil balanse ang protina at may vitamins A, D, at E.", "category": "product_matching", "status": "active", "priority": 1, "views": 2331, "lastUpdated": "2025-07-17T08: 59: 00.552888+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 130, "question": "feed for my chicks", "answer": "Okay! To recommend the best feed, could you tell me what kind of chicks you have (broiler or layer)?", "category": "product_matching", "status": "active", "priority": 3, "views": 2639, "lastUpdated": "2025-07-17T08: 53: 02.300632+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 129, "question": "feed for my chicks", "answer": "Para sa mga sisiw, angkop na angkop ang **Chick Booster Crumble**. Ito ay para sa 
+Day 1 hanggang 3 weeks, para makatulong sa pagpapalakas ng resistensya at buto ng mga sisiw. Balanse ang protina at may vitamins A, D, at E na kailangan nila sa paglaki.", "category": "product_matching", "status": "active", "priority": 1, "views": 3117, "lastUpdated": "2025-07-17T08: 51: 29.423999+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 128, "question": "feeds for my broiler", "answer": "Para sa broiler feeds, mayroon tayong iba"t ibang produkto depende sa edad at stage ng inyong mga manok. Narito ang mga available options:\n\n*   **Broiler Pre-Starter Crumble:** Para sa unang linggo (Day 1–7) para sa mabilis na paglaki, boosted immunity at development ng kanilang digestive system.\n*   **Broiler Starter Crumble:** Para sa 2–3 weeks para sa malakas na frame at muscle development.\n*   **Broiler Finisher Crumble:** Para sa huling 2–3 weeks bago mag-harvest para ma-maximize ang kanilang timbang at feed conversion ratio.\n*   **Broiler Booster Crumble:** 
+Ito ay para sa dagdag na suporta sa early stage upang mabawasan ang mortality.\n*   **Broiler Advantage Starter Crumble:** Medicated/non-medicated, better feed efficiency & gut health\n*   **Broiler Advantage Finisher Crumble:** Focused on conversion, energy balance, lower mortality\n\nAlin po sa mga ito ang kasalukuyan niyong ginagamit, o kung saang stage na po ang mga broiler ninyo?", "category": "product_matching", "status": "active", "priority": 1, "views": 4208, "lastUpdated": "2025-07-17T08: 49: 38.884333+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 127, "question": "ano ang feed para sa manok ko", "answer": "Para mas matulungan kita sa pagpili ng tamang feed para sa manok mo, kailangan ko munang malaman 
+kung anong klaseng manok ang iyong inaalagaan at saang stage na sila ng paglaki. Ang mga posibleng kategorya ay broiler (para sa karne), layer (para sa itlog), native chicken, o duck. Sa bawat kategorya, mayroon tayong iba"t ibang produkto na naaangkop sa kanilang edad at pangangailangan.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 2,
+    "views": 4136,
+    "lastUpdated": "2025-07-17T08:48:20.509379+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 126,
+    "question": "ano ang feed para sa manok ko",
+    "answer": "Para mas matulungan kita sa pagpili ng tamang feed, kailangan ko munang malaman kung anong klaseng manok ang pinapakain mo at sa anong stage sila ng paglaki. Meron ka bang broiler, layer, o native chicken? Gaano na sila katanda?",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 1,
+    "views": 1272,
+    "lastUpdated": "2025-07-17T08:45:12.693086+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 125,
+    "question": "WHAT FEED I NEED TO USE",
+    "answer": "Para matulungan kitang pumili ng tamang feed, kailangan ko munang malaman kung anong uri ng manok ang pinapakain mo (broiler, layer, native chicken, o iba pa) at kung anong stage na sila (halimbawa, sisiw, 
+nagpapalaki, nangingitlog). Kung broiler, gaano na sila katagal kumakain ng kasalukuyang feed? Kung layer, ilang buwan na silang nangingitlog?", "category": "product_matching", "status": "active", "priority": 3, "views": 739, "lastUpdated": "2025-07-16T11: 27: 55.006006+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 124, "question": "what feed i need to use", "answer": "Para matulungan po kita sa pagpili ng tamang feed, kailangan ko po ng karagdagang impormasyon. Anong klaseng manok po ang pinapakain ninyo (broiler, layer, native chicken, o iba pa)? At sa anong stage na po sila (halimbawa, bagong sisiw, lumalaki pa lang, nangingitlog na)?", "category": "product_matching", "status": "active", "priority": 4, "views": 1939, "lastUpdated": "2025-07-16T11: 27: 04.377855+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 123, "question": "what feed i need to use", "answer": "Para mas matulungan kita, kailangan ko munang malaman kung anong klaseng manok ang pinapakain mo (broiler, layer, native chicken, etc.) at kung anong stage na sila (halimbawa, bagong pisa, nagpapataba, nangingitlog, etc.). Pagkatapos, pwede kitang bigyan ng rekomendasyon base sa mga feeds na meron tayo.", "category": "product_matching", "status": "active", "priority": 3, "views": 4231, "lastUpdated": "2025-07-16T11: 06: 56.607518+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 121, "question": "what feed i need to use", "answer": "Para mas matulungan kita sa pagpili ng tamang feed, kailangan ko ng ilang impormasyon. Anong klaseng manok ang pinapakain mo (broiler, layer, native, duck)? Anong edad na sila, at ano ang kasalukuyang pinapakain mo sa kanila?",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 2,
+    "views": 2961,
+    "lastUpdated": "2025-07-16T11:05:16.918468+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 120,
+    "question": "what feed i need to use",
+    "answer": "Para mas makatulong po ako, kailangan ko pong malaman kung anong klaseng manok ang pinapakain ninyo (broiler, layer, native chicken, atbp.) at kung saang stage na sila (halimbawa, bagong sisiw, lumalaki pa lang, nangingitlog na).",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 3,
+    "views": 3789,
+    "lastUpdated": "2025-07-16T11:04:36.437151+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 119,
+    "question": "what feed i need to use",
+    "answer": "Para mas matulungan kita sa pagpili ng tamang feed, kailangan ko pong malaman kung anong klaseng manok ang pinapakain mo (broiler, layer, native, o iba pa) at kung sa anong stage sila (halimbawa, sisiw pa lang, nagpapalaki, o nangingitlog na). Pwede mo rin bang sabihin kung ano ang kasalukuyan mong pinapakain at kung ilang araw mo na itong ginagamit? Sa ganitong paraan, mas maibibigay ko sa iyo ang pinakaangkop na rekomendasyon.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 4,
+    "views": 866,
+    "lastUpdated": "2025-07-16T11:03:01.85962+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 91,
+    "question": "unsa ang patuka",
+    "answer": "Pasensya, pero hindi ko masagot nang maayos ang tanong mo dahil kulang ang impormasyon. Maaari mo bang sabihin kung anong stage na ng buhay ang mga manok mo (broiler, layer, native, duck), at kung anong edad na sila? Importante din malaman kung ano ang goal mo sa pagpapakain (halimbawa, mabilis na paglaki, consistent na pangingitlog, etc.) para makapagbigay ako ng pinaka-angkop na rekomendasyon.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 2,
+    "views": 4327,
+    "lastUpdated": "2025-07-15T04:06:31.464598+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 81,
+    "question": "what can you say about broiler pre starter",
+    "answer": "Ang Broiler Pre-Starter Crumble ay espesyal na ginawa para sa mga sisiw sa unang linggo ng kanilang buhay (Day 1–7). Ito ay may mataas na energy at protina na kailangan nila para sa mabilis na paglaki at paglakas ng resistensya. Dahil crumble ito, mas madali nilang makakain at matunaw. Mayroon din itong medicated at non-medicated na variant depende sa pangangailangan ng inyong mga sisiw.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 2,
+    "views": 3934,
+    "lastUpdated": "2025-07-15T03:51:35.410278+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 78,
+    "question": "what can you say about broiler pre starter",
+    "answer": "Ang Broiler Pre-Starter Crumble ay espesyal na ginawa para sa mga sisiw sa unang linggo ng kanilang buhay (Day 1-7). Ito ay may mataas na energy at protina para masigurong mabilis silang lumaki at magkaroon ng malakas na resistensya. Dahil ngayon pa lang sila nagsisimula, napakahalaga na maganda ang kanilang pagkain para sa kanilang paglaki at pag-develop ng kanilang immune system. Kung gusto mong siguradong malakas ang kanilang resistensya at maganda ang kanilang paglaki sa unang linggo, ito ang pinaka-the best na feeding option.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 4,
+    "views": 3024,
+    "lastUpdated": "2025-07-15T03:46:54.065812+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 74,
+    "question": "ano ang feed sa 28 months old chick?",
+    "answer": "Para sa 28-month-old na manok, Layer 3 Pellets ang pinaka-angkop. Ito ay para mapahaba ang kanilang pagiging productive kahit sila ay nasa late cycle na. Ang Layer 3 Pellets ay may balanseng nutrients na kailangan ng mga manok para sa kanilang produksyon ng itlog at panatilihin ang kanilang kalusugan.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 1,
+    "views": 2700,
+    "lastUpdated": "2025-07-15T03:41:36.600261+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 73,
+    "question": "ano ang feed sa 28 months old chick?",
+    "answer": "Para sa inahing manok na 28 months old, angkop na ang Layer 3 Pellets. Ito ay dahil ang Layer 3 Pellets ay বিশেষভাবে formulated upang matugunan ang mga pangangailangan ng mga manok sa late laying cycle, kung saan ang kanilang nutritional needs ay nag-iiba. Ang Layer 3 Pellets ay tumutulong upang mapanatili ang kanilang produksyon ng itlog at pangkalahatang kalusugan sa kanilang edad.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 2,
+    "views": 4767,
+    "lastUpdated": "2025-07-15T03:40:14.471535+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 72,
+    "question": "ano ang feed sa 28 months old chick?",
+    "answer": "Para sa 28-month-old na manok, mukhang adult layer na ito. Ang pinaka-akmang feed para sa kanila ay **Layer 3 Pellets**. Ito ay para mapahaba ang kanilang laying efficiency dahil ang Layer 3 ay may nutrients na adjusted para sa mga mas matatandang hens.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 4,
+    "views": 3930,
+    "lastUpdated": "2025-07-15T03:36:41.299008+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 69,
+    "question": "ano ang pinapakain sa 5 months old broiler chick",
+    "answer": "Para sa 5-month-old broiler, dapat finisher feed na ang pinapakain. Base sa products natin, ang pinakamalapit ay ang **Broiler Finisher Crumble**. Ito ay high-energy formula para mas mapabilis ang paglaki at mapaganda ang meat yield bago mag harvest. Usually 2-3 weeks bago mag harvest.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 3,
+    "views": 1737,
+    "lastUpdated": "2025-07-05T01:23:50.183223+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 21,
+    "question": "what is starter",
+    "answer": "Hello Clara! Kung ang mga sisiw mo ay bagong panganak (0 days old), ang pinaka-angkop na starter feed natin ay ang Broiler Pre-Starter Crumble. Ito"y formulated para sa Day 1 hanggang 7 days para masigurong maganda ang kanilang paglaki at development ng kanilang immune system at healthy gut. Meron itong medicated at non-medicated na variant depende sa iyong pangangailangan.", "category": "product_matching", "status": "active", "priority": 2, "views": 3744, "lastUpdated": "2025-06-28T02: 58: 47.794885+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 18, "question": "hindi anong layer feed ang pang 
+28 days", "answer": "Hello Clara! Para sa 28 days (4 weeks) na layer chicks, ang Grower Crumble ang pinaka-angkop. Ito ay para masigurado na sila ay lumalaki nang pantay-pantay at naghahanda para sa kanilang reproductive maturity. Inihahanda nito ang 
+mga sisiw para sa pagiging ganap na adult layer. Ipagpatuloy mo ang paggamit nito hanggang 12 weeks old.", "category": "product_matching", "status": "active", "priority": 1, "views": 4171, "lastUpdated": "2025-06-27T18: 23: 51.839025+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 17, "question": "paano naman para sa layer", "answer": "Hello Clara! Para sa mga layer chicks (0 days old), ang pinaka-angkop na starter feed natin ay ang Chick Booster Crumble. Ito ay para 
+palakasin ang kanilang resistensya at buto. Mayroon itong balanced protein at vitamins A, D, at E na makakatulong sa kanilang paglaki mula Day 1 hanggang 3 weeks.", "category": "product_matching", "status": "active", "priority": 2, "views": 2922, "lastUpdated": "2025-06-27T18: 21: 58.349399+00: 00", "createdBy": "Chat AI Assistant", "tags": ["product_matching"]}, {"id": 9, "question": "what is broiler", "answer": "Hello Clara! Ang broiler ay isang uri ng manok na pinalaki para sa karne. Dahil 0 days 
+pa lang ang iyong mga sisiw, ang pinaka-angkop na starter feed natin ay ang Broiler Pre-Starter Crumble. Ito"y specially formulated para sa mga batang sisiw (Day 1-7) para masigurong maganda ang kanilang paglaki at development ng kanilang immune system at healthy gut. Mayroon din itong medicated at non-medicated na variant depende sa iyong pangangailangan.",
+    "category": "product_matching",
+    "status": "active",
+    "priority": 4,
+    "views": 4731,
+    "lastUpdated": "2025-06-27T18:04:38.085165+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "product_matching"
+    ]
+  },
+  {
+    "id": 203,
+    "question": "ilang beses ito pinapakain",
+    "answer": "Ang dalas ng pagpapakain sa manok ay depende sa edad at layunin ng pagpapalaki (broiler, layer, native, atbp.). Para sa **broiler**, karaniwang pinapakain sila ng tatlo hanggang apat na beses sa isang araw para masigurong mabilis silang lumalaki. Importante ring siguraduhin na may access sila sa malinis na tubig sa lahat ng oras. Kung layer naman, dalawang beses sa isang araw, 
+umaga at hapon para masiguro ang consistent na egg production. Kailangan din na may sapat silang tubig. Ang feeding program ay nakadependi sa edad ng manok at kung anong feed ang ginagamit. Meron po ba kayong gustong malaman na specific feeding program para sa manok ninyo?", "category": "feeding_program", "status": "active", "priority": 3, "views": 1334, "lastUpdated": "2025-07-18T15: 08: 17.594448+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 202, "question": "ano ang pinapakain sa 5 months old", "answer": "Para sa 5-month old na manok, depende po kung ano ang breed nila at kung para saan sila pinalalaki (itlog o karne). Kung sila ay mga layer (nangingitlog), ang Layer 2 Pellets ang madalas na ibinibigay sa kanila para tuloy-tuloy ang kanilang egg production. Kung broiler naman, dapat ay nasa Broiler Finisher Crumble na sila para mapabilis ang paglaki bago sila ibenta. Para sa native chicken, mayroon din tayong Native Chicken Feeds na espesyal na ginawa para sa kanila.", "category": "feeding_program", "status": "active", "priority": 3, "views": 4124, "lastUpdated": "2025-07-18T15: 08: 01.875364+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 122, "question": "what feed i need to use", "answer": "Para mas matulungan kita, kailangan ko ng ilang impormasyon. Anong edad na ang mga manok mo at para saan sila (broiler, layer, native chicken)? Anong klaseng feed ang ginagamit mo ngayon?", "category": "feeding_program", "status": "active", "priority": 3, "views": 691, "lastUpdated": "2025-07-16T11: 06: 07.334188+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 105, "question": "Ano ang dapat ipakain sa sisiw para hindi sila magkasakit at lumaki nang maayos?", "answer": "Para sa mga sisiw ninyo na 16 days old at kasalukuyang kumakain ng Broiler Pre-Starter Crumble, mahalaga na ituloy ang pagpapakain nito para sa kanilang immunity at paglaki. \n\nSa edad na ito, inaasahan na ang mga sisiw ay maliksi, aktibo, at patuloy na lumalaki. Ang Broiler Pre-Starter Crumble ay sadyang ginawa para suportahan ang kanilang mabilis na paglaki at proteksyon sa sakit sa unang linggo ng buhay. \n\n**Performance Benchmark:** Sa loob ng 16 na araw, dapat nakikita ninyo na lumalaki sila nang maayos at walang signs ng sakit. Bagama"t walang specific weight benchmark ang feed na ito, ang mahalaga ay malusog sila at aktibo. \n\n**Transition Guidance:** Pagkatapos ng 21 araw (3 weeks), pwede na kayong lumipat sa 
+Broiler Starter Crumble. Ang feed na ito ay mayaman sa amino acids na kailangan nila para sa mas mabilis na paglaki at pagpapalakas ng kanilang pangangatawan.", "category": "feeding_program", "status": "active", "priority": 2, "views": 1439, "lastUpdated": "2025-07-16T10: 17: 40.352025+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 104, "question": "Pila ka beses ko dapat pakaunon ang manok sa isa ka adlaw?", "answer": "Base sa imong gihatag nga impormasyon, nagagamit ka karon sa Broiler Pre-Starter Crumble sulod sa 16 ka adlaw. Kasagaran nga gipakaon ang piso sa manok ginagamitan niining preparasyon,
+    3-4 ka beses sa usa ka adlaw. Siguruha nga adunay sila"y access sa limpyo nga tubig sa tanang panahon.\n\n**Performance Benchmark:**\nSa edad nga 16 ka adlaw, ang imong mga piso kinahanglan nga motimbang og mga 400-600 gramos. Kon mas ubos pa niini ang ilang timbang, mahimong adunay problema sa pagpakaon o kahimsog.\n\n**Transition Guidance:**\nBase sa produkto, 
+mahimo ka nang mobalhin sa Broiler Starter Crumble pagkahuman sa 7 ka adlaw, apan naapsan na nimo kini. Kung maayo ang performance sa imong mga piso, pwede ra nimo ipadayon ang paggamit sa Broiler Pre-Starter Crumble hangtod sa ika-21 ka adlaw, apan kinahanglan nimong sigurohon nga makakuha sila og igong sustansya. Pagkahuman, kinahanglan ka nang mobalhin sa Broiler Starter Crumble aron masiguro ang padayon nga paglambo sa imong mga piso.", "category": "feeding_program", "status": "active", "priority": 1, "views": 4788, "lastUpdated": "2025-07-16T10: 16: 09.630633+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 101, "question": "nilalagyan ko ng asin ang feeds", "answer": "Naiintindihan ko po na naglalagay kayo ng 
+asin sa Broiler Pre-Starter Crumble sa loob ng 16 na araw. Ang paglalagay ng asin ay maaaring makatulong sa hydration at electrolyte balance ng mga manok, lalo na sa panahon ng init. Gayunpaman, mahalaga na maging maingat sa dami ng asin na inilalagay, dahil ang sobrang asin ay maaaring makasama sa kanilang kalusugan.\n\n**Performance Check:**\nSa edad na 16 na araw, at gumagamit ng Broiler Pre-Starter Crumble sa unang 7 araw, dapat ay nasa Broiler Starter Crumble na kayo. Sa puntong ito, ang mga 
+manok ay dapat na lumalaki nang mabilis at nagkakaroon ng malakas na pangangatawan. Ang paglago ay nakadepende sa lahi, pero ang target timbang sa 16 days ay approximately 500-600 grams.\n\n**Transition Guidance:**\nKung hindi pa kayo nakalipat sa Broiler Starter Crumble, inirerekomenda ko na lumipat na kayo agad. Ang Broiler Starter Crumble ay mas angkop para sa kanilang nutritional needs sa yugtong ito ng kanilang paglaki, dahil ito ay nakatutok sa pagbuo ng malakas na balangkas at kalamnan.\n\nKung mayroon kayong iba pang katanungan o alalahanin, huwag mag-atubiling magtanong.", "category": "feeding_program", "status": "active", "priority": 2, "views": 1886, "lastUpdated": "2025-07-16T09: 55: 34.156998+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 95, "question": "pinapakain kong manok ay broiler", "answer": "Para sa mga bagong sisiw na broiler (0 days on feed), ang pinaka-angkop na pagkain ay **Broiler Pre-Starter Crumble**. Ito ay espesyal na ginawa para suportahan ang kanilang paglaki sa unang linggo ng buhay. Dahil wala pang isang araw sa feed, hindi pa natin makikita ang performance benchmarks. Sa paglipas ng mga araw, dapat nating masubaybayan ang kanilang timbang at siguraduhin na sila ay lumalaki nang maayos.\n\n**Transition Guidance:**\nPagkatapos ng isang linggo (7 araw) gamit ang Broiler Pre-Starter Crumble, dapat na kayong lumipat sa **Broiler Starter Crumble** upang patuloy na matugunan ang kanilang mga pangangailangan sa nutrisyon para sa mabilis na paglaki at pagbuo ng malakas na pangangatawan.", "category": "feeding_program", "status": "active", "priority": 3, "views": 4540, "lastUpdated": "2025-07-15T04: 41: 30.512833+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 93, "question": "ano ang next feed after 2 weeks", "answer": "Para sa mga broiler, kung nagsisimula pa lang kayo at wala pang feed na naibibigay, ang pinakamainam na unahin ay ang Broiler Pre-Starter Crumble. Ito ay para sa Day 1 hanggang Day 7, para masiguro na maganda ang kanilang paglaki sa unang linggo. Pagkatapos nito, pwede na kayong lumipat sa Broiler Starter Crumble para sa Week 2 hanggang Week 3 para mas lalong lumakas ang kanilang pangangatawan.", "category": "feeding_program", "status": "active", "priority": 4, "views": 980, "lastUpdated": "2025-07-15T04: 33: 50.084455+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 90, "question": "ano ang feeds", "answer": "Ang feeds po ay ang pagkain 
+na binibigay sa mga manok para sila ay lumaki, lumakas, at magproduce ng itlog. May iba"t ibang uri ng feeds depende sa edad at pangangailangan ng manok. Mahalaga ang feeds para sa kanilang kalusugan at performance.",
+    "category": "feeding_program",
+    "status": "active",
+    "priority": 1,
+    "views": 1686,
+    "lastUpdated": "2025-07-15T04:05:37.417674+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feeding_program"
+    ]
+  },
+  {
+    "id": 82,
+    "question": "what can you say about broiler pre starter",
+    "answer": "Ang Broiler Pre-Starter Crumble ay espesyal na ginawa para sa mga batang sisiw sa unang linggo ng kanilang buhay (Day 1–7). Ito ay may mataas na energy at protein para masigurong maganda ang kanilang paglaki at paglakas ng resistensya. Dahil wala pang feed na naibigay, ang paggamit ng Broiler Pre-Starter Crumble ay makakatulong para masimulan ang kanilang paglaki at pag-develop ng kanilang immune system.",
+    "category": "feeding_program",
+    "status": "active",
+    "priority": 3,
+    "views": 1803,
+    "lastUpdated": "2025-07-15T03:53:43.120639+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feeding_program"
+    ]
+  },
+  {
+    "id": 80,
+    "question": "what can you say about broiler pre starter",
+    "answer": "Ang Broiler Pre-Starter Crumble ay espesyal na ginawa para sa mga sisiw sa 
+unang linggo ng kanilang buhay (Day 1–7). Ito ay may mataas na energy at protein para masiguro ang mabilis na paglaki at paglakas ng kanilang resistensya at panunaw. Dahil 0 days pa lang sila sa feed na ito, inaasahan natin na makikita mo ang magandang pagbabago sa kanilang paglaki at sigla. Siguraduhin lang na malinis ang kanilang kulungan at may sapat silang tubig para masulit ang benepisyo ng pre-starter.", "category": "feeding_program", "status": "active", "priority": 2, "views": 1448, "lastUpdated": "2025-07-15T03: 49: 58.475838+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 79, "question": "what can you say about broiler pre starter", "answer": "Ang Broiler Pre-Starter Crumble ay isang espesyal na patuka na 
+binibigay sa mga sisiw mula Day 1 hanggang Day 7. Ito ay para tulungan silang lumaki agad at magkaroon ng malakas na resistensya. Dahil wala pang isang araw na ginagamit ang feed na ito, dapat ay nagsisimula pa lang kumain ang mga sisiw at nag-aadjust sa bagong environment. Siguraduhin lang na malinis ang tubig at patukaan para maiwasan ang sakit.", "category": "feeding_program", "status": "active", "priority": 2, "views": 3397, "lastUpdated": "2025-07-15T03: 47: 49.227504+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 77, "question": "what can you say about broiler pre starter", "answer": "Ang Broiler Pre-Starter Crumble ay espesyal na ginawa para sa mga sisiw sa unang linggo ng kanilang buhay (Day 1–7). Ito ay may mataas na energy at protein upang suportahan ang kanilang mabilis na paglaki at pag-develop ng kanilang immune system at tiyan. Dahil wala pang araw na nakakain ang mga sisiw mo, ngayon pa lang sila nagsisimula. Ang feed na ito ay madalas na nasa crumble form para madali nilang makain. Mayroon din itong medicated at non-medicated na variant.", "category": "feeding_program", "status": "active", "priority": 2, "views": 3618, "lastUpdated": "2025-07-15T03: 46: 15.393077+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 76, "question": "what can you say about broiler pre starter", "answer": "Ang Broiler Pre-Starter Crumble ay espesyal na ginawa para sa mga sisiw sa unang linggo ng kanilang buhay (Day 1–7). Ito ay may 
+mataas na energy at protein na kailangan nila para sa mabilis na paglaki at pag-develop ng kanilang immune system at healthy gut. Dahil ngayon pa lang sila nagsisimula (Day 0), napakaganda na ito ang gamitin para masiguro na maganda ang kanilang paglaki sa simula.", "category": "feeding_program", "status": "active", "priority": 3, "views": 3864, "lastUpdated": "2025-07-15T03: 45: 35.148429+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 75, "question": "what can you say about broiler pre starter", "answer": "Ang Broiler Pre-Starter Crumble ay sadyang ginawa para sa mga sisiw sa unang linggo ng kanilang buhay (Day 1-7). Ito ay may mataas na energy at protina na kailangan nila para sa mabilis na paglaki at paglakas ng kanilang resistensya at para sa pag-develop ng kanilang bituka. Dahil 0 days pa lang kayo sa feed na ito, inaasahan na makikita mo ang magandang pag-umpisa ng kanilang paglaki at malakas na resistensya laban sa sakit.", "category": "feeding_program", "status": "active", "priority": 4, "views": 4308, "lastUpdated": "2025-07-15T03: 42: 55.276007+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 70, "question": "ilang beses ito pinapakain", "answer": "Para sa tamang feeding program, kailangan ko pong malaman kung anong klaseng manok ang pinapakain ninyo (broiler, layer, native chicken, etc.) at kung saang stage na sila (halimbawa, bagong sisiw, lumalaki pa lang, nangingitlog na). Importante rin pong malaman kung anong feed ang kasalukuyan ninyong ginagamit.", "category": "feeding_program", "status": "active", "priority": 1, "views": 1915, "lastUpdated": "2025-07-05T01: 24: 29.965994+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 68, "question": "ano ang pinapakain sa broiler chicken", "answer": "Para sa broiler chicken, may iba"t ibang klase ng patuka depende sa edad nila. Usually, nagsisimula sa **Broiler Pre-Starter Crumble** para sa unang linggo (Day 1-7) para maganda ang kanilang paglaki at immunity. Pagkatapos, lilipat sa **Broiler Starter Crumble** mula Week 2-3 para sa mas mabilis na paglaki ng muscle at buto. At sa huli, gagamitin ang **Broiler Finisher Crumble** para mas lumaki pa sila at maganda ang meat yield bago sila ibenta. Meron din tayong **Broiler Booster Crumble** na pwede gamitin sa early stage.",
+    "category": "feeding_program",
+    "status": "active",
+    "priority": 2,
+    "views": 800,
+    "lastUpdated": "2025-07-05T01:16:56.065332+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feeding_program"
+    ]
+  },
+  {
+    "id": 33,
+    "question": "ang feed na gamit ay broiler starter tapos kami ay nasa manila ang pangalan ng farm namin ay farmkoto",
+    "answer": "Okay Farmkoto. Naiintindihan ko na gumagamit kayo ng broiler starter feed at located kayo sa Manila. Para mas matulungan ko kayo sa pagpili ng tamang feed at malaman kung kailan dapat lumipat sa susunod na stage, maaari ko bang malaman kung ilang araw na kayong gumagamit ng broiler starter feed?",
+    "category": "feeding_program",
+    "status": "active",
+    "priority": 2,
+    "views": 2663,
+    "lastUpdated": "2025-07-01T17:42:40.238922+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feeding_program"
+    ]
+  },
+  {
+    "id": 16,
+    "question": "Anong feed ang pang-28 days",
+    "answer": "Hello Clara! Para 
+sa 28 days old (4 weeks) na broiler, ang susunod na feed na irerekomenda ko ay ang Broiler Finisher Crumble. Ito ay karaniwang ibinibigay sa mga huling 2 hanggang 3 linggo bago ang harvest para mapalaki pa ang kanilang timbang at mapaganda ang FCR (feed conversion ratio). Dahil ngayon mo pa lang sisimulan ang Broiler Pre-Starter Crumble, ang Broiler Starter Crumble ang dapat ituro sa kanila pagkatapos ng isang linggo. Pagkatapos ng dalawang linggo, pwede mo na silang bigyan ng Broiler Finisher Crumble. Inaasahan natin na sa edad na 4 weeks, ang timbang ng iyong broiler ay nasa mga 1.8kg, base sa standard industry practice. Pakatandaan lamang na ito"y base sa general practice at hindi sa specific product.",
+    "category": "feeding_program",
+    "status": "active",
+    "priority": 3,
+    "views": 1931,
+    "lastUpdated": "2025-06-27T18:21:02.221604+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feeding_program"
+    ]
+  },
+  {
+    "id": 14,
+    "question": "alam mo ba nung pinakain ko sila ng starter ay ang mga manok ko ay tumaba",
+    "answer": "Hello Clara! Nakakatuwa naman at tumataba ang iyong mga manok sa starter feed! Pero para mas makasiguro tayo at mabigyan kita ng mas specific na advice, kailangan ko munang malaman kung anong starter feed ang ginagamit mo ngayon at 
+kung gaano na katagal mo itong ginagamit. Importante rin na malaman natin kung anong klaseng manok ang iyong pinapalaki (broiler, layer, native chicken, o duck) para mas matugma natin ang iyong pangangailangan.", "category": "feeding_program", "status": "active", "priority": 1, "views": 583, "lastUpdated": "2025-06-27T18: 13: 44.295375+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 10, "question": "again what is starter?", "answer": "Hello Clara! Ang starter feed ay specifically formulated para sa mga batang sisiw sa kanilang unang mga linggo ng buhay. Ang goal nito ay suportahan ang kanilang mabilis na paglaki, palakasin ang kanilang resistensya, at siguraduhin na healthy ang kanilang digestive system para maging matatag sila sa kanilang paglaki.", "category": "feeding_program", "status": "active", "priority": 1, "views": 2539, "lastUpdated": "2025-06-27T18: 08: 21.035375+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 8, "question": "hi what is starter", "answer": "Hi Clara! Ang starter feed ay para sa mga sisiw sa unang mga linggo ng kanilang buhay. Ito ay para matulungan silang lumaki nang malusog at malakas. Sa ngayon, wala pa tayong feed na ginagamit. Para mas mabigyan kita ng tamang payo, maaari mo bang sabihin kung anong klaseng manok ang iyong pinapalaki (broiler, layer, native chicken, o duck) at kung gaano na sila katanda?", "category": "feeding_program", "status": "active", "priority": 1, "views": 3909, "lastUpdated": "2025-06-27T18: 03: 08.103056+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feeding_program"]}, {"id": 112, "question": "Ah okay, so tulo ka buok sa akong mga manok ang nagtae. Nagsugod ni kahapon, mga buntag nako nabantayan nga lain na ilang dagan. Ang tae kay medyo tubig siya, murag walay porma, pero wala man koy nakita nga dugo. Usahay puti-puti gamay, usahay kay murag berde.\n", "answer": "Okay, nasabtan nako. Tulo ka buok sa imong manok ang nagkalibang nga nagsugod gahapon. Para matabangan ka, aniay mga angay nimong buhaton:\n\n1.  **Ihiwalay dayon** ang mga manok nga nagkalibang aron dili makatakod sa uban.\n2.  Siguruha nga **limpyo ang ilang tubig ug pagkaon**. Ilisan ang tubig kada adlaw.\n3.  Hatagi sila ug **electrolytes** sa ilang tubig aron dili sila ma-dehydrate.\n4.  **Limpyohan pag-ayo** ang imong manokan. Kuhaa ang hugaw ug ilabay kini sa layo.\n5.  **Pag-obserbar sulod sa 1-2 ka adlaw**. Tan-awa kon naay laing sintomas sama sa pagluya, pagkawala sa gana mokaon, o pagpanghupong.\n\nTungod kay nagkalibang man sila, posibleng hinungdan niini mao ang impeksyon sa bakterya, parasito, o coccidiosis. Mahimo sab nga tungod kini sa kontaminado nga pagkaon.\n\nReminder lang: Kini mga basic nga paagi lang. Mas maayo nga magpakonsulta sa veterinarian aron mahatagan sila ug saktong tambal ug diagnosis.", "category": "health_incident", "status": "active", "priority": 1, "views": 3767, "lastUpdated": "2025-07-16T10: 44: 19.976835+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 111, "question": "Ang akong manok nagtae.", "answer": "Okay, pasabot nimo nga nagtae imong mga manok. Para mas matabangan tika, kinahanglan nakong mahibaw-an ang dugang impormasyon.\n\n1. Pila ka manok ang apektado?\n2. Kanus-a nagsugod ang pagtae? (Karon, gahapon, etc.)\n3. Unsa"y hitsura sa tae? (e.g., tubig, dugo, lain nga kolor)\n\nSa pagkakaron, siguruha nga limpyo ang ilang tubig ug pagkaon, ug i-monitor sila kanunay. Kung mograbe ang sitwasyon, kinahanglan nga mokonsulta ka sa usa ka beterinaryo.\n\nReminder lang po: ang mga ito ay basic paunang gabay lang. Mas maganda pa rin po na magpakonsulta sa vet para sa tamang gamutan at diagnosis.",
+    "category": "health_incident",
+    "status": "active",
+    "priority": 2,
+    "views": 4612,
+    "lastUpdated": "2025-07-16T10:40:15.33456+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "health_incident"
+    ]
+  },
+  {
+    "id": 110,
+    "question": "Ang akong manok nagtae.",
+    "answer": "Okay po. Narinig ko po na nagtatae ang inyong manok. Ilang manok po ang apektado? Kailan niyo po unang napansin ang sintomas na ito?",
+    "category": "health_incident",
+    "status": "active",
+    "priority": 4,
+    "views": 4517,
+    "lastUpdated": "2025-07-16T10:39:23.315909+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "health_incident"
+    ]
+  },
+  {
+    "id": 109,
+    "question": "Ang akong manok nagtae.",
+    "answer": "Okay po. Narinig ko po na nagtatae ang inyong manok. Para mas matulungan ko kayo, kailangan ko pong malaman ang ilang detalye:\n\n1.  **Ilang manok** po ang apektado at nagtatae?\n2.  Kailan po ninyo unang napansin na sila ay nagtatae? Kung "ngayon" po, sasabihin ko ang date ngayon.\n3.  May iba pa po bang sintomas na napansin ninyo maliban sa pagtatae? Halimbawa, matamlay ba sila, ayaw kumain, o may iba pang kakaibang senyales?",
+    "category": "health_incident",
+    "status": "active",
+    "priority": 3,
+    "views": 3696,
+    "lastUpdated": "2025-07-16T10:37:27.469361+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "health_incident"
+    ]
+  },
+  {
+    "id": 108,
+    "question": "d cla nanghina, cnipon lang tapos napansin ko ito kahapon july 15 2025",
+    "answer": "Okay po. Dahil sipon lang ang sintomas ng tatlong manok, at napansin niyo ito kahapon, July 15, 2024, narito ang mga dapat gawin: 1. Ihiwalay agad yung mga manok na may sipon. 2. Siguraduhin na malinis ang tubig at pagkain nila. 3. Maglagay ng vitamins sa tubig. 4. Obserbahan mabuti ang mga manok sa loob ng 1-2 araw. Maaaring sanhi nito ay simpleng sipon lang pero importante na bantayan natin sila. Reminder lang po: ang mga ito ay basic paunang gabay lang. Mas maganda pa rin po na magpakonsulta sa vet para sa tamang gamutan at diagnosis.",
+    "category": "health_incident",
+    "status": "active",
+    "priority": 2,
+    "views": 1079,
+    "lastUpdated": "2025-07-16T10:32:40.93963+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "health_incident"
+    ]
+  },
+  {
+    "id": 107,
+    "question": "tatlo po :(",
+    "answer": "Okay po. Narinig ko po na tatlo ang apektado ninyong manok. Para mas matulungan ko kayo, kailangan ko lang po ng ilang karagdagang impormasyon. Kailan po ninyo unang napansin ang mga sintomas? Anong mga sintomas po ang napansin ninyo sa kanila maliban sa panghihina?",
+    "category": "health_incident",
+    "status": "active",
+    "priority": 3,
+    "views": 988,
+    "lastUpdated": "2025-07-16T10:31:50.058695+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "health_incident"
+    ]
+  },
+  {
+    "id": 106,
+    "question": "may sakit manok ko",
+    "answer": "Naku, sorry to hear na may sakit ang manok ninyo. Para matulungan ko kayo, kailangan ko po ng karagdagang impormasyon. Ilang manok po ang apektado?",
+    "category": "health_incident",
+    "status": "active",
+    "priority": 3,
+    "views": 4435,
+    "lastUpdated": "2025-07-16T10:31:35.030565+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "health_incident"
+    ]
+  },
+  {
+    "id": 52,
+    "question": "sampung manok",
+    "answer": "Sige po, dahil nanghihina ang sampung manok ninyo, at ginawa niyo na ang paghiwalay sa kanila, pagbigay ng vitamins/electrolytes, at paglilinis ng kulungan, ito pa ang mga pwede ninyong gawin:\n\n1. Siguraduhin na malinis 
+ang tubig at pagkain nila.\n2. Obserbahan mabuti ang mga manok sa loob ng 1-2 araw.\n\nMaaring sanhi nito ay bacterial o viral infection o kaya naman ay nutritional deficiency. Reminder lang po: ang mga ito ay basic paunang gabay lang. Mas maganda pa 
+rin po na magpakonsulta sa vet para sa tamang gamutan at diagnosis.", "category": "health_incident", "status": "active", "priority": 4, "views": 3056, "lastUpdated": "2025-07-02T06: 32: 31.825301+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 51, "question": "Nanghihina yung 10 na manok ko. Ano pwede kong gawin?", "answer": "Okay po. Narinig ko po na nanghihina ang 10 ninyong manok. Para mas matulungan ko kayo, narito po ang ilang paunang hakbang na pwede niyong gawin:\n\n1.  Ihiwalay agad yung mga manok na nanghihina.\n2.  Lagyan ng vitamins/electrolytes ang inuming tubig.\n3.  Linisin mabuti ang kulungan.\n4.  Siguraduhin na malinis ang tubig at pagkain nila.\n5.  Obserbahan mabuti ang mga manok sa loob ng 1-2 araw.\n\nIlang manok po ba ang apektado?", "category": "health_incident", "status": "active", "priority": 4, "views": 2093, "lastUpdated": "2025-07-02T06: 31: 23.686788+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 50, "question": "Kahapon lang ng July 1,
+    2025", "answer": "Sige po. Naiintindihan ko. Base sa mga sintomas na hindi kumakain yung 5 manok ninyo simula kahapon (July 1,
+    2025), posibleng may problema sa kanilang kalusugan o sa pagkain nila. Ang mga sumusunod 
+na hakbang ay makakatulong:\n\n*   **Ihiwalay ang mga manok:** Para maiwasan ang pagkalat ng posibleng sakit.\n*   **Suriin ang pagkain:** Siguraduhin na hindi expired o kontaminado ang kanilang pinapakain.\n*   **Magbigay ng malinis na tubig:** Tiyakin na may access sila sa malinis at sapat na tubig.\n*   **Obserbahan:** Bantayan ang kanilang pag-uugali at iba pang sintomas.\n\nReminder lang po: ang mga ito ay basic paunang gabay lang. Mas maganda pa rin po na magpakonsulta sa vet para sa tamang 
+gamutan at diagnosis.", "category": "health_incident", "status": "active", "priority": 3, "views": 2460, "lastUpdated": "2025-07-02T06: 13: 07.740141+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 49, "question": "Hindi kumakain yung 5 kong manok", "answer": "Okay po. Naintindihan ko na may 5 manok kayo na hindi kumakain. Para mas matulungan ko kayo, kailangan ko lang ng ilang impormasyon. Kailan po ninyo napansin na hindi sila kumakain?", "category": "health_incident", "status": "active", "priority": 3, "views": 1027, "lastUpdated": "2025-07-02T06: 11: 35.493949+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 48, "question": "Namatay yung tatlo kong manok kahapon July 1", "answer": "Nakikiramay po ako sa pagkawala ng mga manok ninyo. Para matulungan kayo, kailangan ko lang ng ilang detalye tungkol sa insidente: \n\n*   **Bukod sa pagkamatay, may iba pa bang sintomas na napansin ninyo bago sila namatay?** (e.g., pagbabago sa dumi, 
+paghinga, o gawi)\n*   **Mayroon po bang pagbabago sa inyong feed kamakailan?**", "category": "health_incident", "status": "active", "priority": 4, "views": 3077, "lastUpdated": "2025-07-02T04: 18: 30.20119+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 47, "question": "Namatay yung tatlo kong manok kahapon July 1", "answer": "Nakikiramay po ako sa pagkawala ng mga manok ninyo. Dahil namatay ang tatlong manok ninyo kahapon (July 1), at wala pa tayong ibang impormasyon, itong mga hakbang na po ang pwede ninyong gawin:\n\nSEVERE SYMPTOMS:\n*   Ihiwalay agad ang lahat ng manok na mukhang may sakit.\n*   Itapon ang mga patay na manok nang maayos.\n*   Disinfect ang lahat ng gamit.\n*   Itigil ang paggamit ng feed o tubig na pinagdududahan.\n*   Maghanda para sa pagtawag sa vet (irecord ang sintomas, kumuha ng litrato).\n\nReminder lang po: ang mga ito ay basic paunang gabay lang. Mas maganda pa rin po na magpakonsulta sa vet para sa tamang gamutan at diagnosis.", "category": "health_incident",
+    "status": "active",
+    "priority": 1,
+    "views": 2623,
+    "lastUpdated": "2025-07-02T04:11:09.887035+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "health_incident"
+    ]
+  },
+  {
+    "id": 46,
+    "question": "Noong June 30 lang nangyari iyon",
+    "answer": "Naiintindihan ko po. Base sa mga sintomas at impormasyon na ibinigay ninyo tungkol sa mga sisiw na nanghihina at hindi kumakain noong June 30, posibleng may sakit sila o may problema sa feed. Ang mga actions na ginawa ninyo tulad ng pagdagdag ng vitamins/electrolytes, pagbalik sa dating feed, paglilinis ng kulungan, at paghihigpit ng biosecurity ay makakatulong. Kung hindi pa rin sila gumagaling, mas mabuti pong kumonsulta sa veterinarian para sa tamang diagnosis at gamutan. Reminder lang po: ang mga ito ay basic paunang gabay lang. Mas maganda pa rin po na magpakonsulta sa vet para sa tamang gamutan at diagnosis.",
+    "category": "health_incident",
+    "status": "active",
+    "priority": 2,
+    "views": 4208,
+    "lastUpdated": "2025-07-02T04:04:27.827381+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "health_incident"
+    ]
+  },
+  {
+    "id": 45,
+    "question": "May 10 na manok ang nanghihina at di kumakain. Anong pwede kong gawin?",
+    "answer": "Okay po. Labing-isang manok ang nanghihina at di kumakain. Base sa sintomas, posibleng may sakit sila o kaya"y may problema sa kanilang pagkain. Dahil dito, ang mga sumusunod na aksyon ang dapat gawin:\n\nMODERATE SYMPTOMS:\n*   Magdagdag ng vitamins/electrolytes sa tubig\n*   Bumalik sa dating commercial feed 
+na gamit ninyo\n*   Linisin ang kulungan ng manok\n*   Higpitan ang biosecurity (iwasan ang pagpasok ng ibang tao)\n\nReminder lang po: ang mga ito ay basic paunang gabay lang. Mas maganda pa rin po na magpakonsulta sa vet para sa tamang gamutan at diagnosis. Para ma-log po ito, anong petsa po nangyari ito?", "category": "health_incident", "status": "active", "priority": 4, "views": 1935, "lastUpdated": "2025-07-02T04: 01: 13.255006+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 44, "question": "May 10 na manok ang nanghihina at di kumakain. Anong pwede kong gawin?", "answer": "Okay po. Naiintindihan ko na may 10 manok kayong nanghihina at ayaw kumain. Base sa mga sintomas, maaaring may sakit sila o kaya naman may problema sa feed. Dahil dito:\n\nMODERATE SYMPTOMS:\n*   Magdagdag ng vitamins/electrolytes sa tubig.\n*   Bumalik sa dating commercial feed na gamit.\n*   Linisin nang mabuti ang kulungan.\n*   Higpitan ang biosecurity (bawal basta-basta pumasok ang ibang tao).\n\nReminder lang po: ang mga ito ay basic paunang gabay lang. Mas maganda pa rin po na magpakonsulta sa vet para sa tamang gamutan at diagnosis.", "category": "health_incident", "status": "active", "priority": 2, "views": 657, "lastUpdated": "2025-07-02T03: 54: 59.75842+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 23, "question": "nagkasakit ngayon yung chicken ko", "answer": "Naku, nakakalungkot naman yan. Para matulungan kita, pwede mo bang sabihin sa akin kung ano yung mga sintomas na nakikita mo sa mga manok mo? Ilan ang apektado at gaano na sila katanda? Mahalaga ring malaman kung may binago ka sa kanilang pakain o kapaligiran kamakailan. Ang mga detalyeng ito ay makakatulong para mas maunawaan natin ang sitwasyon. \n\nSa ngayon, narito ang ilang mga bagay na pwede mong gawin:\n*   **Ihiwalay agad** ang mga manok na may sakit para hindi makahawa.\n*   Siguraduhing malinis ang kanilang **inumin at pakainan**. Linisin ito gamit ang tubig at sabon o kaya disinfectant.\n*   Tiyakin na may access sila sa **malinis na tubig at pagkain** sa lahat ng oras.\n*   **Monitor** ang mga manok sa loob ng 1-2 araw. Tingnan kung may pagbabago sa kanilang pagkain, pagdumi, o pagiging aktibo.\n*   Panatilihing may **bentilasyon** ang kulungan, pero iwasan ang sobrang hangin.\n\nKung hindi bumuti ang sitwasyon o lumala pa, importante na kumunsulta ka sa isang beterinaryo para sa tamang diagnosis at lunas. Tandaan, ang mga payong ito ay para lamang sa pangunang pagtatasa. Mahalaga pa rin ang opinyon ng isang eksperto.", "category": "health_incident", "status": "active", "priority": 4, "views": 2218, "lastUpdated": "2025-06-28T03: 06: 59.55445+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 20, "question": "yung mga namatay na manok ay 10 lahat sila nasa 7 days old wala ako napansin na sintomas", "answer": "Nakakalungkot naman yan. Dahil 7 days old pa lang ang mga manok at walang sintomas, mahalaga na maging maingat. 
+Ganito ang mga pwede mong gawin:\n\n1.  **Suriin ang Pagkain at Tubig:** Siguraduhin na malinis ang tubig at walang amoy ang pagkain. Tignan kung may amag o kakaibang kulay ang feed.\n2.  **Linisin ang Kulungan:** Disinfect ang kulungan para maiwasan 
+ang pagkalat ng sakit.\n3.  **Ihiwalay:** Kung may natitira pang manok, ihiwalay agad ang mga mukhang mahina o may sakit.\n4.  **Subaybayan:** Bantayan ang mga natitirang manok sa loob ng 1-2 araw. Tignan kung may pagbabago sa kanilang pagkain, dumi, 
+o pagiging aktibo.\n5.  **Konsultahin ang Beterinaryo:** Mahalaga pa rin na kumunsulta sa isang beterinaryo para sa tamang diagnosis at lunas. Mas makakatulong sila lalo na at walang malinaw na sintomas.\n\nTandaan, ang payong ito ay base lamang sa impormasyon na ibinigay mo. Mahalaga pa rin ang opinyon ng isang propesyonal na beterinaryo para sa kalusugan ng iyong mga manok.", "category": "health_incident", "status": "active", "priority": 2, "views": 1338, "lastUpdated": "2025-06-27T18: 32: 11.634596+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 19, "question": "may namatay sa manok ko", "answer": "Nakikiramay po ako sa pagkawala ng inyong manok. Para matulungan ko kayo, maaari niyo po bang sabihin kung ilang manok ang namatay, anong edad nila, at kung may napansin kayong sintomas bago sila namatay? Mahalaga rin malaman kung may pagbabago sa kanilang kinakain o sa kanilang kapaligiran. Sa ngayon, iminumungkahi ko na ihiwalay agad ang mga mukhang may sakit para maiwasan ang pagkalat ng sakit. Linisin at disimpektahin ang kanilang inuman at kainan. Siguraduhin na malinis at malamig ang kanilang tubig at may sapat silang pagkain. Bantayan niyo rin po ang inyong mga manok sa susunod na isa hanggang dalawang 
+araw at tingnan kung may pagbabago sa kanilang pagkain, dumi, o aktibidad. Mahalaga po na magpakonsulta sa isang beterinaryo para sa tamang diagnosis at lunas.", "category": "health_incident", "status": "active", "priority": 2, "views": 4161, "lastUpdated": "2025-06-27T18: 31: 16.782757+00: 00", "createdBy": "Chat AI Assistant", "tags": ["health_incident"]}, {"id": 11, "question": "may sakit ang manok ko", "answer": "Ay, nakakabahala naman "yan. Para matulungan kita, kailangan ko ng mas maraming impormasyon. Ano po ba ang mga sintomas na nakikita ninyo sa mga manok ninyo? Ilan po ang apektado at gaano na sila katanda? Saan po sila located? Mayroon po ba kayong napansin na pagbabago sa kanilang kinakain o iniinom?",
+    "category": "health_incident",
+    "status": "active",
+    "priority": 4,
+    "views": 1839,
+    "lastUpdated": "2025-06-27T18:11:31.508919+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "health_incident"
+    ]
+  },
+  {
+    "id": 142,
+    "question": "nasa manila, ang name ay farm ko to at ang feed ay broiler starter",
+    "answer": "Naku, nakakabahala naman na may rotten feeds kayo. Mahalaga na masolusyunan natin ito agad para hindi maapektuhan ang mga alaga ninyong manok. Para sa agarang aksyon, subukan ninyong gumamit ng ibang bag ng Broiler Starter. Siguraduhin din na maayos ang storage area ninyo, malayo sa tubig at sikat ng araw. Kung maaari, paki-kuha po ng litrato o video ng rotten feeds at i-save ang batch number ng feed. Ire-report ko na rin po ang insidenteng ito.",
+    "category": "feed_issue",
+    "status": "active",
+    "priority": 2,
+    "views": 3487,
+    "lastUpdated": "2025-07-17T09:19:30.29737+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feed_issue"
+    ]
+  },
+  {
+    "id": 141,
+    "question": "rotten feeds",
+    "answer": "Nakakabahala po na nabubulok ang feeds ninyo. 
+Para matulungan ko kayo, kailangan ko lang po ng karagdagang impormasyon. Maaari niyo po bang sabihin sa akin:\n\n*   Ano po ang pangalan ng feed na nabubulok?\n*   Saan po ang lokasyon ng farm ninyo?\n*   Ano po ang pangalan ng farm ninyo?", "category": "feed_issue", "status": "active", "priority": 3, "views": 4283, "lastUpdated": "2025-07-17T09: 18: 45.294854+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 140, "question": "okay we already documented it", "answer": "Okay 
+po. Naintindihan ko na documented na po ninyo ang problema sa rotten feeds. Para sa akin, naitala ko na rin po ang insidente na ito. Siguraduhin po ninyo na hindi na pakainin sa mga hayop ang mga feed na sira. Ihiwalay po ninyo agad ito. Magandang kumuha kayo ng litrato o video ng mga feeds at panatilihin ang batch details. Kung mayroon pong ibang katanungan o problema, huwag po kayong mag-atubiling magtanong.", "category": "feed_issue", "status": "active", "priority": 4, "views": 728, "lastUpdated": "2025-07-17T09: 16: 59.07812+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 139, "question": "broiler starter at ang farm ay nasa manila", "answer": "Naku, nakakabahala naman po na mayroon kayong rotten feeds. Mahalaga po 
+na masolusyunan agad natin ito. Para po matulungan ko kayo, maari po bang pakikuhaan ng litrato o video ng mga feeds na iyon? Makakatulong din po kung itatabi ninyo ang sample ng feed para masuri. Sa ngayon, subukan po muna ninyong kumuha ng ibang bag ng feed para makita kung may pagbabago sa performance ng mga manok. Tandaan po natin ang batch number ng feeds na ginagamit natin. Naitala ko na po ang problemang ito.", "category": "feed_issue", "status": "active", "priority": 3, "views": 3127, "lastUpdated": "2025-07-17T09: 16: 16.019808+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 138, "question": "rotten feeds", "answer": "Nakakabahala naman po na rotten yung feeds ninyo. Para matulungan ko po kayo, ano po ang pangalan ng feed na ginagamit ninyo at saan po located ang farm niyo? Bukod pa po dito, maari niyo po bang subukan ang sumusunod?\n\n1.  Kumuha ng ibang bag ng feed (kung meron) para malaman kung pareho ang problema.\n2.  Tignan mabuti kung saan nakaimbak 
+ang feed. Siguraduhin na hindi basa o kaya"y masyadong mainit.\n3.  Kung mayroon kayong litrato o video ng feed, makakatulong po ito sa pag-imbestiga.\n\nNai-record na po ang isyu na ito para sa karagdagang aksyon.",
+    "category": "feed_issue",
+    "status": "active",
+    "priority": 1,
+    "views": 2798,
+    "lastUpdated": "2025-07-17T09:14:32.782945+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feed_issue"
+    ]
+  },
+  {
+    "id": 43,
+    "question": "ang feed ay broiler starter, kami ay farmkoto na nasa manila",
+    "answer": "Salamat sa info. Naiintindihan ko na hindi kinakain ng 3-day old chicks ninyo ang broiler starter feed sa Farmkoto, Manila. Ito ay maaaring dahil sa iba"t ibang dahilan tulad ng pagbabago sa feed, stress sa mga sisiw, o posibleng problema sa kalidad ng feed.\n\n**Mga pwedeng gawin:**\n*   **Subukan ang ibang bag:** Buksan ang ibang bag ng feed para malaman kung pareho ang problema.\n*   **Suriin ang storage:** Siguraduhing maayos ang pagkakastorage ng feed at walang kontaminasyon.\n*   **Obserbahan ang mga sisiw:** Tingnan kung may iba pang sintomas tulad ng panghihina o pagtatae.\n*   **Mag-video:** Kumuha ng video ng mga sisiw habang sinusubukang kumain at ng feed mismo.\n\nNa-record ko na po ang isyung ito. Sana masolusyunan agad. Keep us updated!", "category": "feed_issue", "status": "active", "priority": 2, "views": 3726, "lastUpdated": "2025-07-01T18: 09: 54.870358+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 42, "question": "di kinakain ang feed ng 3 day chick", "answer": "Okay po. Naiintindihan ko na hindi kinakain ang feed ng 3-day old chicks ninyo. Para matulungan ko kayo, kailangan ko lang ng ilang detalye: \n\n*   Pangalan ng feed: Anong feed po ang pinapakain ninyo sa kanila?\n*   Pangalan ng farm: Saan pong farm ito nangyayari?\n*   Lokasyon ng farm: Saan po located ang farm niyo?", "category": "feed_issue", "status": "active", "priority": 1, "views": 903, "lastUpdated": "2025-07-01T18: 09: 18.630369+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 41, "question": "di kinakain ang feed ng 3 day chick", "answer": "Okay po, naiintindihan ko na hindi kinakain ng mga sisiw ninyo yung feed. Para matulungan kita, kailangan ko lang ng ilang detalye:\n\n*   **Pangalan ng feed:** Anong feed po ang pinapakain ninyo sa kanila?\n*   **Pangalan ng farm:** Saan pong farm ito nangyayari?\n*   **Lokasyon ng farm:** Saan po located ang farm niyo?\n*   **Problema:** Bukod sa hindi kinakain, may iba pa bang napapansin sa mga sisiw o sa feed?", "category": "feed_issue", "status": "active", "priority": 2, "views": 2375, "lastUpdated": "2025-07-01T18: 07: 58.489828+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 40, "question": "ang feed na gamit namin ay 
+broiler starter at farmkoto ang name kami ay taga manila", "answer": "Okay po. Naku, nakakabahala nga "yan at hindi kinakain ng mga sisiw ang broiler starter feed ninyo. Naiintindihan ko ang concern mo, lalo na"t 3 days old pa lang sila. Ito ang mga pwede mong gawin pansamantala:\n\n*   **Tiyakin ang Consistency ng Feed:** Siguraduhin na tama ang pagkakagiling ng feed para sa mga sisiw. Minsan kasi, masyadong malalaki ang particle size para sa kanila.\n*   **Subukan ang Konting Feed sa Iba"t Ibang Lalagyan:** Baka may specific spot sa kulungan na mas gusto nila.\n*   **Suriin ang Amoy at Kulay:** Tingnan kung may kakaiba sa amoy o kulay ng feed. Kung mayroon, huwag itong ipakain.\n*   **Subukan ang Bagong Sako:** Para masigurado, subukan ninyo kung kakain sila pag bagong sako ang gamit.\n*   **Monitor ang mga Sisiw:** Bantayan ninyo maigi ang mga sisiw kung may iba pang sintomas.\n\nNaitala ko na po ang problemang ito. Mahalaga po na magkaroon kayo ng picture o video ng feed at ng mga sisiw habang sinusuri ninyo sila. Makakatulong po ito sa pag-imbestiga namin.\n",
+    "category": "feed_issue",
+    "status": "active",
+    "priority": 2,
+    "views": 1461,
+    "lastUpdated": "2025-07-01T18:05:08.36667+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feed_issue"
+    ]
+  },
+  {
+    "id": 39,
+    "question": "di kinakain ang feed ng 3 day chicks",
+    "answer": "Okay po. Naiintindihan ko na hindi kinakain ng mga sisiw ninyo yung feed. Para matulungan kita, kailangan ko lang ng ilang detalye:\n\n*   **Pangalan ng feed:** Anong feed po ang pinapakain ninyo sa kanila?\n*   **Location:** Saan po located ang farm niyo?\n*   **Farm Name:** Ano po ang pangalan ng farm niyo?",
+    "category": "feed_issue",
+    "status": "active",
+    "priority": 4,
+    "views": 2532,
+    "lastUpdated": "2025-07-01T18:04:11.223194+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feed_issue"
+    ]
+  },
+  {
+    "id": 38,
+    "question": "di kinakain ang feed ng 3 day chicks",
+    "answer": "Okay po. Naiintindihan ko na hindi kinakain ang feed ng mga sisiw ninyo. Para matulungan kita, kailangan ko lang ng ilang detalye:\n\n*   **Pangalan ng feed:** Anong feed po ang pinapakain ninyo sa kanila?\n*   **Location:** Saan po located ang farm niyo?\n*   **Pangalan ng farm:** Ano po ang pangalan ng farm ninyo?\n*   **Problema:** Bukod sa hindi kinakain, may iba pa bang napapansin sa mga sisiw o sa feed?",
+    "category": "feed_issue",
+    "status": "active",
+    "priority": 1,
+    "views": 1928,
+    "lastUpdated": "2025-07-01T18:02:41.077658+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feed_issue"
+    ]
+  },
+  {
+    "id": 37,
+    "question": "di kinakain ang feed ng 3 day chicks",
+    "answer": "Okay po. Naiintindihan ko na hindi kinakain ng mga sisiw ninyo yung feed. Para matulungan kita, kailangan ko lang ng ilang detalye:\n\n*   **Pangalan ng feed:** Anong feed 
+po ang pinapakain ninyo sa kanila?\n*   **Pangalan ng farm:** Saan pong farm ito nangyayari?\n*   **Problema:** Bukod sa hindi kinakain, may iba pa bang napapansin sa mga sisiw o sa feed?", "category": "feed_issue", "status": "active", "priority": 2, "views": 4089,
+    "lastUpdated": "2025-07-01T18:00:25.339568+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "feed_issue"
+    ]
+  },
+  {
+    "id": 36,
+    "question": "nagtatae sila ang pangalan ng farm ay farmkoto",
+    "answer": "Okay, Farmkoto. Naiintindihan ko na hindi 
+kinakain ang feed at nagtatae pa ang mga 3-day old chicks ninyo. Ito ay maaaring dahil sa ilang factors tulad ng stress, pagbabago sa feed, o posibleng impeksyon. Narito ang ilang bagay na pwede niyong gawin:\n\n*   **Suriin ang feed:** Siguraduhin na hindi expired o amag ang feed. Subukan din kumuha ng bagong bag ng feed para malaman kung may diperensya sa kasalukuyang feed.\n*   **Tingnan ang storage:** Siguraduhin na tama ang storage ng feed. Dapat itong tuyo at malayo sa mga peste.\n*   **Obserbahan ang mga sisiw:** Tignan kung may iba pang sintomas tulad ng panghihina, hirap sa paghinga, o pagbabago sa kulay ng dumi.\n*   **Kumunsulta sa beterinaryo:** Kung magpatuloy ang problema, pinakamainam na kumunsulta sa isang beterinaryo para sa tamang diagnosis at gamutan.\n\nNaitala ko na ang problemang ito. Mahalaga na magbigay kayo ng pictures or videos para makita namin ang problema.", "category": "feed_issue", "status": "active", "priority": 2, "views": 2631, "lastUpdated": "2025-07-01T17: 57: 02.102124+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 35, "question": "Feed not eaten by 3-day chicks", "answer": "Okay po. Naiintindihan ko na hindi kinakain ng mga sisiw ninyo yung feed. Para matulungan kita, kailangan ko lang ng ilang detalye:\n\n*   **Pangalan ng feed:** Anong feed po ang pinapakain ninyo sa kanila?\n*   **Pangalan ng farm:** Saan pong farm ito nangyayari?\n*   **Problema:** Bukod sa hindi kinakain, may iba pa bang napapansin sa mga sisiw o sa feed?", "category": "feed_issue", "status": "active", "priority": 3, "views": 4756, "lastUpdated": "2025-07-01T17: 55: 50.186486+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 34, "question": "ang feed na gamit ay broiler starter tapos kami ay nasa manila ang pangalan ng farm namin ay farmkoto", "answer": "Okay, Farmkoto sa Manila, broiler starter ang feed, at 3-day old chicks hindi kumakain. Naiintindihan ko ang concern mo. Ito ang mga pwede mong gawin habang tinitingnan natin ang sitwasyon:\n\n*   **Suriin ang feed:** Tingnan kung may kakaibang amoy, kulay, o amag. Kung mayroon, huwag itong ipakain.\n*   **Subukan ang ibang bag:** Kung mayroon kang ibang bag ng broiler starter, subukan mo ring ipakain sa kanila para makita kung may pagkakaiba.\n*   **Tingnan ang storage:** Siguraduhing tama ang pagkakastorage ng feed (malayo sa init, basa, at peste).\n*   **Obserbahan ang mga sisiw:** Tingnan kung may iba pang sintomas tulad ng panghihina o hirap sa paghinga.\n\nMaaari mo rin bang picturan o videohan ang feed at ang mga sisiw? Makakatulong ito sa amin para mas maanalisa ang problema. Mahalaga rin na itago mo ang batch number ng feed.\n\nNa-record ko na ang lahat ng impormasyon na binigay mo. Tutulong kami para masolusyunan ito.", "category": "feed_issue", "status": "active", "priority": 3, "views": 601, "lastUpdated": "2025-07-01T17: 43: 24.306468+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 32, "question": "Feed not eaten by 
+3-day chicks", "answer": "Okay po. Naiintindihan ko na hindi kinakain ng mga sisiw ninyo yung feed. Para matulungan kita, kailangan ko lang ng ilang detalye:\n\n*   **Pangalan ng feed:** Anong feed po ang pinapakain ninyo sa kanila?\n*   **Pangalan ng farm:** Saan pong farm ito nangyayari?\n*   **Problema:** Bukod sa hindi kinakain, may iba pa bang napapansin sa mga sisiw o sa feed?", "category": "feed_issue", "status": "active", "priority": 1, "views": 3430, "lastUpdated": "2025-07-01T17: 42: 08.120197+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 31, "question": "ang feed na gamit ay broiler starter tapos kami ay nasa manila ang pangalan ng farm namin ay farmkoto", "answer": "Salamat po sa pagbibigay ng detalye. Naiintindihan ko na hindi kinakain ng 3-day old chicks ninyo ang broiler starter feed sa Farmkoto sa Manila. Ito ay maaaring dahil sa iba"t ibang kadahilanan tulad ng kalidad ng feed, storage, o posibleng sakit. Narito ang ilang mga hakbang na maaari mong gawin:\n\n*   **Suriin ang Feed:** Tingnan kung may amoy, kulay, o texture na kakaiba sa feed. Subukan ding kumuha ng ibang bag ng feed para malaman kung pareho ang problema.\n*   **Suriin ang Imbakan:** Siguraduhing maayos ang pagkakaimbak ng feed 
+at hindi basa o kontaminado.\n*   **Obserbahan ang mga Sisiw:** Tingnan kung may iba pang sintomas ang mga sisiw tulad ng panghihina o pagtatae.\n*   **Kumunsulta sa Beterinaryo:** Kung magpatuloy ang problema, kumunsulta agad sa isang beterinaryo para sa tamang diagnosis at lunas.\n\nNai-record ko na po ang isyung ito. Pakikuha din po ng litrato o video ng feed at mga sisiw kung maaari, para mas makita namin ang problema. ", "category": "feed_issue", "status": "active", "priority": 3, "views": 898, "lastUpdated": "2025-07-01T17: 39: 29.503049+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 30, "question": "Feed not eaten by 3-day chicks", "answer": "Okay, naiintindihan ko. Hindi kinakain ng mga sisiw ninyo (3 days old) ang feed. Para ma-record ko, anong klaseng feed ang binibigay ninyo? Saan din ang lokasyon at pangalan ng farm ninyo?", "category": "feed_issue", "status": "active", "priority": 2, "views": 4069, "lastUpdated": "2025-07-01T17: 38: 19+00: 00", "createdBy": "Chat AI Assistant", "tags": ["feed_issue"]}, {"id": 118, "question": "what feed i need to use ", "answer": "Sa edad na 16 days, at kasalukuyang gumagamit ng Broiler Pre-Starter Crumble, ang manok niyo ay dapat nasa transition na sa Broiler Starter Crumble. Ang Broiler Pre-Starter ay para sa Day 1-7 lang para masigurado ang kanilang paglaki at immunity. Sa edad na ito, inaasahan na ang bigat ng manok ay nasa 0.4 - 0.6kg at maganda ang kanilang development ng buto at muscle. \n\nKailangan na po 
+kayong lumipat sa Broiler Starter Crumble para mas mapabilis ang paglaki ng inyong mga broiler at mas maging matibay ang kanilang pangangatawan. Ito ay dapat gawin pagkatapos ng unang linggo.", "category": "switching_guidance", "status": "active", "priority": 2, "views": 2386, "lastUpdated": "2025-07-16T11: 00: 31.73465+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 103, "question": "Ipalawagmo man dagiti banbanag maipanggep iti pagnaedan ti manok.", "answer": "Naawatak. Yantangay agus-usarkayo iti Broiler Pre-Starter Crumble iti 16 nga aldaw, daytoy ket labes iti naituding nga aldaw. Daytoy a feed ket nairanta laeng nga usareen manipud Day 1 agingga iti 7 nga aldaw.\n\n**Performance Benchmark:** Iti daytoy nga edad, manamnama nga dagiti piek ket nasayaat ti panagdakkelda ken nasalun-atda gapu ta daytoy a feed ket addaan iti nangato nga enerhia ken protina, a mangsuporta iti resistensia ken panagdur-as ti bituka. Gapu ta 16 nga aldawen nga us-usaren, mabalin a saan unayen nga epektibo daytoy a feed.\n\n**Transition Guidance:** Kasapulanen nga isukat iti Broiler Starter Crumble. Daytoy a feed ket nairanta nga usareen iti Week 2-3 tapno mangpabileg iti frame ken muscle dagiti manok. Daytoy ti tumulong kadakuada nga umuneg iti sumaganad nga tukad ti panagdakkeld", "category": "switching_guidance", "status": "active", "priority": 3, "views": 3823, "lastUpdated": "2025-07-16T10: 10: 13.5571+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 102, "question": "Anong klaseng pakain ang dapat ibigay sa manok para lumaki nang malusog at mabilis?", "answer": "Para sa manok na 16 days old at kasalukuyang kumakain ng Broiler Pre-Starter Crumble, iminumungkahi na lumipat na sa Broiler Starter Crumble. \n\nSa edad na ito, ang Broiler Starter Crumble ay makakatulong sa kanila na bumuo ng mas matibay na pangangatawan at muscles. Inaasahan na sa edad na ito, ang mga manok ay may average weight na mga 0.5 - 0.8 kg at mayroon FCR (Feed Conversion Ratio) na humigit-kumulang 1.5 - 1.7.\n\nIpagpatuloy ang pagpapakain ng Broiler Starter Crumble hanggang sa ika-3 linggo, at pagkatapos ay lumipat sa Broiler Finisher Crumble para sa pagpapalaki ng kanilang timbang bago mag-harvest.", "category": "switching_guidance", "status": "active", "priority": 3, "views": 3308, "lastUpdated": "2025-07-16T10: 08: 53.612046+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 100, "question": "nilalagyan ko ng asin ang feeds ", "answer": "Naiintindihan ko po na nilalagyan ninyo ng asin ang feeds at gumagamit kayo ng Broiler Pre-Starter Crumble sa loob ng 16 na araw. Ang Broiler Pre-Starter Crumble ay para sa Day 1 hanggang Week 1 (7 days) para masiguro na maganda ang kanilang paglaki at suportahan ang kanilang immune system at gut development. Dahil 16 na araw na kayong gumagamit nito, maaaring panahon na para lumipat sa susunod na feed.\n\nSa edad na ito, ang inaasahang timbang ng mga broiler ay dapat nasa pagitan ng 0.4 - 0.6 kg at ang FCR ay nasa 1.5 - 1.7.\n\nPara sa susunod na hakbang, inirerekomenda ko ang Broiler Starter Crumble. Ito ay mainam para sa pagpapalaki ng kanilang muscle at buto mula Week 2 hanggang Week 3. Makakatulong ito sa kanilang mabilis na paglaki dahil sa optimized amino acid profile nito.", "category": "switching_guidance", "status": "active", "priority": 4, "views": 4461, "lastUpdated": "2025-07-16T09: 54: 15.253394+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 99, "question": "ano ang next feed ko ", "answer": "Base sa inyong kasalukuyang feed na Broiler Pre-Starter Crumble sa loob ng 16 araw, ang susunod na feed na irerekomenda ko ay ang Broiler Starter Crumble. Ang Broiler Pre-Starter 
+ay karaniwang ginagamit sa unang 7 araw para sa early growth at immunity. Ngayon, dapat na kayo ay lilipat na sa Broiler Starter Crumble para itayo ang kanilang muscle development.", "category": "switching_guidance", "status": "active", "priority": 2, "views": 2232, "lastUpdated": "2025-07-16T09: 51: 16.983773+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 98, "question": "anoo ang feed para sa 28 days", "answer": "Base sa inyong ibinigay na impormasyon, kasalukuyan kayong gumagamit ng Broiler Pre-Starter Crumble sa loob ng 16 na araw. Ang feed na ito ay para sa mga batang sisiw mula Day 1 hanggang Day 7 para masigurado ang kanilang paglaki at malakas na resistensya. Dahil 28 days na ang inyong broiler, dapat ay nasa Broiler Finisher Crumble na kayo.\n\n**Performance Check:**\nSa edad na ito, ang target weight ng inyong broiler ay approximately 1.8kg, na naaayon naman sa inyong kasalukuyang timbang na 1.6kg. Inaasahan din natin na ang FCR (Feed Conversion Ratio) ay nasa average na 1.7 - 1.9.\n\n**Transition Guidance:**\nPara sa susunod na hakbang, irerekomenda ko ang Broiler Finisher Crumble. Ito ay dapat na ibigay mga 2-3 weeks bago ang harvest para masigurado na makukuha nila ang tamang timbang at magandang kalidad ng karne. Dahil 28 days na ang inyong mga broiler, mas mainam na mag-transition na kayo agad sa Broiler Finisher Crumble para ma-maximize ang kanilang paglaki bago ang harvest.", "category": "switching_guidance", "status": "active", "priority": 3, "views": 1758, "lastUpdated": "2025-07-16T09: 48: 36.723983+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 97, "question": "ano ang feed para sa 28 days", "answer": "Sa edad na 28 araw, at sa kasalukuyang paggamit mo ng Broiler Pre-Starter Crumble sa loob ng 16 na araw, dapat na nasa Broiler Finisher Crumble ka na. \n\nSa puntong ito, ang bigat ng manok mo ay dapat nasa mga 1.6kg, may FCR na mga 1.7-1.8. Dahil wala naman daw namatay sa manok mo at normal ang kanilang consumption, mukhang maganda naman ang performance ng manok mo. Kaya, itigil mo na ang Broiler Pre-Starter Crumble at lumipat ka na sa Broiler Finisher Crumble para mas mapabilis pa ang paglaki nila bago sila anihin.", "category": "switching_guidance", "status": "active", "priority": 4, "views": 1604, "lastUpdated": "2025-07-16T09: 45: 01.149624+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 96, "question": "next feed after 2 weeks", "answer": "Base 
+po sa inyong ibinigay na impormasyon, gumagamit po kayo ng Broiler Pre-Starter Crumble sa loob ng 15 araw. Ang feed na ito ay para sa mga sisiw mula Day 1 hanggang Day 7 para sa kanilang early growth, immunity, at gut development. Dahil lampas na po sa recommended period ang paggamit ninyo nito, dapat na po kayong lumipat sa Broiler Starter Crumble para mas maboost ang kanilang paglaki at muscle development. Magandang lumipat na agad para masiguro na nakukuha nila ang tamang nutrisyon para sa kanilang edad.", "category": "switching_guidance", "status": "active", "priority": 1, "views": 2627, "lastUpdated": "2025-07-15T05: 15: 03.343036+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 94, "question": "ano ang next feed after 2 weeks", "answer": "Para masagot nang tama kung ano ang susunod na feed, kailangan ko pong malaman kung anong klaseng manok ang pinapakain ninyo (broiler, layer, native chicken, o iba pa).", "category": "switching_guidance", "status": "active", "priority": 3, "views": 1905, "lastUpdated": "2025-07-15T04: 40: 48.02733+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 22, "question": "ano ang kasunod na feed gamit ko ngayon ay starter", "answer": "Hello Clara! Kung gumagamit ka ng Broiler Pre-Starter Crumble sa ngayon, ang susunod na feed na gagamitin mo pagkatapos nito ay ang Broiler Starter Crumble. Ito ay para sa mga week 2-3 ng iyong mga broiler. Nakakatulong ito para bumuo ng malakas na pangangatawan at muscle ng iyong mga manok para sa kanilang paglaki.", "category": "switching_guidance", "status": "active", "priority": 4, "views": 907, "lastUpdated": "2025-06-28T03: 01: 56.969548+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 15, "question": "ang starter feed na gamit ko ay broiler starter crubmle", "answer": "Hello Clara! Salamat sa paglilinaw. Base sa catalog, ang Broiler Starter Crumble ay para sa week 2-3 ng mga broiler. Dahil 0 days pa lang ang iyong 
+sisiw, hindi pa ito angkop para sa kanila. Mas makakabuti kung Broiler Pre-Starter Crumble muna ang gamitin mo para sa unang linggo (Day 1-7) nila. Ito ay mas pinino para sa kanilang early development at immunity.", "category": "switching_guidance", "status": "active", "priority": 1, "views": 2632, "lastUpdated": "2025-06-27T18: 15: 40.697166+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 13, "question": "maraming salamat may isa pa akong tanong ano ang kasunod ng 
+starter", "answer": "Walang anuman, Clara! Base sa ating product catalog, pagkatapos ng Broiler Pre-Starter Crumble (Day 1-7), ang susunod na feed na dapat mong gamitin ay ang Broiler Starter Crumble, mula Week 2 hanggang Week 3. Ito ay para tuloy-tuloy ang kanilang paglaki at development ng malakas na muscles.", "category": "switching_guidance", "status": "active", "priority": 3, "views": 4891, "lastUpdated": "2025-06-27T18: 13: 07.79051+00: 00", "createdBy": "Chat AI Assistant", "tags": ["switching_guidance"]}, {"id": 146, "question": "sa farmkoto", "answer": "Nai-record na po ang benta. Salamat sa pag-update!", "category": "sales_activity", "status": "active", "priority": 2, "views": 2419, "lastUpdated": "2025-07-17T10: 49: 36.203823+00: 00", "createdBy": "Chat AI Assistant", "tags": ["sales_activity"]}, {"id": 145, "question": "sa farmkoto", "answer": "Na-log na po ang benta ninyo. Maraming salamat po sa pag-update!", "category": "sales_activity", "status": "active", "priority": 2, "views": 4149,
+    "lastUpdated": "2025-07-17T10:47:42.303803+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "sales_activity"
+    ]
+  },
+  {
+    "id": 144,
+    "question": "sa manila, farm koto broiler starter ang total ay 25000 at july 17 2025",
+    "answer": "Salamat po sa pag-update! Naitala ko na po ang bentang ito. Maaari ko lang pong kumpirmahin kung tama ang mga detalye?\n\n*   **Paglalarawan:** Benta ng 50 bag ng Broiler Starter sa Manila.\n*   **Petsa:** July 17, 2025\n*   **Kabuuang Halaga:** ₱25,000\n*   **Pangalan ng Farm:** (Mangyaring ibigay ang pangalan ng farm)\n*   **Lokasyon:** Manila\n\nPakisabi na lang po kung may kailangan pang baguhin o idagdag.",
+    "category": "sales_activity",
+    "status": "active",
+    "priority": 3,
+    "views": 3116,
+    "lastUpdated": "2025-07-17T10:47:18.931109+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "sales_activity"
+    ]
+  },
+  {
+    "id": 143,
+    "question": "sells 50 bags",
+    "answer": "Okay, naitala ko po na may benta na 50 bags. Para po ma-log ko nang kumpleto ang sales, maaari ko bang malaman ang mga sumusunod na detalye?\n\n*   Anong produkto po ang naibenta?\n*   Magkano po ang total sales sa peso?\n*   Kailan po ang exact date ng benta?\n*   Saan pong location o branch ito nangyari?\n*   Ano pong farm name?",
+    "category": "sales_activity",
+    "status": "active",
+    "priority": 2,
+    "views": 3601,
+    "lastUpdated": "2025-07-17T10:46:37.00398+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "sales_activity"
+    ]
+  },
+  {
+    "id": 61,
+    "question": "bibisita ako sa pangasinan farm",
+    "answer": "Okay po, ma"am/sir! I-record ko lang po. Kailan po ang punta ninyo sa farm sa Pangasinan?", "category": "sales_activity", "status": "active", "priority": 1, "views": 4313, "lastUpdated": "2025-07-02T19: 01: 30.093416+00: 00", "createdBy": "Chat AI Assistant", "tags": ["sales_activity"]}, {"id": 60, "question": "ang nagorder ay farmkoto sa manila noong july 1 2025", "answer": "Okay po, na-record ko na po ang order ni Farmkoto. Ito po ang mga detalye:\n\n*   **Sale Date:** 2025-07-01\n*   **Product Sold:** Layer 2 Pellets\n*   **Quantity:** 20 bags\n*   **Location:** Manila\n*   **Farm Name:** Farmkoto\n\nSalamat po sa pag-report!", "category": "sales_activity", "status": "active", "priority": 1, "views": 4638, "lastUpdated": "2025-07-02T18: 54: 40.691336+00: 00", "createdBy": "Chat AI Assistant", "tags": ["sales_activity"]}, {"id": 59, "question": "Farmer ordered 20 bags Layer 2", "answer": "Okay po! Na-record ko na po yung order na 20 bags ng Layer 2. Para po ma-process natin, kailangan ko lang po ng ilang details:\n\n*   **Sale Date:** Kailan po ito nabenta (ngayon, kahapon, etc.)?\n*   **Location:** Saang branch po ito?\n*   **Farm Name:** Ano po ang pangalan ng farm?", "category": "sales_activity", "status": "active", "priority": 2, "views": 1290, "lastUpdated": "2025-07-02T18: 54: 10.793818+00: 00", "createdBy": "Chat AI Assistant", "tags": ["sales_activity"]}, {"id": 58, "question": "ang nagorder ay farmkoto sa manila noong july 1 2025", "answer": "Sige po, nais ko lang pong linawin. Ang order po ba ay para sa feeds o iba pang produkto? At anong produkto po ang inorder at ilang bags?", "category": "sales_activity", "status": "active", "priority": 3, "views": 3132, "lastUpdated": "2025-07-02T18: 52: 14.773144+00: 00", "createdBy": "Chat AI Assistant", "tags": [
+      "sales_activity"
+    ]
+  },
+  {
+    "id": 57,
+    "question": "Farmer ordered 20 bags Layer 2",
+    "answer": "Okay po, na-record ko na ang order. Para po ma-complete ang details, pwede ko bang malaman kung saan pong branch ang order na ito at sa anong farm po ito 
+ipapadala? At saka, kailan po ang sale date?", "category": "sales_activity", "status": "active", "priority": 2, "views": 3417, "lastUpdated": "2025-07-02T18: 51: 17.241622+00: 00", "createdBy": "Chat AI Assistant", "tags": ["sales_activity"]}, {"id": 56, "question": "Farmer ordered 20 bags Layer 2", "answer": "Okay po, na-record ko na may farmer na nag-order ng 20 bags ng Layer 2 pellets. Para po ma-log ko nang tama ang sales, paki-kumpleto lang po ang mga detalye.", "category": "sales_activity", "status": "active", "priority": 2, "views": 3406, "lastUpdated": "2025-07-02T18: 49: 51.776988+00: 00", "createdBy": "Chat AI Assistant", "tags": ["sales_activity"]}, {"id": 92, "question": "unsa ang feeds", "answer": "Ang "feeds" ay tumutukoy sa mga pagkain na ibinibigay sa mga hayop, tulad ng manok, upang matugunan ang kanilang mga nutritional na pangangailangan. Ang feeds ay naglalaman ng iba\"t ibang sangkap tulad ng protina, carbohydrates, fats, bitamina, at mineral na mahalaga para sa paglaki, kalusugan, at produksyon ng mga hayop. Mahalaga na pumili ng tamang feeds na naaayon sa edad, lahi, at layunin ng pag-aalaga (tulad ng broiler, layer, o native chicken) upang masiguro ang kanilang optimal na performance.",
+    "category": "other",
+    "status": "active",
+    "priority": 2,
+    "views": 1280,
+    "lastUpdated": "2025-07-15T04:07:18.795912+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "other"
+    ]
+  },
+  {
+    "id": 89,
+    "question": "what does feed means",
+    "answer": "Feed refers to the food given to poultry to provide them with the nutrients they need for growth, health, and production (e.g., eggs or meat). The type of feed varies depending on the age and purpose of the chicken. For example, young chicks need a high-protein starter feed, while laying hens need 
+a feed rich in calcium.", "category": "other", "status": "active", "priority": 4, "views": 3003, "lastUpdated": "2025-07-15T04: 05: 07.761134+00: 00", "createdBy": "Chat AI Assistant", "tags": ["other"]}, {"id": 88, "question": "what does feed means", "answer": "Ang "feed" sa konteksto ng pag-aalaga ng manok ay tumutukoy sa anumang uri ng pagkain na ibinibigay sa mga manok upang matugunan ang kanilang nutritional needs. Mahalaga ang tamang feed para sa kanilang paglaki, kalusugan, at produksyon ng itlog. Ang feed ay maaaring binubuo ng iba\"t ibang sangkap tulad ng mais, soya, rice bran, fish meal, at mga bitamina at mineral. May iba\"t ibang uri ng feed na angkop sa bawat yugto ng buhay ng manok, kaya\"t mahalagang pumili ng tamang feed para sa 
+kanilang edad at layunin.", "category": "other", "status": "active", "priority": 1, "views": 4915, "lastUpdated": "2025-07-15T04: 02: 13.865311+00: 00", "createdBy": "Chat AI Assistant", "tags": ["other"]}, {"id": 87, "question": "what does feed means", "answer": "Feed refers to the food given to farm animals, including poultry, to provide them with the nutrients they need for growth, health, and production (e.g., meat or eggs). These feeds are specially formulated to meet the specific nutritional requirements of the animals depending on their age, breed, and purpose.",
+    "category": "other",
+    "status": "active",
+    "priority": 2,
+    "views": 1535,
+    "lastUpdated": "2025-07-15T04:01:28.568482+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "other"
+    ]
+  },
+  {
+    "id": 86,
+    "question": "what does feed means",
+    "answer": "Ang ibig sabihin ng "feed" ay ang pagkain na ibinibigay natin sa mga alagang hayop tulad ng manok para sila ay lumaki, lumakas, at maging malusog. Importante ang feed dahil dito nakukuha ng manok 
+ang sustansya na kailangan nila para sa kanilang paglaki at produksyon.", "category": "other", "status": "active", "priority": 4, "views": 4239, "lastUpdated": "2025-07-15T04: 00: 56.056394+00: 00", "createdBy": "Chat AI Assistant", "tags": ["other"]}, {"id": 85, "question": "what does feed means", "answer": "Ang "feed" sa pagmamanok ay tumutukoy sa pagkain na ibinibigay natin sa mga manok para sila ay lumaki, lumakas, at maging malusog. Ang iba"t ibang uri ng feed ay may iba"t ibang sustansya na kailangan ng manok depende sa kanilang edad at kung anong stage ng buhay nila (halimbawa, kung sila ay sisiw pa lang, nagpapalaki, o nangitlog na).", "category": "other", "status": "active", "priority": 1, "views": 2022, "lastUpdated": "2025-07-15T03: 57: 12.249475+00: 00", "createdBy": "Chat AI Assistant", "tags": ["other"]}, {"id": 84, "question": "what does feed means", "answer": "Ang "feed" ay tumutukoy sa anumang pagkain o rasyon na ibinibigay sa mga hayop, kabilang na ang mga manok, upang matugunan ang kanilang mga pangangailangan sa nutrisyon. Mahalaga ang feed para sa kanilang paglaki, kalusugan, at produksyon (tulad ng itlog).", "category": "other", "status": "active", "priority": 3, "views": 4857, "lastUpdated": "2025-07-15T03: 56: 14.289869+00: 00", "createdBy": "Chat AI Assistant", "tags": ["other"]}, {"id": 83, "question": "what does feed means", "answer": "Ang "feed" ay tumutukoy sa anumang bagay na kinakain ng mga hayop para mabuhay at lumaki. Sa konteksto ng pagmamanok, ito yung mga espesyal na pagkain na binibigay natin para masiguro na nakukuha nila lahat ng nutrisyon na kailangan nila sa iba"t ibang yugto ng kanilang buhay.",
+    "category": "other",
+    "status": "active",
+    "priority": 2,
+    "views": 1661,
+    "lastUpdated": "2025-07-15T03:54:46.331563+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "other"
+    ]
+  },
+  {
+    "id": 2,
+    "question": "what is feeds?",
+    "answer": "Ang "feeds" ay ang mga pagkain na ibinibigay natin sa mga alaga nating hayop, tulad ng manok, baka, baboy, at iba pa, para masigurado na nakukuha nila ang tamang nutrisyon na kailangan nila para lumaki nang malusog at maging produktibo.",
+    "category": "other",
+    "status": "active",
+    "priority": 1,
+    "views": 2074,
+    "lastUpdated": "2025-06-27T09:08:31.622446+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "other"
+    ]
+  },
+  {
+    "id": 137,
+    "question": "dealer ko to",
+    "answer": "Ay, nakakainis nga pag ganyan. Naiintindihan ko ang problema sa pagkaubos ng stock ng dealer niyo sa Manila. Nais ko lang ipaalam sa inyo na naitala ko na ang insidenteng ito.",
+    "category": "dealer_issue",
+    "status": "active",
+    "priority": 2,
+    "views": 1686,
+    "lastUpdated": "2025-07-17T09:10:01.246378+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "dealer_issue"
+    ]
+  },
+  {
+    "id": 136,
+    "question": "out of stock in manila",
+    "answer": "I understand the frustration of dealing with out-of-stock situations. I"ve already recorded this issue. Can you provide the dealer name so I can accurately log the incident?", "category": "dealer_issue", "status": "active", "priority": 4, "views": 1517, "lastUpdated": "2025-07-17T09: 09: 45.048366+00: 00", "createdBy": "Chat AI Assistant", "tags": ["dealer_issue"]}, {"id": 29, "question": "dealermoto ang name at nasa manila", "answer": "Salamat sa pag-report. Na-record ko na ang problemang ito tungkol sa DealerMoto na out of stock sa Manila. Importante sa amin na masigurado na available ang products natin. May iba pa ba kayong gustong i-report o idagdag?", "category": "dealer_issue", "status": "active", "priority": 2, "views": 1433, "lastUpdated": "2025-07-01T17: 28: 48.465364+00: 00", "createdBy": "Chat AI Assistant", "tags": ["dealer_issue"]}, {"id": 28, "question": "Dealer out of stock again", "answer": "Ay, nakakainis nga "yan pag out of stock na naman ang dealer. Para ma-record ko, pwede ko bang malaman kung anong pangalan ng dealer at lokasyon nito?",
+    "category": "dealer_issue",
+    "status": "active",
+    "priority": 3,
+    "views": 907,
+    "lastUpdated": "2025-07-01T17:26:21.849921+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "dealer_issue"
+    ]
+  },
+  {
+    "id": 27,
+    "question": "Dealer out of stock again",
+    "answer": "Ay, nakakainis naman "yan! Palaging out of stock. Para ma-record ko, anong pangalan ng dealer at saan sila located?", "category": "dealer_issue", "status": "active", "priority": 3, "views": 847, "lastUpdated": "2025-07-01T17: 25: 24.379096+00: 00", "createdBy": "Chat AI Assistant", "tags": ["dealer_issue"]}, {"id": 26, "question": "ang name ay dealermoto ang branch ay manila", "answer": "Salamat sa pag-report. Na-irecord na po namin na palaging out of stock ang Dealermoto sa Manila. Importante po ang feedback ninyo para mapabuti ang serbisyo. Pag may iba pa pong concerns, huwag po kayong mag-atubiling mag-report.", "category": "dealer_issue", "status": "active", "priority": 1, "views": 2696, "lastUpdated": "2025-07-01T17: 21: 29.457039+00: 00", "createdBy": "Chat AI Assistant", "tags": ["dealer_issue"]}, {"id": 25, "question": "Dealer out of stock again", "answer": "Ay, nakakainis nga "yan pag palaging out of stock ang dealer. Para ma-irecord ko po, ano po ang pangalan ng dealer at saan po sila matatagpuan?",
+    "category": "dealer_issue",
+    "status": "active",
+    "priority": 2,
+    "views": 2404,
+    "lastUpdated": "2025-07-01T17:11:08.078925+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "dealer_issue"
+    ]
+  },
+  {
+    "id": 117,
+    "question": "Pwede man isagol ang ginpauga nga balat sang kamote nga ginadugmok sa feeds sang manok. Indi siya common pero daw nami para dugang fiber kag makatabang sa pagpuno sang tiyan.",
+    "answer": "Salamat gid sa pagpaambit sang imo nga ginahimo! Ang paggamit sang ginpauga nga balat sang kamote nga ginadugmok sa feeds sang manok isa ka makawiwili nga pamaagi. Sa pagkakaron, indi pa ini validated sang amon R&D, gani indi pa namon ini marekomenda. Padayonon namon ang pagtuon parte sini para sa kaayuhan sang tanan nga mga manug-manok.",
+    "category": "diy_practice_submission",
+    "status": "active",
+    "priority": 4,
+    "views": 758,
+    "lastUpdated": "2025-07-16T10:54:33.321199+00:00",
+    "createdBy": "Chat AI Assistant",
+    "tags": [
+      "diy_practice_submission"
+    ]
+  }
+  ]
+  }

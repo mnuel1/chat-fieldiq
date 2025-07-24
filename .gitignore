@@ -1,12 +1,5 @@
-Include
+# Created by venv; see https://docs.python.org/3/library/venv.html
 Lib
-Scripts
-
-
-.env
+Include
 pyvenv.cfg
-
-**/__pycache__/
-**/*.py[cod]
-
-.vscode/
+Scripts

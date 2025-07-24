@@ -29,3 +29,4 @@ class ChatRequest(BaseModel):
     user_id: int
     chat_id: Optional[int] = None
     intent_id: Optional[int] = None
+    ticket_id: Optional[str] = None

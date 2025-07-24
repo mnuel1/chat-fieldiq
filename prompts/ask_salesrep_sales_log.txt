@@ -54,7 +54,7 @@ Step 3: Respond with professionalism:
 Step 3: Alwyas Output in This Exact JSON Format:
 ```json
 {
-  "response": "<Taglish response to the user. Should be warm, clear, and supportive. Include complete guidance based on the issue. Do not sound robotic or too formal. Avoid awkward code-switching.>",
+  "response": "<English response to the user. Should be warm, clear, and supportive. Include complete guidance based on the issue. Do not sound robotic or too formal. Avoid awkward code-switching.>",
   "log_type": "sales_activity",
   "sales_details": {
     "description": "<auto-inferred if possible>",

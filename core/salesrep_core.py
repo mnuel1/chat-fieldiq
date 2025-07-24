@@ -38,6 +38,21 @@ class SalesRep:
             "updated_at": "now()", }).execute()
         return None
     
+    def update_visit_report(self, ticket_number: str, reported_by: int, form_data: Dict):
+        (
+            self.client
+            .table("visit_reports")
+            .update({
+                **form_data,
+                "updated_at": "now()",
+            })
+            .eq("reported_by", reported_by)
+            .eq("ticket_number", ticket_number)
+            .execute()
+        )
+        return None
+    
+
     def get_monthly_sales(self, user_id: int) -> Dict[str, float]:
         response = (
             self.client
@@ -52,7 +67,7 @@ class SalesRep:
         total_sales = 0.0
 
         for row in data:
-            sales_date_str = row.get("sales_date")
+            sales_date_str = row.get("sale_date")
             if not sales_date_str:
                 continue
 
@@ -68,7 +83,7 @@ class SalesRep:
         for month_num in sorted(monthly_sales):
             result.append({
                 "month": month_abbr[month_num],  # e.g., "Jan"
-                "volumeInfluenced": 0,           # You can update this if needed
+                "volumeInfluenced": 14500,           # You can update this if needed
                 "closedSales": monthly_sales[month_num]
             })
         month_count = len(monthly_sales)
@@ -128,7 +143,7 @@ class SalesRep:
         response = (
             self.client
             .table("visit_reports")
-            .select("id, farm_name, location, visit_type, visit_date, purpose, observations, notes")
+            .select("id, ticket_number, farm_name, location, visit_type, visit_date, purpose, observations, notes")
             .eq("reported_by", user_id)
             .execute()
         )
@@ -204,3 +219,30 @@ class SalesRep:
         all_data = field_data + dealer_data + sales_data
 
         return {"data": all_data}
+    
+    def check_ticket_number_validity(self, ticket_number: str, user_id: int) -> bool:
+        response = (
+            self.client
+            .table("visit_reports")
+            .select("ticket_number")
+            .eq("reported_by", user_id)
+            .eq("ticket_number", ticket_number)
+            .execute()
+        )
+
+        return bool(response.data)
+
+    def generate_ticket_number(self, user_id: int) -> str:
+        response = (
+            self.client
+            .table("visit_reports")
+            .select("ticket_number", count="exact")
+            .eq("reported_by", user_id)
+            .execute()
+        )
+
+        count = (response.count or 0) + 1
+
+        ticket_number = f"TKT-0000{user_id}-{count}"
+
+        return ticket_number

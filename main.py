@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from exceptions.global_exception import GlobalException
-from services import farmer_services, salesrep_services, view_models_services
+from services import farmer_services, salesrep_services, view_models_services, admin_services
 
 app = FastAPI(
     title="My FastAPI App",
@@ -39,6 +39,8 @@ app.include_router(salesrep_services.router,
                    prefix="/salesrep", tags=["Sales Rep"])
 app.include_router(view_models_services.router,
                    prefix="/ViewModels", tags=["View Models"])
+app.include_router(admin_services.router,
+                   prefix="/admin", tags=["Admin"])
 
 # Root endpoint
 # @app.get("/")
