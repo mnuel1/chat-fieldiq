@@ -48,40 +48,41 @@ def store_message_faq(chat_id, prompt, response, category, metadata=None):
   chat.add_message(chat_id, "model", response, metadata)
   faq.insert_faq(prompt, response, category)
 
-def handle_log(chat_id, user_id, prompt, prompt_file, update_health=False):
-#   chat = Chat()
-#   farmer = Farmer()
+def handle_log(chat_id, user_id, prompt, prompt_file, form_key, function_name, on_complete):
+  chat = Chat()
+  farmer = Farmer()
 
-#   system_instruction = load_prompt(prompt_file)
+  system_instruction = load_prompt(f"{prompt_file}.txt")
+  functions = load_functions(f"{prompt_file}.json")
 
-#   convo_res = chat.get_conversations_record(chat_id)
-#   form_data = convo_res.get("form_data") or {}
+  convo_res = chat.get_conversations_record(chat_id)
+  form_data = convo_res.get("form_data") or {}
 
-#   chat_history = chat.get_recent_messages(chat_id, get_max_messages())
-#   form_summary = "\n".join([f"{k.replace('_', ' ').capitalize()}: {v}" for k, v in form_data.items() if v]) or "None yet"
+  chat_history = chat.get_recent_messages(chat_id, get_max_messages())
+  form_summary = "\n".join([f"{k.replace('_', ' ').capitalize()}: {v}" for k, v in form_data.items() if v]) or "None yet"
 
-#   chat_history.append({
-#     "role": "user",
-#     "content": f"{prompt}\n\n(Previously collected info):\n{form_summary}"
-#   })
+  chat_history.append({
+    "role": "user",
+    "content": f"{prompt}\n\n(Previously collected info):\n{form_summary}"
+  })
 
-#   messages = [{"role": "system", "content": system_instruction}] + chat_history
-#   response_text = call_openai(messages)
-#   parsed = extract_json(response_text)
+  messages = [{"role": "system", "content": system_instruction}] + chat_history
+  # response_text = call_openai(messages)
+  parsed = call_openai(messages, functions, function_name)
 
-#   new_fields = parsed.get("incident_details", {})
-#   form_data.update({k: v for k, v in new_fields.items() if v})
+  new_fields = parsed.get(form_key, {})
+  form_data.update({k: v for k, v in new_fields.items() if v})
   
-#   chat.update_conversation(chat_id, form_data=form_data)
+  chat.update_conversation(chat_id, form_data=form_data)
 
-#   store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"],
-#                     metadata={"form_data": form_data, "next_action": parsed["next_action"]})
+  store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"],
+                    metadata={"form_data": form_data, "next_action": parsed["next_action"]})
 
-#   if update_health and parsed["next_action"] == "log_complete":
-#     farmer.create_health_incident(farmer_user_profile_id=user_id, form_data=form_data)
-#     chat.update_conversation(chat_id, None)
+  if parsed["next_action"] == "log_complete":
+    on_complete(farmer, user_id, form_data, parsed)
+    chat.update_conversation(chat_id, None)
 
-  return "parsed"
+  return parsed
 
 def handle_log_sales(chat_id, user_id, prompt, prompt_file, form_key, function_name, on_complete):
   chat = Chat()
