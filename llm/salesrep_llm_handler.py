@@ -69,7 +69,7 @@ def handle_farm_log(chat_id, user_id, prompt):
     visit_type = visit_details["visit_type"]
     ticket_number = visit_details.get("ticket_number")
 
-    if visit_type == "planned_visit" and not ticket_number:
+    if visit_type == "planned_visit":
       ticket_number = salesrep.generate_ticket_number(user_id)
       visit_details["ticket_number"] = ticket_number
       salesrep.create_visit_report(user_id, form_data)

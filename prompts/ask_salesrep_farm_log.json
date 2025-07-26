@@ -23,7 +23,7 @@
                 "string",
                 "null"
               ],
-              "description": "Ticket number if provided and valid (format: TKT-000(ID)-(NUMBER)), else null."
+              "description": "Ticket number if provided and valid (format: TKT-000(ID)-(NUMBER)), else null.do NOT PROVIDE"
             },
             "visit_type": {
               "type": "string",

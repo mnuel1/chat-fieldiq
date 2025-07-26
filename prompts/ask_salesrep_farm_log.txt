@@ -11,7 +11,7 @@ Flow 1: Ticket Number Present (Completed Visit)
     ticket_number → Must match TKT-000ID-COUNT format (e.g., TKT-00023-1).
       If missing or invalid → Ask user:
       "Please provide the ticket number (format: TKT-000ID-COUNT, e.g., TKT-00023-1)."
-      Never assume or create ticket numbers.
+      Never assume or create ticket number.
     visit_type → Always "completed_visit".
     visit_date → Date of visit in YYYY/MM/DD format if not match/given, else ask in this format YYYY/MM/DD;   
     purpose → Extract from user message; if missing, ask.
