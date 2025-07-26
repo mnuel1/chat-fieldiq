@@ -57,8 +57,8 @@ class Chat:
 
         formatted_messages = [
             {
-                "role": msg["role"],
-                "parts": [{"text": msg["message"]}]
+                "role": "assistant" if msg["role"] == "model" else "user",
+                "content": msg["message"]
             }
             for msg in raw_messages
             if msg["role"] in ("user", "model") and msg["message"]

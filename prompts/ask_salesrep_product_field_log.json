@@ -1,0 +1,105 @@
+[
+  {
+    "name": "log_feed_issue",
+    "description": "Logs a feed or product issue based on the user's report, including details and a helpful response.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string",
+          "description": "A warm, clear, and supportive English response for the user. Acknowledge the concern, give practical guidance, and encourage documenting details."
+        },
+        "log_type": {
+          "type": "string",
+          "enum": [
+            "product_issue",
+            "feed_issue"
+          ],
+          "description": "Whether the issue relates to the feed or the product in general."
+        },
+        "tag": {
+          "type": "string",
+          "enum": [
+            "possible_feed_related",
+            "product_related"
+          ],
+          "description": "Indicates if the problem seems feed-related or product-related."
+        },
+        "incident_details": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "Concise summary of the issue, ideally including feed name, farm name, and location."
+            },
+            "problem": {
+              "type": "string",
+              "description": "Concise phrase summarizing the problem."
+            },
+            "feed_name": {
+              "type": "string",
+              "description": "Name or type of feed involved. Must ask if missing."
+            },
+            "birds_affected": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "description": "Number of birds affected ONLY if user explicitly mentioned. Do NOT infer; if not mentioned, set null."
+            },
+            "age_of_birds": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Age of birds ONLY if user explicitly mentioned. Do NOT infer; if not mentioned, set null."
+            },
+            "location": {
+              "type": "string",
+              "description": "Farm or geographic location of the issue. Must ask if missing."
+            },
+            "farm_name": {
+              "type": "string",
+              "description": "Name of the farm involved. Must ask if missing."
+            }
+          },
+          "required": [
+            "description",
+            "problem",
+            "feed_name",
+            "location",
+            "farm_name"
+          ]
+        },
+        "notes": {
+          "type": "string",
+          "description": "Internal notes or reasoning used to infer missing details."
+        },
+        "next_action": {
+          "type": "string",
+          "enum": [
+            "ask_next",
+            "log_complete"
+          ],
+          "description": "If any required field is missing → ask_next, otherwise log_complete."
+        },
+        "intent": {
+          "type": "integer",
+          "enum": [
+            3
+          ],
+          "description": "Always set to 3."
+        }
+      },
+      "required": [
+        "response",
+        "log_type",
+        "tag",
+        "incident_details",
+        "notes",
+        "next_action",
+        "intent"
+      ]
+    }
+  }
+]
