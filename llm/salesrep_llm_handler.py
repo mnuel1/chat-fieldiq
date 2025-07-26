@@ -1,6 +1,6 @@
 
 
-from core.helper_core import load_prompt, call_openai, extract_json, store_message_faq, get_max_messages, handle_log_sales, handle_intent
+from core.helper_core import load_prompt, call_openai, extract_json, store_message_faq, get_max_messages, handle_log_sales, handle_intent, load_functions
 from core.chat_core import Chat
 
 max = get_max_messages()
@@ -10,6 +10,7 @@ def handle_general_questions(chat_id, prompt):
   chat = Chat()
 
   system_instruction = load_prompt("prompts/ask_sales_rep_general_questions.txt")
+  functions = load_functions("prompts/ask_sales_rep_general_questions.json")
   
   history = chat.get_recent_messages(chat_id, max_messages=max)
   history.append({
@@ -18,8 +19,8 @@ def handle_general_questions(chat_id, prompt):
   })
 
   messages = [{"role": "system", "content": system_instruction}] + history
-  response_text = call_openai(messages)
-  parsed = extract_json(response_text)
+  # response_text = call_openai(messages)
+  parsed = call_openai(messages, functions, "feed_advisory")
 
   store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"])
   return parsed
@@ -105,7 +106,16 @@ def handle_requested_file(response):
   # for now we only have "broiler_starter_feeding" so just return that 
   # but prepare a search in db
   
-  return 1
+  return {
+    'id': 4, 
+    'confidence': 0.95, 
+    'response': {
+      'message': 'Narito po ang guide natin para sa pagbasa ng FCR. Sana makatulong ito!', 
+      'file_type': 'pdf', 
+      'subject': 'training_tips',
+      'topic': "broiler_starter_feeding"
+      }
+  }
 
 def handle_support_forms(response):
 
@@ -127,7 +137,14 @@ def handle_support_forms(response):
   #   iii. "customer_support" – for general support or company contact
 
 
-  return 1
+  return {
+    'id': 5, 
+    'confidence': 0.95, 
+    'response': {
+      'message': 'Sige po, tutulungan namin kayo. Anong klaseng tulong ang kailangan ninyo?', 
+      'field': 'vet_assistance'
+      }
+  }
 
 def get_intent(prompt, prompt_file, function_name):
   return handle_intent(prompt, prompt_file, function_name)

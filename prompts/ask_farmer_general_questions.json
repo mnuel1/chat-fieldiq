@@ -1,0 +1,155 @@
+{
+  "name": "feed_advisory",
+  "description": "Provides detailed feed recommendations, product matching, performance benchmarks, and transition guidance for poultry feeding based on user query.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "string",
+        "description": "Full, user-facing explanation in the detected language. Should be warm, clear, and supportive."
+      },
+      "matched_product": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Exact product name from the catalog or null."
+          },
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Broiler | Layer | Poultry Advantage | Specialty."
+          },
+          "goal": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Product goal from catalog."
+          },
+          "formulation": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "USP or formulation from catalog."
+          },
+          "other_info": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Additional info like crumble/pellet, medicated or not."
+          }
+        },
+        "required": [
+          "name",
+          "category",
+          "goal",
+          "formulation",
+          "other_info"
+        ]
+      },
+      "performance_benchmark": {
+        "type": "object",
+        "properties": {
+          "expected_weight": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Expected weight benchmark for current stage (e.g., '1.2–1.5 kg')."
+          },
+          "expected_fcr": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Feed Conversion Ratio benchmark (e.g., '1.5–1.8')."
+          },
+          "laying_rate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Expected laying rate for layers (e.g., '85–90%')."
+          },
+          "days_on_feed": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "Number of days current feed has been used."
+          }
+        },
+        "required": [
+          "expected_weight",
+          "expected_fcr",
+          "laying_rate",
+          "days_on_feed"
+        ]
+      },
+      "transition_guidance": {
+        "type": "object",
+        "properties": {
+          "recommended_next_feed": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Name of next feed product if applicable."
+          },
+          "transition_after_days": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "Number of days after which to transition."
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Explanation of when and why to switch feeds."
+          }
+        },
+        "required": [
+          "recommended_next_feed",
+          "transition_after_days",
+          "reason"
+        ]
+      },
+      "notes": {
+        "type": "string",
+        "description": "Internal reasoning or debug notes (not shown to user)."
+      },
+      "log_type": {
+        "type": "string",
+        "enum": [
+          "feeding_program",
+          "product_matching",
+          "switching_guidance",
+          "performance_check",
+          "feed_form",
+          "mixing_practices",
+          "other"
+        ],
+        "description": "Classifies the type of query handled."
+      }
+    },
+    "required": [
+      "response",
+      "matched_product",
+      "performance_benchmark",
+      "transition_guidance",
+      "notes",
+      "log_type"
+    ]
+  }
+}

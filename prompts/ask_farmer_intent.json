@@ -1,0 +1,86 @@
+[
+  {
+    "name": "classify_intent",
+    "description": "Classifies user intent for a farming assistant and returns structured response including intent-specific details.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The intent ID (1, 4, 5, or 6)."
+        },
+        "confidence": {
+          "type": "number",
+          "description": "Confidence score between 0 and 1."
+        },
+        "response": {
+          "type": "string",
+          "description": "Natural response for normal intents (1, 6). For 4 and 5, this is a narrative message."
+        },
+        "download_guide": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Details for intent 4 (Download Guide). Null if intent is not 4.",
+          "properties": {
+            "file_type": {
+              "type": "string",
+              "enum": [
+                "pdf",
+                "video"
+              ],
+              "description": "Type of downloadable file."
+            },
+            "subject": {
+              "type": "string",
+              "enum": [
+                "feeding",
+                "training_tips",
+                "disease_management"
+              ],
+              "description": "Subject category of the guide."
+            },
+            "topic": {
+              "type": "string",
+              "description": "Topic name, typically 'product_feeding_catalog'."
+            }
+          },
+          "required": [
+            "file_type",
+            "subject",
+            "topic"
+          ]
+        },
+        "help_request": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Details for intent 5 (Request Help Vet or Support). Null if intent is not 5.",
+          "properties": {
+            "field": {
+              "type": "string",
+              "enum": [
+                "vet_assistance",
+                "technical_consultation",
+                "customer_support"
+              ],
+              "description": "Type of help requested."
+            }
+          },
+          "required": [
+            "field"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "confidence",
+        "response",
+        "download_guide",
+        "help_request"
+      ]
+    }
+  }
+]

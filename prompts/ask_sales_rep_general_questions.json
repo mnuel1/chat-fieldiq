@@ -1,0 +1,69 @@
+[
+  {
+    "name": "feed_advisory",
+    "description": "Handles poultry feed-related queries, recommends products, provides benchmarks, and gives transition guidance.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string",
+          "description": "Clear, warm English response. Include full guidance, avoid sounding robotic or overly formal."
+        },
+        "matched_product": {
+          "type": "object",
+          "properties": {
+            "name": { "type": ["string", "null"], "description": "Exact product name from the catalog or null if no match." },
+            "category": { "type": ["string", "null"], "enum": ["Broiler", "Layer", "Poultry Advantage", "Specialty", null] },
+            "goal": { "type": ["string", "null"] },
+            "formulation": { "type": ["string", "null"] },
+            "other_info": { "type": ["string", "null"] }
+          },
+          "required": ["name", "category", "goal", "formulation", "other_info"]
+        },
+        "performance_benchmark": {
+          "type": "object",
+          "properties": {
+            "expected_weight": { "type": ["string", "null"], "description": "Expected weight range for the stage (e.g., '1.5–1.8 kg')." },
+            "expected_fcr": { "type": ["string", "null"], "description": "Expected feed conversion ratio range (e.g., '1.5–1.8')." },
+            "laying_rate": { "type": ["string", "null"], "description": "Expected laying rate (% or eggs/day) if applicable." },
+            "days_on_feed": { "type": ["integer", "null"], "description": "Number of days feed has been used, if provided." }
+          },
+          "required": ["expected_weight", "expected_fcr", "laying_rate", "days_on_feed"]
+        },
+        "transition_guidance": {
+          "type": "object",
+          "properties": {
+            "recommended_next_feed": { "type": ["string", "null"], "description": "Name of next feed product or null." },
+            "transition_after_days": { "type": ["integer", "null"], "description": "Days remaining before transition, if calculable." },
+            "reason": { "type": ["string", "null"], "description": "Explanation for the timing of the switch." }
+          },
+          "required": ["recommended_next_feed", "transition_after_days", "reason"]
+        },
+        "notes": {
+          "type": "string",
+          "description": "Internal notes for reasoning (e.g., product match logic, competitor handling)."
+        },
+        "log_type": {
+          "type": "string",
+          "enum": [
+            "feeding_program",
+            "product_matching",
+            "switching_guidance",
+            "performance_check",
+            "feed_form",
+            "mixing_practices",
+            "other"
+          ]
+        }
+      },
+      "required": [
+        "response",
+        "matched_product",
+        "performance_benchmark",
+        "transition_guidance",
+        "notes",
+        "log_type"
+      ]
+    }
+  }
+]
