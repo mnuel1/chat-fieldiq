@@ -1,11 +1,14 @@
 from datetime import datetime, timezone
 from typing import List, Optional, Dict
 from config.config import get_supabase_client
+from core.company_core import Company
+from exceptions.global_exception import GlobalException
 
 
 class Farmer:
     def __init__(self):
         self.client = get_supabase_client()
+        self.Company = Company()
 
     def get_feed_use(self, user_id: int) -> List[dict]:
         # Get latest feed usage
@@ -34,7 +37,7 @@ class Farmer:
         feed_product = feed_product_response.data or {}
         return days_used, feed_product.get("name", "")
 
-    def create_health_incident(self, farmer_user_profile_id: int, form_data: Dict):
+    def create_farm_health_incident(self, farmer_user_profile_id: int, form_data: Dict):
         self.client.table("health_incidents").insert({
             "farmer_user_profile_id": farmer_user_profile_id,
             **form_data,
@@ -42,6 +45,20 @@ class Farmer:
             "updated_at": "now()", }).execute()
         return None
 
+    def create_farm_performance_log(self, farmer_user_profile_id: int, form_data: Dict):
+
+        # Get the company associated with farmer
+        company_id = Company.get_farmer_associated_company_id(
+            farmer_user_profile_id)
+
+        self.client.table("farm_performance_logs").insert({
+            "company_id": company_id,
+            "farmer_user_profile_id": farmer_user_profile_id,
+            **form_data
+        }).execute()
+        
+        return None
+        
     def create_feed_calculation_log(self, user_profile_id: int, log_data: Dict) -> Dict:
         payload = {
             "user_profile_id": user_profile_id,
