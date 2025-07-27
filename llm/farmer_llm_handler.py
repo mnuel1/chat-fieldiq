@@ -27,29 +27,41 @@ def handle_general_questions(chat_id, user_id, prompt):
   return parsed
 
 def handle_health_log(chat_id, user_id, prompt):
-    return handle_log(
-        chat_id, 
-        user_id, 
-        prompt, 
-        "prompts/ask_farmer_health_log", 
-        "incident_details",
-        lambda farmer, user_id, form_data, parsed: farmer.create_health_incident(
-            user_id, form_data
-        ))
+  return handle_log(
+    chat_id, 
+    user_id, 
+    prompt, 
+    "prompts/ask_farmer_health_log", 
+    "incident_details",
+    "log_health_incident",
+    lambda farmer, user_id, form_data, parsed: farmer.create_health_incident(
+        user_id, form_data
+    ))
 
 def handle_general_log(chat_id, user_id, prompt):
-    return handle_log(chat_id, user_id, prompt, "prompts/ask_farmer_log.txt")
+  return handle_log(
+    chat_id, 
+    user_id, 
+    prompt, 
+    "prompts/ask_farmer_log",
+    "report_details",
+    "log_performance_report",
+    lambda farmer, user_id, form_data, parsed: farmer.create_health_incident(
+        user_id, form_data
+    )
+  )
 
 def handle_local_practice_log(chat_id, user_id, prompt):
-    return handle_log(
-        chat_id, 
-        user_id, 
-        prompt, 
-        "prompts/ask_farmer_diy_log", 
-        "incident_details",
-        lambda farmer, user_id, form_data, parsed: farmer.create_health_incident(
-            user_id, form_data
-        ))
+  return handle_log(
+    chat_id, 
+    user_id, 
+    prompt, 
+    "prompts/ask_farmer_diy_log", 
+    "",
+    "log_diy_practice",
+    lambda farmer, user_id, form_data, parsed: farmer.create_health_incident(
+        user_id, form_data
+    ))
     
 
 def handle_requested_file(response):

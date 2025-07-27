@@ -1,0 +1,70 @@
+{
+  "name": "log_performance_report",
+  "description": "Logs daily or weekly poultry flock performance and provides contextual guidance.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "string",
+        "description": "A warm, farmer-friendly response in the detected language with full guidance and confirmation."
+      },
+      "log_type": {
+        "type": "string",
+        "enum": ["performance_report"],
+        "description": "Identifies the type of log entry as a performance report."
+      },
+      "report_details": {
+        "type": "object",
+        "properties": {
+          "average_weight_kg": {
+            "type": ["string", "null"],
+            "description": "Average body weight per bird in kg."
+          },
+          "mortality_count": {
+            "type": ["string", "null"],
+            "description": "Number of birds that died during the period."
+          },
+          "bags_used": {
+            "type": ["string", "null"],
+            "description": "Number of feed bags used."
+          },
+          "feed_intake_kg": {
+            "type": ["string", "null"],
+            "description": "Total feed intake in kilograms."
+          },
+          "eggs_per_day": {
+            "type": ["string", "null"],
+            "description": "Number of eggs produced per day."
+          },
+          "shell_quality_issues": {
+            "type": ["string", "null"],
+            "description": "Any issues with eggshell quality (soft, cracked, thin)."
+          },
+          "feed_intake_status": {
+            "type": ["string", "null"],
+            "description": "Status of feed consumption: normal, mababa, sobra."
+          },
+          "health_status": {
+            "type": ["string", "null"],
+            "description": "General flock health observation."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Auto-generated summary of the report."
+          }
+        },
+        "required": ["notes"]
+      },
+      "next_action": {
+        "type": "string",
+        "enum": ["ask_next", "log_complete"],
+        "description": "Whether to ask for more missing fields or complete the log."
+      },
+      "intent": {
+        "type": ["string", "null"],
+        "description": "'7' if next_action is ask_next, otherwise 'None'."
+      }
+    },
+    "required": ["response", "log_type", "report_details", "next_action", "intent"]
+  }
+}

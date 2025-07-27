@@ -70,18 +70,18 @@ def handle_log(chat_id, user_id, prompt, prompt_file, form_key, function_name, o
   # response_text = call_openai(messages)
   parsed = call_openai(messages, functions, function_name)
 
-  new_fields = parsed.get(form_key, {})
-  form_data.update({k: v for k, v in new_fields.items() if v})
-  
-  chat.update_conversation(chat_id, form_data=form_data)
+  if form_key != "": 
+    new_fields = parsed.get(form_key, {})
+    form_data.update({k: v for k, v in new_fields.items() if v})
+    
+    chat.update_conversation(chat_id, form_data=form_data)
+    
+    if parsed["next_action"] == "log_complete":
+      on_complete(farmer, user_id, form_data, parsed)
+      chat.update_conversation(chat_id, None)
 
   store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"],
                     metadata={"form_data": form_data, "next_action": parsed["next_action"]})
-
-  if parsed["next_action"] == "log_complete":
-    on_complete(farmer, user_id, form_data, parsed)
-    chat.update_conversation(chat_id, None)
-
   return parsed
 
 def handle_log_sales(chat_id, user_id, prompt, prompt_file, form_key, function_name, on_complete):
