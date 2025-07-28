@@ -170,6 +170,7 @@ class SalesRep:
             visit_entry = {
                 "id": row.get("id"),
                 "farmName": row.get("farm_name"),
+                "ticket_number": row.get("ticket_number"),
                 "location": row.get("location"),
                 "status": status_map.get(visit_type, "overdue"),
                 "scheduledDate": visit_dt.isoformat(),
