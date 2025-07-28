@@ -1,80 +1,80 @@
-[
-  {
-    "name": "log_dealer_issue",
-    "description": "Logs dealer-related issues reported by the user",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "string"
-        },
-        "log_type": {
-          "type": "string",
-          "enum": [
-            "dealer_issue"
-          ]
-        },
-        "tag": {
-          "type": "string",
-          "enum": [
-            "stockout",
-            "pricing_problem",
-            "delivery_delay"
-          ]
-        },
-        "incident_details": {
-          "type": "object",
-          "properties": {
-            "description": {
-              "type": "string"
-            },
-            "problem": {
-              "type": "string"
-            },
-            "problem_type": {
-              "type": "string"
-            },
-            "product_affected": {
-              "type": "string"
-            },
-            "location": {
-              "type": "string"
-            },
-            "dealer_name": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "description",
-            "problem",
-            "problem_type",
-            "location",
-            "dealer_name"
-          ]
-        },
-        "notes": {
-          "type": "string"
-        },
-        "next_action": {
-          "type": "string",
-          "enum": [
-            "ask_next",
-            "log_complete"
-          ]
-        },
-        "intent": {
-          "type": "integer",
-          "enum": [2],
-          "description": "Always set to 2."
-        }
+{
+  "name": "log_dealer_issue",
+  "description": "Logs dealer-related issues reported by the user",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "string"
       },
-      "required": [
-        "response",
-        "log_type",
-        "tag",
-        "incident_details",
-        "next_action"
-      ]
-    }
+      "log_type": {
+        "type": "string",
+        "enum": [
+          "dealer_issue"
+        ]
+      },
+      "tag": {
+        "type": "string",
+        "enum": [
+          "stockout",
+          "pricing_problem",
+          "delivery_delay"
+        ]
+      },
+      "incident_details": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "problem": {
+            "type": "string"
+          },
+          "problem_type": {
+            "type": "string"
+          },
+          "product_affected": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "dealer_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "problem",
+          "problem_type",
+          "location",
+          "dealer_name"
+        ]
+      },
+      "notes": {
+        "type": "string"
+      },
+      "next_action": {
+        "type": "string",
+        "enum": [
+          "ask_next",
+          "log_complete"
+        ]
+      },
+      "intent": {
+        "type": "integer",
+        "enum": [
+          2
+        ],
+        "description": "Always set to 2."
+      }
+    },
+    "required": [
+      "response",
+      "log_type",
+      "tag",
+      "incident_details",
+      "next_action"
+    ]
   }
-]
+}

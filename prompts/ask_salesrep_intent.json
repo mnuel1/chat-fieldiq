@@ -1,4 +1,4 @@
-[
+
   {
     "name": "classify_intent",
     "description": "Classifies user intent for a farming assistant and returns structured response including intent-specific details.",
@@ -83,4 +83,3 @@
       ]
     }
   }
-]

@@ -25,19 +25,19 @@ def chat_service(body: ChatRequest):
     chat_id = body.chat_id
     user_id = body.user_id
     prompt = body.prompt
-    
+    print("hi")
     if (chat_id == None or chat_id == 0):
         # create chat conversation
         chat_id = chat.create_conversation(body.user_id)
         if chat_id is None:
           raise Exception("Failed to create conversation")
-        
+    print("hi")
     intent_id = body.intent_id
     intent = {}
     if (intent_id == None or intent_id == 0):
       intent = get_intent(prompt, "prompts/ask_salesrep_intent", "classify_intent")    
       intent_id = intent["id"]
-
+    print('yo')
     print(intent)
 
     # Early return for out of scope       

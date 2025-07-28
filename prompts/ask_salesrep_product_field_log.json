@@ -1,4 +1,4 @@
-[
+
   {
     "name": "log_feed_issue",
     "description": "Logs a feed or product issue based on the user's report, including details and a helpful response.",
@@ -102,4 +102,3 @@
       ]
     }
   }
-]
