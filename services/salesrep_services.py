@@ -35,8 +35,10 @@ def chat_service(body: ChatRequest):
     intent_id = body.intent_id
     intent = {}
     if (intent_id == None or intent_id == 0):
-      intent = get_intent(prompt)    
+      intent = get_intent(prompt, "prompts/ask_salesrep_intent", "classify_intent")    
       intent_id = intent["id"]
+
+    print(intent)
 
     # Early return for out of scope       
     if (intent_id == 6):        

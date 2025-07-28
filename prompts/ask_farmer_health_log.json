@@ -1,0 +1,67 @@
+{
+  "name": "log_health_incident",
+  "description": "Logs a poultry health-related incident (sickness, mortality, feed refusal, etc.) and provides contextual advice with a vet disclaimer.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "string",
+        "description": "Friendly, clear guidance in the detected language, including recommended immediate actions and a reminder to consult a vet. Ask only one missing info at a time."
+      },
+      "log_type": {
+        "type": "string",
+        "enum": ["health_incident"],
+        "description": "Always set to 'health_incident'."
+      },
+      "incident_details": {
+        "type": "object",
+        "properties": {
+          "incident_type": {
+            "type": "string",
+            "enum": ["sickness", "mortality", "feed_rejection", "other"],
+            "description": "Auto-inferred from farmer’s message (symptoms like nagsusuka = sickness, namatay = mortality, ayaw kumain = feed_rejection)."
+          },
+          "incident_date": {
+            "type": "string",
+            "description": "Only accept a date in this format YYYY/MM/DD, if not match/given ask"
+          },
+          "affected_count": {
+            "type": "string",
+            "description": "Number of birds affected. If missing, ask: 'Ilang manok po ang apektado?'."
+          },
+          "symptoms": {
+            "type": "string",
+            "description": "Extract all symptoms mentioned (e.g., nagsusuka, matamlay, may sipon)."
+          },
+          "suspected_cause": {
+            "type": "string",
+            "description": "Inferred based on symptoms (e.g., possible Newcastle, heat stress, feed contamination)."
+          },
+          "actions_taken": {
+            "type": "string",
+            "description": "List immediate steps based on severity (mild, moderate, severe)."
+          },
+          "feed_info": {
+            "type": "string",
+            "description": "Feed details mentioned (product name, batch code) if any."
+          },
+          "requires_vet_visit": {
+            "type": "boolean",
+            "description": "Always true since vet consultation is recommended."
+          }
+        },
+        "required": ["incident_type", "incident_date", "symptoms", "suspected_cause", "actions_taken", "requires_vet_visit"]
+      },
+      "next_action": {
+        "type": "string",
+        "enum": ["ask_next", "log_complete"],
+        "description": "Set to 'ask_next' if critical info is missing (e.g., affected_count), otherwise 'log_complete'."
+      },
+      "intent": {
+        "type": "string",
+        "description": "If next_action = 'ask_next', put '2'. Otherwise, 'None'."
+      }
+    },
+    "required": ["response", "log_type", "incident_details", "next_action", "intent"]
+  }
+}

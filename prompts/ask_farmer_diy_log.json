@@ -1,0 +1,33 @@
+{
+  "name": "log_diy_practice",
+  "description": "Logs a farmer's DIY or local feeding/health practice for research and provides a safe, contextual response.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "string",
+        "description": "Full user-facing explanation in detected language. Should be warm, clear, supportive, and end with a reminder to consult a vet or clarify if DIY is not validated."
+      },
+      "log_type": {
+        "type": "string",
+        "enum": ["diy_practice_submission"],
+        "description": "Indicates that the log entry is about a farmer-submitted DIY practice."
+      },
+      "tags": {
+        "type": "string",
+        "enum": ["safe", "caution", "for_R&D_review"],
+        "description": "Classifies the DIY practice based on its validation status. Use 'safe' for known safe practices, 'caution' for unverified but low risk, and 'for_R&D_review' for novel or unclear practices."
+      },
+      "diy_practice": {
+        "type": "string",
+        "description": "Exact DIY practice details shared by the farmer (what they do, how, how often, and purpose)."
+      },
+      "next_action": {
+        "type": "string",
+        "enum": ["await_R&D_review", "validated_safe", "recommend_professional_advice"],
+        "description": "Determines what should happen next based on safety classification."
+      }
+    },
+    "required": ["response", "log_type", "tags", "diy_practice", "next_action"]
+  }
+}
