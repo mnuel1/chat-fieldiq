@@ -78,6 +78,8 @@ def handle_farm_log(chat_id, user_id, prompt):
     elif visit_type == "completed_visit" and ticket_number:
       if salesrep.check_ticket_number_validity(ticket_number, user_id):
         salesrep.update_visit_report(ticket_number, user_id, form_data)
+        parsed["visit_details"]["ticket_number"] = ticket_number
+
 
   return handle_log_sales(
       chat_id,
