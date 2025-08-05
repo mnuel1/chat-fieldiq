@@ -42,7 +42,7 @@ app.include_router(view_models_services.router,
 app.include_router(admin_services.router,
                    prefix="/admin", tags=["Admin"])
 
-# Root endpoint
-# @app.get("/")
-# async def helloworld():
-#     return {"message": "Hello World"}
+Root endpoint
+@app.get("/")
+async def helloworld():
+    return {"message": "Hello World"}
