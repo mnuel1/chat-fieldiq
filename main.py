@@ -22,6 +22,9 @@ origins = [
     "http://localhost:3000",  # React/Vite/Next.js frontend
     "http://127.0.0.1:3000",  # Alternate local frontend URL
     # Add your actual deployed frontend URL here in production
+    "https://www.fieldiq.ph",
+    "https://fieldiq.ph",
+    "https://field-iq-three.vercel.app/",
 ]
 
 app.add_middleware(
