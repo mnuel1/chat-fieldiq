@@ -40,7 +40,6 @@ def extract_json(text):
   except json.JSONDecodeError:
     raise ValueError(f"Invalid JSON response: {cleaned}")
 
-
 def store_message_faq(chat_id, prompt, response, category, metadata=None):
   chat = Chat()
   faq = Faq()

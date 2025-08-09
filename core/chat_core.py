@@ -6,13 +6,26 @@ class Chat:
     def __init__(self):
         self.client = get_supabase_client()
 
-    def create_conversation(self, user_id: int) -> Dict:
-        response = self.client.table("chat_conversations").insert({
-            "user_profile_id": user_id,
-        }).execute()
+    def create_conversation(self, user_id: int) -> int:        
+        existing = (
+            self.client.table("chat_conversations")
+            .select("id")
+            .eq("user_profile_id", user_id)
+            .limit(1)
+            .execute()
+        )
 
-        # return the id
-        return response.data[0]["id"] if response.data[0] else None
+        if existing.data and len(existing.data) > 0:
+            return existing.data[0]["id"]
+
+        # If not, create a new conversation
+        response = (
+            self.client.table("chat_conversations")
+            .insert({"user_profile_id": user_id})
+            .execute()
+        )
+
+        return response.data[0]["id"] if response.data else None
 
     def update_conversation(self, conversation_id: int, form_data):
         self.client.table("chat_conversations").update({

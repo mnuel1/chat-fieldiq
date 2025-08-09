@@ -26,11 +26,10 @@ def chat_service(body: ChatRequest):
     user_id = body.user_id
     prompt = body.prompt
     
-    if (chat_id == None or chat_id == 0):
-        # create chat conversation
-        chat_id = chat.create_conversation(body.user_id)
-        if chat_id is None:
-          raise Exception("Failed to create conversation")
+    chat_id = chat.create_conversation(user_id)
+        
+    if chat_id == None:
+      raise Exception("Failed to create conversation")
         
     intent_id = body.intent_id
     intent = {}
