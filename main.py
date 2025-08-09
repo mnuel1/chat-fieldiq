@@ -22,12 +22,15 @@ origins = [
     "http://localhost:3000",  # React/Vite/Next.js frontend
     "http://127.0.0.1:3000",  # Alternate local frontend URL
     # Add your actual deployed frontend URL here in production
+    "https://www.fieldiq.ph",
+    "https://fieldiq.ph",
+    "https://field-iq-three.vercel.app/",
 ]
 
 app.add_middleware(
     CORSMiddleware,
     # Or use ["*"] to allow all origins (not recommended for prod)
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],                # Allows all HTTP methods
     allow_headers=["*"],                # Allows all headers
@@ -43,6 +46,6 @@ app.include_router(admin_services.router,
                    prefix="/admin", tags=["Admin"])
 
 # Root endpoint
-# @app.get("/")
-# async def helloworld():
-#     return {"message": "Hello World"}
+@app.get("/")
+async def helloworld():
+    return {"message": "Hello World"}

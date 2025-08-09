@@ -1,99 +1,97 @@
-[
-  {
-    "name": "log_farm_visit",
-    "description": "Logs farm visit details based on user input and whether it’s planned or completed.",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "string",
-          "description": "A warm, helpful English response to the user. If any details are missing, ask for ONE missing piece at a time. If all details are complete, confirm logging politely."
-        },
-        "log_type": {
-          "type": "string",
-          "enum": [
-            "farm_visit"
-          ]
-        },
-        "visit_details": {
-          "type": "object",
-          "properties": {
-            "ticket_number": {
-              "type": [
-                "string",
-                "null"
-              ],
-              "description": "Ticket number if provided and valid (format: TKT-000(ID)-(NUMBER)), else null.do NOT PROVIDE"
-            },
-            "visit_type": {
-              "type": "string",
-              "enum": [
-                "completed_visit",
-                "planned_visit"
-              ],
-              "description": "Determined by flow logic."
-            },
-            "visit_date": {
-              "type": [
-                "string"
-              ],
-              "description": "Date of visit in YYYY/MM/DD format if given, else ask."
-            },
-            "location": {
-              "type": [
-                "string"
-              ],
-              "description": "Farm location if provided, else ask."
-            },
-            "farm_name": {
-              "type": [
-                "string"
-              ],
-              "description": "Farm name if provided, else null."
-            },
-            "purpose": {
-              "type": [
-                "string"
-              ],
-              "description": "Purpose of the visit."
-            },
-            "notes": {
-              "type": "string",
-              "description": "Auto-inferred summary of visit context."
-            }
-          },
-          "required": [
-            "ticket_number",
-            "visit_type",
-            "visit_date",
-            "location",
-            "farm_name",
-            "purpose",
-            "notes"
-          ]
-        },
-        "next_action": {
-          "type": "string",
-          "enum": [
-            "ask_next",
-            "log_complete"
-          ]
-        },
-        "intent": {
-          "type": [
-            "integer",
-            "null"
-          ],
-          "description": "Set to 8 if next_action = ask_next, else null."
-        }
+{
+  "name": "log_farm_visit",
+  "description": "Logs farm visit details based on user input and whether it’s planned or completed.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "string",
+        "description": "A warm, helpful English response to the user. If any details are missing, ask for ONE missing piece at a time. If all details are complete, confirm logging politely."
       },
-      "required": [
-        "response",
-        "log_type",
-        "visit_details",
-        "next_action",
-        "intent"
-      ]
-    }
+      "log_type": {
+        "type": "string",
+        "enum": [
+          "farm_visit"
+        ]
+      },
+      "visit_details": {
+        "type": "object",
+        "properties": {
+          "ticket_number": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Ticket number if provided and valid (format: TKT-000(ID)-(NUMBER)), else null.do NOT PROVIDE"
+          },
+          "visit_type": {
+            "type": "string",
+            "enum": [
+              "completed_visit",
+              "planned_visit"
+            ],
+            "description": "Determined by flow logic."
+          },
+          "visit_date": {
+            "type": [
+              "string"
+            ],
+            "description": "Date of visit in YYYY/MM/DD format if given, else ask."
+          },
+          "location": {
+            "type": [
+              "string"
+            ],
+            "description": "Farm location if provided, else ask."
+          },
+          "farm_name": {
+            "type": [
+              "string"
+            ],
+            "description": "Farm name if provided, else null."
+          },
+          "purpose": {
+            "type": [
+              "string"
+            ],
+            "description": "Purpose of the visit."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Auto-inferred summary of visit context."
+          }
+        },
+        "required": [
+          "ticket_number",
+          "visit_type",
+          "visit_date",
+          "location",
+          "farm_name",
+          "purpose",
+          "notes"
+        ]
+      },
+      "next_action": {
+        "type": "string",
+        "enum": [
+          "ask_next",
+          "log_complete"
+        ]
+      },
+      "intent": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Set to 8 if next_action = ask_next, else null."
+      }
+    },
+    "required": [
+      "response",
+      "log_type",
+      "visit_details",
+      "next_action",
+      "intent"
+    ]
   }
-]
+}

@@ -34,7 +34,7 @@ def handle_health_log(chat_id, user_id, prompt):
     "prompts/ask_farmer_health_log", 
     "incident_details",
     "log_health_incident",
-    lambda farmer, user_id, form_data, parsed: farmer.create_health_incident(
+    lambda farmer, user_id, form_data, parsed: farmer.create_farm_health_incident(
         user_id, form_data
     ))
 
@@ -46,7 +46,7 @@ def handle_general_log(chat_id, user_id, prompt):
     "prompts/ask_farmer_log",
     "report_details",
     "log_performance_report",
-    lambda farmer, user_id, form_data, parsed: farmer.create_health_incident(
+    lambda farmer, user_id, form_data, parsed: farmer.create_farmer_performance_log(
         user_id, form_data
     )
   )

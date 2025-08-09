@@ -21,7 +21,7 @@ def call_openai(messages, functions, function_name):
   response = client.chat.completions.create(
     model=gptModel,
     messages=messages,
-    functions=functions,
+    functions=[functions],
     function_call={"name": function_name}
   )
     
@@ -30,7 +30,6 @@ def call_openai(messages, functions, function_name):
   return json.loads(arguments)
 
 def extract_json(text):
-  print(text)
   match = re.search(r"```json\s*(\{.*?\})\s*```", text.strip(), re.DOTALL | re.IGNORECASE)  
   if not match:
     raise ValueError("No JSON block found in the response.")
@@ -100,7 +99,6 @@ def handle_log_sales(chat_id, user_id, prompt, prompt_file, form_key, function_n
     "role": "user",
     "content": f"{prompt}\n\n(Previously collected info):\n{form_summary}"
   })
-
   messages = [{"role": "system", "content": system_instruction}] + chat_history
   # response_text = call_openai(messages)
   parsed = call_openai(messages, functions, function_name)

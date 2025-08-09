@@ -98,7 +98,7 @@ class SalesRep:
         response = (
             self.client
             .table("visit_reports")
-            .select("farm_name, location, visit_date, visit_type")
+            .select("farm_name, location, visit_date, visit_type, notes, purpose, ticket_number")
             .eq("reported_by", user_id)
             .execute()
         )
@@ -170,6 +170,7 @@ class SalesRep:
             visit_entry = {
                 "id": row.get("id"),
                 "farmName": row.get("farm_name"),
+                "ticket_number": row.get("ticket_number"),
                 "location": row.get("location"),
                 "status": status_map.get(visit_type, "overdue"),
                 "scheduledDate": visit_dt.isoformat(),

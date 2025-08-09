@@ -1,92 +1,90 @@
-[
-  {
-    "name": "log_sales_activity",
-    "description": "Logs a sales activity reported by a user, validating against the known product catalog and capturing all required details.",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "string",
-          "description": "A friendly, professional response confirming the sale or asking for missing details."
-        },
-        "log_type": {
-          "type": "string",
-          "enum": [
-            "sales_activity"
-          ],
-          "description": "Indicates this is a sales logging action."
-        },
-        "sales_details": {
-          "type": "object",
-          "properties": {
-            "description": {
-              "type": "string",
-              "description": "Concise summary of the sale, including product name, quantity, and location."
-            },
-            "sale_date": {
-              "type": "string",
-              "description": "Date of sale in YYYY/MM/DD format if given, else ask."
-            },
-            "product_sold": {
-              "type": "string",
-              "description": "Name of the product sold. Must match the product catalog."
-            },
-            "total": {
-              "type": [
-                "number",
-                "null"
-              ],
-              "description": "Total sales amount in pesos."
-            },
-            "quantity": {
-              "type": [
-                "string",
-                "null"
-              ],
-              "description": "Number of units or bags sold."
-            },
-            "location": {
-              "type": "string",
-              "description": "Location or branch of the farm."
-            },
-            "farm_name": {
-              "type": "string",
-              "description": "Farm name if provided."
-            }
-          },
-          "required": [
-            "description",
-            "sale_date",
-            "product_sold",
-            "total",
-            "quantity",
-            "location",
-            "farm_name"
-          ]
-        },
-        "next_action": {
-          "type": "string",
-          "enum": [
-            "ask_next",
-            "log_complete"
-          ],
-          "description": "Whether more information is needed or the log is complete."
-        },
-        "intent": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "description": "If next_action is ask_next, put '7', else null."
-        }
+{
+  "name": "log_sales_activity",
+  "description": "Logs a sales activity reported by a user, validating against the known product catalog and capturing all required details.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "string",
+        "description": "A friendly, professional response confirming the sale or asking for missing details."
       },
-      "required": [
-        "response",
-        "log_type",
-        "sales_details",
-        "next_action",
-        "intent"
-      ]
-    }
+      "log_type": {
+        "type": "string",
+        "enum": [
+          "sales_activity"
+        ],
+        "description": "Indicates this is a sales logging action."
+      },
+      "sales_details": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Concise summary of the sale, including product name, quantity, and location."
+          },
+          "sale_date": {
+            "type": "string",
+            "description": "Date of sale in YYYY/MM/DD format if given, else ask."
+          },
+          "product_sold": {
+            "type": "string",
+            "description": "Name of the product sold. Must match the product catalog."
+          },
+          "total": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Total sales amount in pesos."
+          },
+          "quantity": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Number of units or bags sold."
+          },
+          "location": {
+            "type": "string",
+            "description": "Location or branch of the farm."
+          },
+          "farm_name": {
+            "type": "string",
+            "description": "Farm name if provided."
+          }
+        },
+        "required": [
+          "description",
+          "sale_date",
+          "product_sold",
+          "total",
+          "quantity",
+          "location",
+          "farm_name"
+        ]
+      },
+      "next_action": {
+        "type": "string",
+        "enum": [
+          "ask_next",
+          "log_complete"
+        ],
+        "description": "Whether more information is needed or the log is complete."
+      },
+      "intent": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "If next_action is ask_next, put '7', else null."
+      }
+    },
+    "required": [
+      "response",
+      "log_type",
+      "sales_details",
+      "next_action",
+      "intent"
+    ]
   }
-]
+}
