@@ -1,7 +1,6 @@
 from typing import List, Optional, Dict
 from config.config import get_supabase_client
-
-
+from datetime import datetime, timezone
 class Chat:
     def __init__(self):
         self.client = get_supabase_client()
@@ -55,14 +54,18 @@ class Chat:
             .execute()
         return response.data or []
 
-    def get_recent_messages(self, conversation_id: int, max_messages=6) -> List[Dict]:
+   
+
+    def get_recent_messages(self, conversation_id: int) -> List[Dict]:        
+        start_of_day = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+
         response = (
             self.client
             .table("chat_messages")
-            .select("role, message")
+            .select("role, message, created_at")
             .eq("conversation_id", conversation_id)
+            .gte("created_at", start_of_day.isoformat())  # ISO 8601 with timezone
             .order("created_at", desc=False)
-            .limit(max_messages)
             .execute()
         )
 
@@ -77,7 +80,10 @@ class Chat:
             if msg["role"] in ("user", "model") and msg["message"]
         ]
 
+        print(formatted_messages)
+
         return formatted_messages
+
     
     def get_conversations_record(self, convo_id: int):
         convo = self.client.table("chat_conversations").select(
@@ -86,3 +92,4 @@ class Chat:
         if convo.data:
             return convo.data
         return None
+    
