@@ -12,6 +12,7 @@ def handle_general_questions(chat_id, user_id, prompt):
   functions = load_functions("prompts/ask_farmer_general_questions.json")
   days_on_feed, current_feed = farmer.get_feed_use(user_id)
 
+  
   history = chat.get_recent_messages(chat_id, max_messages=max)
   history.append({
     "role": "user",

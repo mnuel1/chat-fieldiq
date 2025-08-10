@@ -55,8 +55,11 @@ def handle_log(chat_id, user_id, prompt, prompt_file, form_key, function_name, o
 
   convo_res = chat.get_conversations_record(chat_id)
   form_data = convo_res.get("form_data") or {}
-
+  print(chat_id)
+  print(get_max_messages())
   chat_history = chat.get_recent_messages(chat_id, get_max_messages())
+  print(chat_id)
+  print(get_max_messages())
   form_summary = "\n".join([f"{k.replace('_', ' ').capitalize()}: {v}" for k, v in form_data.items() if v]) or "None yet"
 
   chat_history.append({

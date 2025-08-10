@@ -6,6 +6,7 @@ class Chat:
         self.client = get_supabase_client()
 
     def create_conversation(self, user_id: int) -> int:        
+
         existing = (
             self.client.table("chat_conversations")
             .select("id")
@@ -56,7 +57,7 @@ class Chat:
 
    
 
-    def get_recent_messages(self, conversation_id: int) -> List[Dict]:        
+    def get_recent_messages(self, conversation_id: int, max_messages=None) -> List[Dict]:
         start_of_day = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
 
         response = (
