@@ -327,11 +327,12 @@ class Admin:
             "timeline": timeline
         }
 
-    def get_faqs(self) -> Dict[str, object]:
+    def get_faqs(self, company_id: int) -> Dict[str, object]:
         response = (
             self.client
             .table("faq")
             .select("*")
+            .eq("company_id", company_id)
             .order("created_at", desc=True)
             .execute()
         )

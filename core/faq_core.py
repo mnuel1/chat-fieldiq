@@ -8,11 +8,12 @@ class Faq:
   def __init__(self):
     self.client = get_supabase_client()
 
-  def insert_faq(self, question: str, answer: str, category: str):
+  def insert_faq(self, question: str, answer: str, category: str, company_id: int):
     response = self.client.table("faq").insert({
       "category": category,
       "question": question,
-      "answer": answer
+      "answer": answer,
+      "company_id": company_id
     }).execute()
 
     return response.data[0]["id"] if response.data[0] else None
