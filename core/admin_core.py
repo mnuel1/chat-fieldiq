@@ -1,8 +1,12 @@
+from datetime import date, datetime
 from typing import List, Optional, Dict
 from config.config import get_supabase_client
 from collections import defaultdict
 import json
 import random
+
+from exceptions.global_exception import GlobalException
+
 
 class Admin:
     def __init__(self):
@@ -403,5 +407,109 @@ class Admin:
             .eq("id", faq_id)
             .execute()
         )
-        
+
         return response.status_code == 200
+
+    # SALES GOAL RELATED METHODS
+
+    def get_sales_goals(self, company_id: int) -> List[Dict[str, object]]:
+        response = self.client.table("sales_goals") \
+            .select("*") \
+            .eq("company_id", company_id) \
+            .order("period_start", desc=True) \
+            .execute()
+
+        rows = response.data or []
+        today = date.today()
+
+        for row in rows:
+            # Convert ISO strings from database to date objects for comparison
+            period_end = datetime.fromisoformat(row["period_end"]).date()
+            period_start = datetime.fromisoformat(row["period_start"]).date()
+
+            if today > period_end:
+                row["status"] = "past"
+            elif today < period_start:
+                row["status"] = "future"
+            else:
+                row["status"] = "active"
+
+        return rows
+
+    def create_sales_goal(self, company_id: int, target_amount: float, period_start: date, period_end: date, created_by: int) -> Dict:
+
+        existing = self.client.table("sales_goals") \
+            .select("*") \
+            .eq("company_id", company_id) \
+            .eq("period_start", period_start.isoformat()) \
+            .eq("period_end", period_end.isoformat()) \
+            .execute()
+
+        if existing.data:
+            raise GlobalException(
+                "Sales goal for this period already exists. Please update instead.", 401)
+
+        payload = {
+            "company_id": company_id,
+            "target_amount": target_amount,
+            # Convert date objects to ISO string format for JSON serialization
+            "period_start": period_start.isoformat(),
+            "period_end": period_end.isoformat(),
+            "created_by": created_by,
+        }
+
+        response = self.client.table("sales_goals") \
+            .insert(payload) \
+            .execute()
+
+        return response.data[0] if response.data else {}
+
+    def update_sales_goal(self, goal_id: int, updates: Dict[str, object]) -> Dict:
+        # First fetch
+        existing = (
+            self.client
+            .table("sales_goals")
+            .select("*")
+            .eq("id", goal_id)
+            .single()
+            .execute()
+        )
+        goal = existing.data
+        if not goal:
+            raise ValueError("Sales goal not found.")
+
+        # Check editability
+        today = date.today()
+        # Fix: Convert ISO string from database back to date object
+        start_date = datetime.fromisoformat(goal["period_start"]).date() if isinstance(
+            goal["period_start"], str) else goal["period_start"]
+        end_date = datetime.fromisoformat(goal["period_end"]).date() if isinstance(
+            goal["period_end"], str) else goal["period_end"]
+
+        if end_date < today:  # past goal
+            raise PermissionError(
+                "Past sales goals are locked and cannot be updated.")
+
+        # Update allowed
+        response = (
+            self.client
+            .table("sales_goals")
+            .update(updates)
+            .eq("id", goal_id)
+            .execute()
+        )
+        return response.data[0] if response.data else {}
+
+    def get_current_sales_goal(self, company_id: int) -> Optional[Dict[str, object]]:
+        today = date.today().isoformat()  # Convert to ISO string for database query
+        response = (
+            self.client
+            .table("sales_goals")
+            .select("*")
+            .eq("company_id", company_id)
+            .lte("period_start", today)
+            .gte("period_end", today)
+            .single()
+            .execute()
+        )
+        return response.data
