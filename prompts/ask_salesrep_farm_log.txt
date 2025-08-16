@@ -13,7 +13,7 @@ Flow 1: Ticket Number Present (Completed Visit)
       "Please provide the ticket number (format: TKT-000ID-COUNT, e.g., TKT-00023-1)."
       Never assume or create ticket number.
     visit_type → Always "completed_visit".
-    visit_date → Date of visit in YYYY/MM/DD format if not match/given, else ask in this format YYYY/MM/DD;   
+    visit_date → Extract the descriptive date from the user's text and convert it into the format YYYY/MM/DD, if not stated ask.
     purpose → Extract from user message; if missing, ask.
     notes → Auto-infer from the conversation (summary of visit outcome).
     
@@ -27,7 +27,7 @@ Flow 2: No Ticket Number (Planned Visit)
     visit_type → "planned_visit".
 
   Required fields:
-    visit_date → Date of visit in YYYY/MM/DD format if not match/given, else ask in this format YYYY/MM/DD;   
+    visit_date → Extract the descriptive date from the user's text and convert it into the format YYYY/MM/DD, if not stated ask.
     location → Ask if missing.
     farm_name → Ask if missing.
     purpose → Extract if possible; else ask.

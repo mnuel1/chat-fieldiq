@@ -1,5 +1,7 @@
 import re
 import json
+from datetime import datetime
+
 from config.config import get_gpt_model, get_gpt_client
 from core.chat_core import Chat
 from core.faq_core import Faq
@@ -49,22 +51,21 @@ def store_message_faq(chat_id, prompt, response, category, metadata=None):
 def handle_log(chat_id, user_id, prompt, prompt_file, form_key, function_name, on_complete):
   chat = Chat()
   farmer = Farmer()
+  today = datetime.today().strftime("%Y/%m/%d")
 
   system_instruction = load_prompt(f"{prompt_file}.txt")
   functions = load_functions(f"{prompt_file}.json")
 
   convo_res = chat.get_conversations_record(chat_id)
   form_data = convo_res.get("form_data") or {}
-  print(chat_id)
-  print(get_max_messages())
+
   chat_history = chat.get_recent_messages(chat_id, get_max_messages())
-  print(chat_id)
-  print(get_max_messages())
+  
   form_summary = "\n".join([f"{k.replace('_', ' ').capitalize()}: {v}" for k, v in form_data.items() if v]) or "None yet"
 
   chat_history.append({
     "role": "user",
-    "content": f"{prompt}\n\n(Previously collected info):\n{form_summary}"
+    "content": f"{prompt}\n\nToday’s date is {today}. \n\n(Previously collected info):\n{form_summary}"
   })
 
   messages = [{"role": "system", "content": system_instruction}] + chat_history
@@ -88,6 +89,7 @@ def handle_log(chat_id, user_id, prompt, prompt_file, form_key, function_name, o
 def handle_log_sales(chat_id, user_id, prompt, prompt_file, form_key, function_name, on_complete):
   chat = Chat()
   salesrep = SalesRep()
+  today = datetime.today().strftime("%Y/%m/%d")
   
   system_instruction = load_prompt(f"{prompt_file}.txt")
   functions = load_functions(f"{prompt_file}.json")
@@ -100,7 +102,7 @@ def handle_log_sales(chat_id, user_id, prompt, prompt_file, form_key, function_n
 
   chat_history.append({
     "role": "user",
-    "content": f"{prompt}\n\n(Previously collected info):\n{form_summary}"
+    "content": f"{prompt}\n\nToday’s date is {today}. \n\n(Previously collected info):\n{form_summary}"
   })
   messages = [{"role": "system", "content": system_instruction}] + chat_history
   # response_text = call_openai(messages)
