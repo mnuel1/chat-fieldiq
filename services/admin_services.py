@@ -49,10 +49,10 @@ def farm_performance(company_id: int = Query(...)):
     return {"message": "Something went wrong", "data": None}
 
 @router.get("/faqs")
-def faqs():
+def faqs(company_id: int):
   try:
     admin = Admin()
-    faqs = admin.get_faqs()
+    faqs = admin.get_faqs(company_id)
     return {"message": "Success", "data": faqs}
   except Exception as e:
     print(f"An error occurred: {e}")
