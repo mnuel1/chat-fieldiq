@@ -59,8 +59,11 @@ def store_message_faq(chat_id, prompt, response, category, user_company_id, meta
 def handle_log(chat_id, user_id, prompt, prompt_file, form_key, function_name, on_complete):
   chat = Chat()
   farmer = Farmer()
+  company = Company()
+
+  print(user_id)
   # Get user company
-  user_company_id = Company.get_user_company(user_id)
+  user_company_id = company.get_user_company(user_id)
   today = datetime.today().strftime("%Y/%m/%d")
 
   system_instruction = load_prompt(f"{prompt_file}.txt")
@@ -101,8 +104,10 @@ def handle_log(chat_id, user_id, prompt, prompt_file, form_key, function_name, o
 def handle_log_sales(chat_id, user_id, prompt, prompt_file, form_key, function_name, on_complete):
   chat = Chat()
   salesrep = SalesRep()
+  company = Company()
+
   # Get user company
-  user_company_id = Company.get_user_company(user_id)
+  user_company_id = company.get_user_company(user_id)
   today = datetime.today().strftime("%Y/%m/%d")
 
   system_instruction = load_prompt(f"{prompt_file}.txt")
