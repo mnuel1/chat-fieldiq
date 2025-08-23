@@ -1,5 +1,5 @@
 from dateutil.parser import parse
-import datetime
+from datetime import datetime, timedelta
 from typing import Dict, List, Optional
 from config.config import get_supabase_client
 from core.company_core import Company
@@ -305,13 +305,10 @@ class FarmerV2:
             # Build recent records - only for current feed program period
             recent_records = []
             if feed_program_start_date and farm_performance_logs:
-                program_start_date = parse(feed_program_start_date).date()
                 for log in farm_performance_logs:
                     log_date = parse(log["created_at"]).date()
-                    day_number = (log_date - program_start_date).days + 1
                     recent_records.append({
                         "date": log_date.isoformat(),
-                        "day": f"Day {day_number}",
                         "actual_weight": float(log.get("average_weight_kg", 0.0)),
                         "note": log.get("notes", "")
                     })
@@ -433,7 +430,7 @@ class FarmerV2:
             raise GlobalException(
                 f"Error fetching feed intake behavior: {e}", status_code=500)
 
-    def read_health_watch(self, farmer_user_profile_id: int) -> Dict:
+    def read_health_watch(self, farmer_user_profile_id: int, filter_type: Optional[str] = None) -> Dict:
         try:
             user_exists = (self.Client.table("user_profiles")
                            .select("id")
@@ -454,16 +451,37 @@ class FarmerV2:
             except GlobalException:
                 return self.__get_default_feed_intake_behavior()
 
-            # Get health incidents ONLY within the active feed program period
+            # Calculate filter date based on filter_type
+            filter_start_date = None
+            if filter_type == "daily":
+                filter_start_date = datetime.now().replace(
+                    hour=0, minute=0, second=0, microsecond=0).isoformat()
+            elif filter_type == "weekly":
+                # Get start of current week (Monday)
+                today = datetime.now()
+                days_since_monday = today.weekday()
+                start_of_week = today - timedelta(days=days_since_monday)
+                filter_start_date = start_of_week.replace(
+                    hour=0, minute=0, second=0, microsecond=0).isoformat()
+
+            # Get health incidents within the active feed program period and apply additional filter if specified
             health_incidents = []
             if feed_program_start_date:
                 query = (self.Client.table("health_incidents")
                          .select("*")
                          .gte("created_at", feed_program_start_date)
                          .order("created_at", desc=True))
+
                 if feed_program_end_date:
                     query = query.lte("created_at", feed_program_end_date)
-                
+
+                # Apply additional date filter if specified
+                if filter_start_date:
+                    # Use the later of feed_program_start_date or filter_start_date
+                    effective_start_date = max(
+                        feed_program_start_date, filter_start_date)
+                    query = query.gte("created_at", effective_start_date)
+
                 incident_logs_response = query.execute()
                 health_incidents = incident_logs_response.data or []
 
@@ -513,7 +531,8 @@ class FarmerV2:
                     "mortality": mortality_count,
                     "notes": notes_count
                 },
-                "recent_issues": recent_issues
+                "recent_issues": recent_issues,
+                "filter_applied": filter_type or "all"
             }
 
         except GlobalException:
@@ -631,3 +650,39 @@ class FarmerV2:
             pass
 
         return 0.0
+
+
+def create_health_incident_with_program(farmer_instance: FarmerV2, user_id: int, form_data: dict, parsed: dict) -> bool:
+    """Create health incident linked to active feed program"""
+    try:
+        # Create health incident - association with feed program is handled
+        # by date range logic in FarmerV2 read methods
+        farmer_instance.Client.table("health_incidents").insert({
+            "farmer_user_profile_id": user_id,
+            **form_data,
+            "reported_by": user_id,
+        }).execute()
+
+        return True
+
+    except Exception as e:
+        print(f"Error creating health incident: {e}")
+        return False
+
+
+def create_performance_log_with_program(farmer_instance: FarmerV2, user_id: int, company_id: int, form_data: dict, parsed: dict) -> bool:
+    """Create performance log linked to active feed program"""
+    try:
+        # Create performance log - association with feed program is handled
+        # by date range logic in FarmerV2 read methods
+        farmer_instance.Client.table("farm_performance_logs").insert({
+            "company_id": company_id,
+            "user_profile_id": user_id,
+            **form_data
+        }).execute()
+
+        return True
+
+    except Exception as e:
+        print(f"Error creating performance log: {e}")
+        return False
