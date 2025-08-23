@@ -201,10 +201,17 @@ class SalesRep:
                 .execute()
             )
             data = getattr(response, "data", []) or []
+            level = "warning"
+            if tag == "product quality" or tag == "stock":
+                level = "high"
+            if tag == "pricing" or tag == "others":
+                level = "medium"
+                            
             return [
             {
                 "id": item.get("id", ""),
                 "type": tag,
+                "level": level,
                 "title": item.get("problem") or "New Sales",
                 "description": item.get("description", ""),
                 "timestamp": item.get("created_at", ""),
