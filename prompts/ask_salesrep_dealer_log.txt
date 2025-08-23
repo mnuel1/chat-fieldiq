@@ -14,13 +14,13 @@ Follow this process:
    - Required:
      • description: concise summary including dealer name and location
      • dealer_name: ask if not given
-     • problem_type: infer (e.g., stockout, pricing, delivery)
+     • problem_type: infer (e.g., stock, delivery, pricing, product quality, others)
      • location: ask if not given
    - Optional:
      • product_affected: include if mentioned
 
 2. Determine the tag:
-   - "stockout", "pricing_problem", or "delivery_delay"
+   - "stock", "delivery", "pricing", "product quality", "others"
 
 3. Respond professionally and naturally:
    - Use friendly, supportive tone.
