@@ -1,4 +1,4 @@
-from dateutil.parser import parse 
+from dateutil.parser import parse
 import datetime
 from typing import Dict, List, Optional
 from config.config import get_supabase_client
@@ -232,7 +232,7 @@ class FarmerV2:
                 )
                 if feed_program_end_date:
                     query = query.lte("created_at", feed_program_end_date)
-                
+
                 farm_logs_response = query.execute()
                 farm_performance_logs = farm_logs_response.data or []
 
@@ -247,39 +247,43 @@ class FarmerV2:
             growth_rate = growth_data["growth_rate"]
 
             # get mortality within the feed program period based on dun sa farm performance logs
-            total_mortality = sum(log.get("mortality_count", 0) for log in farm_performance_logs)
-
+            total_mortality = sum(log.get("mortality_count", 0)
+                                  for log in farm_performance_logs)
 
             # get farmer flocksize
             flock_size = self.__get_flock_size(farmer_user_profile_id)
-            
+
             if flock_size > 0:
-                mortality_percentage = round((total_mortality / flock_size) * 100, 2)
+                mortality_percentage = round(
+                    (total_mortality / flock_size) * 100, 2)
                 survival_rate = (1 - (total_mortality / flock_size))
             else:
                 mortality_percentage = 0.0
                 survival_rate = 1.0
-                
+
             # performance calculation section
             try:
                 # average_weight = float(latest_farm_performance_log.get("average_weight_kg", 0.0))
-                total_weight_kg = round(sum(float(log.get("average_weight_kg", 0.0)) for log in farm_performance_logs), 3)
-                
+                total_weight_kg = round(
+                    sum(float(log.get("average_weight_kg", 0.0)) for log in farm_performance_logs), 3)
+
                 # fcr = float(latest_farm_performance_log.get("feed_convertion_ratio", 1.0))
                 # if fcr > 0:
                 #     performance_index = round(
                 #         ((average_weight * survival_rate) / fcr) * 100, 2)
                 # else:
-                #     performance_index = 0.0       
+                #     performance_index = 0.0
             except (ValueError, TypeError):
                 # average_weight = 0.0
                 total_weight_kg = 0.0
                 # performance_index = 0.0
-                
-            actual_weight = float(latest_farm_performance_log.get("average_weight_kg", 0.0))
+
+            actual_weight = float(
+                latest_farm_performance_log.get("average_weight_kg", 0.0))
 
             # Get target weight based on current feed product
-            target_weight = self.__get_target_weight_by_feed_product(feed_product_id)
+            target_weight = self.__get_target_weight_by_feed_product(
+                feed_product_id)
 
             # Build growth chart data - only for current feed program period
             growth_chart_data = []
@@ -328,12 +332,195 @@ class FarmerV2:
                 }
             }
 
-
         except GlobalException:
             raise
         except Exception as e:
             raise GlobalException(
                 f"Error fetching growth performance: {e}", 500)
+
+    def read_feed_intake_behavior(self, farmer_user_profile_id: int):
+        try:
+            user_exists = (self.Client.table("user_profiles")
+                           .select("id")
+                           .eq("id", farmer_user_profile_id)
+                           .limit(1)
+                           .execute())
+
+            if not user_exists.data:
+                raise GlobalException(
+                    f"User profile ID {farmer_user_profile_id} does not exist.")
+
+            try:
+                feed_program = self.get_active_feed_program(
+                    farmer_user_profile_id)
+                feed_program_start_date = feed_program.get("start_date")
+                feed_program_end_date = feed_program.get("end_date")
+                feed_product_id = feed_program.get("feed_product_id")
+            except GlobalException:
+                return self.__get_default_feed_intake_behavior()
+
+            # get farm performance logs within the active feed program
+            farm_performance_logs = []
+            if feed_program_start_date:
+                query = (
+                    self.Client.table("farm_performance_logs")
+                    .select("*")
+                    .gte("created_at", feed_program_start_date)
+                    .order("created_at", desc=True)
+                )
+                if feed_program_end_date:
+                    query = query.lte("created_at", feed_program_end_date)
+
+                farm_logs_response = query.execute()
+                farm_performance_logs = farm_logs_response.data or []
+
+            if not farm_performance_logs:
+                return self.__get_default_growth_performance()
+
+            # If no logs for this feed program, return defaults
+            if not farm_performance_logs:
+                return self.__get_default_feed_intake_behavior()
+
+            # Feed intake analysis
+            feed_intake_summary = {
+                "eating_well": 0,
+                "picky": 0,
+                "not_eating": 0
+            }
+            total_feed_behavior_logs = 0
+
+            recent_feed_records = []
+            for log in farm_performance_logs:
+                behavior = log.get("feed_intake_status")
+                if behavior in feed_intake_summary:
+                    feed_intake_summary[behavior] += 1
+                    total_feed_behavior_logs += 1
+
+                log_date = parse(log["created_at"])
+                recent_feed_records.append({
+                    "date": log_date.isoformat(),
+                    "feed_intake_status": behavior,
+                    "feed_intake_kg": log.get("feed_intake_kg")
+                })
+
+            # Calculate behavior score
+            score_weights = {
+                "eating_well": 1.0,
+                "picky": 0.5,
+                "not_eating": 0.0
+            }
+
+            behavior_score = 0.0
+            if total_feed_behavior_logs > 0:
+                weighted_score = sum(
+                    feed_intake_summary[k] * score_weights[k] for k in feed_intake_summary)
+                behavior_score = round(
+                    (weighted_score / total_feed_behavior_logs) * 100, 2)
+
+            dominant_status = max(
+                feed_intake_summary, key=feed_intake_summary.get) if total_feed_behavior_logs > 0 else "no_data"
+
+            return {
+                "behavior_score": behavior_score,
+                "behavior_status": dominant_status,
+                "summary": feed_intake_summary,
+                "recent_feed_records": recent_feed_records,
+            }
+
+        except GlobalException:
+            raise  # Re-raise GlobalException (user not found, etc.)
+        except Exception as e:
+            raise GlobalException(
+                f"Error fetching feed intake behavior: {e}", status_code=500)
+
+    def read_health_watch(self, farmer_user_profile_id: int) -> Dict:
+        try:
+            user_exists = (self.Client.table("user_profiles")
+                           .select("id")
+                           .eq("id", farmer_user_profile_id)
+                           .limit(1)
+                           .execute())
+
+            if not user_exists.data:
+                raise GlobalException(
+                    f"User profile ID {farmer_user_profile_id} does not exist.", status_code=404)
+
+            try:
+                feed_program = self.get_active_feed_program(
+                    farmer_user_profile_id)
+                feed_program_start_date = feed_program.get("start_date")
+                feed_program_end_date = feed_program.get("end_date")
+                feed_product_id = feed_program.get("feed_product_id")
+            except GlobalException:
+                return self.__get_default_feed_intake_behavior()
+
+            # Get health incidents ONLY within the active feed program period
+            health_incidents = []
+            if feed_program_start_date:
+                query = (self.Client.table("health_incidents")
+                         .select("*")
+                         .gte("created_at", feed_program_start_date)
+                         .order("created_at", desc=True))
+                if feed_program_end_date:
+                    query = query.lte("created_at", feed_program_end_date)
+                
+                incident_logs_response = query.execute()
+                health_incidents = incident_logs_response.data or []
+
+            # If no incidents for this feed program, return defaults
+            if not health_incidents:
+                return self.__get_default_health_watch()
+
+            sick_count = 0
+            mortality_count = 0
+            notes_count = 0
+            health_score = 100
+
+            recent_issues = []
+            for incident in health_incidents:
+                kind = incident.get("incident_type")
+                affected = incident.get("affected_count", 0)
+                has_note = bool(incident.get("symptoms")
+                                or incident.get("suspected_cause"))
+
+                if kind == "sickness":
+                    sick_count += affected
+                    health_score -= affected * 2
+                elif kind == "mortality":
+                    mortality_count += affected
+                    health_score -= affected * 4
+                if has_note:
+                    notes_count += 1
+                    health_score -= 1
+
+                recent_issues.append({
+                    "date": incident.get("incident_date"),
+                    "incident_type": kind,
+                    "affected_count": affected,
+                    "symptoms": incident.get("symptoms"),
+                    "suspected_cause": incident.get("suspected_cause"),
+                    "requires_vet_visit": incident.get("requires_vet_visit"),
+                    "feed_info": incident.get("feed_info"),
+                    "actions_taken": incident.get("actions_taken"),
+                })
+
+            health_score = max(0, min(health_score, 100))
+
+            return {
+                "health_score": health_score,
+                "issue_summary": {
+                    "sick": sick_count,
+                    "mortality": mortality_count,
+                    "notes": notes_count
+                },
+                "recent_issues": recent_issues
+            }
+
+        except GlobalException:
+            raise  # Re-raise GlobalException (user not found, etc.)
+        except Exception as e:
+            raise GlobalException(
+                f"Error fetching health watch data: {e}", status_code=500)
 
     # HELPER METHODS SECTION -----------------------------------
 
@@ -390,33 +577,57 @@ class FarmerV2:
                 "raw_gain_kg": 0.0
             }
 
+    def __get_default_feed_intake_behavior(self) -> Dict:
+        """Return default feed intake behavior structure for new users or users without active feed program"""
+        return {
+            "behavior_score": 0.0,
+            "behavior_status": "no_data",
+            "summary": {
+                "eating_well": 0,
+                "picky": 0,
+                "not_eating": 0
+            },
+            "recent_feed_records": [],
+        }
+
+    def __get_default_health_watch(self) -> Dict:
+        """Return default health watch structure for new users or users without active feed program"""
+        return {
+            "health_score": 100,
+            "issue_summary": {
+                "sick": 0,
+                "mortality": 0,
+                "notes": 0
+            },
+            "recent_issues": []
+        }
+
     def __get_flock_size(self, farmer_user_profile_id: int) -> int:
         """Get flock size for the farmer"""
         try:
-                # Get flock size
-                flock_size_response = self.Client.table("farmer_livestock").select("quantity") \
-                    .eq("farmer_user_profile_id", farmer_user_profile_id).single().execute()
+            # Get flock size
+            flock_size_response = self.Client.table("farmer_livestock").select("quantity") \
+                .eq("farmer_user_profile_id", farmer_user_profile_id).single().execute()
 
-                if flock_size_response.data:
-                    return flock_size_response.data.get("quantity", 0)
+            if flock_size_response.data:
+                return flock_size_response.data.get("quantity", 0)
         except Exception:
             pass
 
         return 0
-    
-    
+
     def __get_target_weight_by_feed_product(self, feed_product_id: Optional[int]) -> float:
         """Get target weight based on feed product ID"""
         if not feed_product_id:
             return 0.0
-            
+
         try:
             target_weight_response = self.Client.table("feed_growth_targets").select("target_weight_kg") \
                 .eq("feed_product_id", feed_product_id).limit(1).single().execute()
-            
+
             if target_weight_response.data:
                 return float(target_weight_response.data["target_weight_kg"])
         except Exception:
             pass
-            
+
         return 0.0
