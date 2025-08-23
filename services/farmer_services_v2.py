@@ -1,10 +1,12 @@
 
-from fastapi import APIRouter, HTTPException
+from typing import Optional
+from fastapi import APIRouter, HTTPException, Query
 
 from core.chat_core import Chat
 from core.farmer_core_v2 import FarmerV2
 from exceptions.global_exception import GlobalException
-from llm.farmer_llm_handler import get_intent, handle_general_log, handle_general_questions, handle_health_log, handle_local_practice_log, handle_requested_file, handle_support_forms
+from llm.farmer_llm_handler import handle_local_practice_log
+from llm.farmer_llm_handler_v2 import get_intent, handle_general_questions, handle_health_log, handle_performance_log
 from models.chat_model import ChatRequest
 from models.feed_calculator_model import CreateFeedCalculatorPayload, FeedCalculationResponse, FeedCalculatorDto, UpdateFeedCalculatorPayload
 from models.feed_programs_model import FeedProgramPayload
@@ -39,10 +41,10 @@ def chat_service(body: ChatRequest):
         dispatch = {
             1: lambda: handle_general_questions(chat_id, user_id, prompt),
             2: lambda: handle_health_log(chat_id, user_id, prompt),
-            3: lambda: handle_local_practice_log(chat_id, user_id, prompt),
-            4: lambda: handle_requested_file(intent),
-            5: lambda: handle_support_forms(intent),
-            7: lambda: handle_general_log(chat_id, user_id, prompt)
+            3: lambda: handle_performance_log(chat_id, user_id, prompt),
+            4: lambda: handle_local_practice_log(chat_id, user_id, prompt)
+            # 5: lambda: handle_support_forms(intent),
+            # 7: lambda: handle_general_log(chat_id, user_id, prompt)
         }
         
         handler = dispatch.get(intent_id)
@@ -204,10 +206,13 @@ def get_feed_intake_behavior(id: int):
         raise HTTPException(status_code=500, detail="Failed to get feed intake behavior data.")
 
 @router.get("/health-watch/farmer-user-profile/{id}")
-def get_health_watch(id: int):
+def get_health_watch(
+    id: int, 
+    filter: Optional[str] = Query(None, regex="^(daily|weekly)$", description="Filter by 'daily' or 'weekly'")
+):
     try:
         farmer = FarmerV2()
-        result = farmer.read_health_watch(id)
+        result = farmer.read_health_watch(id, filter)
         return {"message": "Success", "data": result}
     
     except GlobalException as ge:
@@ -216,4 +221,3 @@ def get_health_watch(id: int):
     except Exception as e:
         print(f"An error occurred: {e}")
         raise HTTPException(status_code=500, detail="Failed to get health watch data.")
-
