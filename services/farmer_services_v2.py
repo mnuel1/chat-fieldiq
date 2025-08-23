@@ -189,4 +189,31 @@ def get_growth_performance(id: int):
         print(f"An error occurred: {e}")
         raise HTTPException(status_code=500, detail="Failed to get growth performance data.")
 
+@router.get("/feed-intake-behavior/farmer-user-profile/{id}")
+def get_feed_intake_behavior(id: int):
+    try:
+        farmer = FarmerV2()
+        result = farmer.read_feed_intake_behavior(id)
+        return {"message": "Success", "data": result}
     
+    except GlobalException as ge:
+        raise HTTPException(status_code=ge.status_code, detail=str(ge))
+    
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get feed intake behavior data.")
+
+@router.get("/health-watch/farmer-user-profile/{id}")
+def get_health_watch(id: int):
+    try:
+        farmer = FarmerV2()
+        result = farmer.read_health_watch(id)
+        return {"message": "Success", "data": result}
+    
+    except GlobalException as ge:
+        raise HTTPException(status_code=ge.status_code, detail=str(ge))
+    
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise HTTPException(status_code=500, detail="Failed to get health watch data.")
+
