@@ -134,9 +134,12 @@ def incomplete_active_feed_program(id: int):
 def create_feed_calculation_log(payload: CreateFeedCalculatorPayload):
     try:
         farmer = FarmerV2()
+        
+        payload_dict = payload.dict() if hasattr(payload, "dict") else payload.__dict__
         result = farmer.create_feed_calculation_log(
-            user_profile_id=payload.user_profile_id,
-            log_data=payload.log_data
+            # user_profile_id=payload.user_profile_id,
+            # log_data=payload.log_data
+            payload=payload_dict
         )
         return {"message": "Success", "data": result}
     except Exception as e:

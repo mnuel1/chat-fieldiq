@@ -148,7 +148,7 @@ class FarmerV2:
 
     # FEED CALCULATOR
 
-    def create_feed_calculation_log(self, payload: CreateFeedCalculatorPayload) -> Dict:
+    def create_feed_calculation_log(self, payload: CreateFeedCalculatorPayload) -> Dict:        
         response = self.Client.table(
             "feed_calculation_logs").insert(payload).execute()
         return response.data[0] if response.data else {}

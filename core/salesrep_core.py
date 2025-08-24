@@ -70,8 +70,7 @@ class SalesRep:
             sales_date_str = row.get("sale_date")
             if not sales_date_str:
                 continue
-
-            # Parse ISO 8601 datetime string
+            
             sales_date = datetime.fromisoformat(sales_date_str.replace("Z", "+00:00"))
             month_number = sales_date.month
             total = row.get("total", 0.0)
@@ -82,16 +81,59 @@ class SalesRep:
         result = []
         for month_num in sorted(monthly_sales):
             result.append({
-                "month": month_abbr[month_num],  # e.g., "Jan"
-                "volumeInfluenced": 14500,           # You can update this if needed
+                "month": month_abbr[month_num],  
+                "volumeInfluenced": 14500,           
                 "closedSales": monthly_sales[month_num]
             })
         month_count = len(monthly_sales)
         avg_sales = total_sales / month_count if month_count else 0.0
 
+        response = (
+            self.client
+            .table("sales_rep")
+            .select("territory")
+            .eq("user_profile_id", user_id)
+            .execute()
+        )
+
+        data = response.data
+
+        # Extract the region (territory)
+        region = data[0]["territory"] if data else None
+
+        # Map Philippine regions to Luzon / Visayas / Mindanao
+        region_to_island_group = {
+            # Luzon
+            "Ilocos Region": "Luzon",
+            "Cagayan Valley": "Luzon",
+            "Central Luzon": "Luzon",
+            "CALABARZON": "Luzon",
+            "MIMAROPA": "Luzon",
+            "Bicol Region": "Luzon",
+            "NCR": "Luzon",
+            "CAR": "Luzon",
+
+            # Visayas
+            "Western Visayas": "Visayas",
+            "Central Visayas": "Visayas",
+            "Eastern Visayas": "Visayas",
+
+            # Mindanao
+            "Zamboanga Peninsula": "Mindanao",
+            "Northern Mindanao": "Mindanao",
+            "Davao Region": "Mindanao",
+            "SOCCSKSARGEN": "Mindanao",
+            "Caraga": "Mindanao",
+            "BARMM": "Mindanao",
+        }
+
+        continent = region_to_island_group.get(region, "Unknown")
+
         return {
             "monthly_sales": result,
-            "average_sales": avg_sales
+            "average_sales": avg_sales,
+            "region": region,
+            "continent": continent
         }
 
     def get_farms(self, user_id: int) -> Dict[str, object]:

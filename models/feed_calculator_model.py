@@ -28,7 +28,8 @@ class FeedCalculationResponse(BaseModel):
     data: FeedCalculatorDto
     
 class CreateFeedCalculatorPayload(BaseModel):
-  farmer_user_profile_id: int
+  # farmer_user_profile_id: int
+  user_profile_id: int
   number_of_animals: int
   feed_frequency: int
   bag_size_kg: int

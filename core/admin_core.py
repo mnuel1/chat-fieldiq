@@ -11,28 +11,52 @@ from exceptions.global_exception import GlobalException
 class Admin:
     def __init__(self):
         self.client = get_supabase_client()
-    
+
+
     def get_sales_data(self, company_id: int) -> List[Dict[str, object]]:
-      
+        # Fetch users + their sales_rep info in one query
         user_profiles_response = (
             self.client
             .table("user_profiles")
-            .select("id, first_name, last_name")
+            .select("id, first_name, last_name, sales_reps(territory, quota_monthly)")
             .eq("company_id", company_id)
             .execute()
         )
 
         users = user_profiles_response.data or []
-        user_id_map = {
-            u["id"]: {
-                "full_name": f"{u['first_name']} {u['last_name']}",
-            } for u in users
-        }
-        user_ids = list(user_id_map.keys())
-
-        if not user_ids:
+        if not users:
             return []
-        
+
+        # Map Philippine regions → island groups
+        region_to_island_group = {
+            # Luzon
+            "Ilocos Region": "Luzon",
+            "Cagayan Valley": "Luzon",
+            "Central Luzon": "Luzon",
+            "CALABARZON": "Luzon",
+            "MIMAROPA": "Luzon",
+            "Bicol Region": "Luzon",
+            "NCR": "Luzon",
+            "CAR": "Luzon",
+
+            # Visayas
+            "Western Visayas": "Visayas",
+            "Central Visayas": "Visayas",
+            "Eastern Visayas": "Visayas",
+
+            # Mindanao
+            "Zamboanga Peninsula": "Mindanao",
+            "Northern Mindanao": "Mindanao",
+            "Davao Region": "Mindanao",
+            "SOCCSKSARGEN": "Mindanao",
+            "Caraga": "Mindanao",
+            "BARMM": "Mindanao",
+        }
+
+        # Collect user_ids
+        user_ids = [u["id"] for u in users]
+
+        # Fetch sales reports
         sales_response = (
             self.client
             .table("sales_reports")
@@ -40,28 +64,47 @@ class Admin:
             .in_("reported_by", user_ids)
             .execute()
         )
-
         sales_data = sales_response.data or []
+
+        # Aggregate sales per user
         sales_by_user = defaultdict(float)
         for row in sales_data:
             user_id = row["reported_by"]
             sales_by_user[user_id] += row.get("total", 0.0)
-        
+
+        # Final assembly
         result = []
-        for user_id, total_sales in sales_by_user.items():
-            name = user_id_map[user_id]["full_name"]
+        for u in users:
+            user_id = u["id"]
+            # Handle null names gracefully
+            first_name = u.get("first_name") or ""
+            last_name = u.get("last_name") or ""
+            name = (first_name + " " + last_name).strip() or f"User {user_id}"
+
+            # Handle sales_reps as a list
+            sales_rep_list = u.get("sales_reps") or []
+            sales_rep = sales_rep_list[0] if sales_rep_list else {}
+
+            region = sales_rep.get("territory", "") if sales_rep else ""
+            quota = sales_rep.get("quota_monthly", 0.0) if sales_rep else 0.0
+            continent = region_to_island_group.get(region, "Unknown")
+
+            closed_sales = sales_by_user.get(user_id, 0.0)
+            growth_rate = (closed_sales / quota * 100) if quota else 0.0
+
             result.append({
                 "id": str(user_id),
-                "region": "",                      # can be filled if needed
+                "region": region,
+                "continent": continent,      # Luzon / Visayas / Mindanao
                 "rep": name,
-                "targetInfluence": 1250000,        # placeholder, you can adjust this
-                "closedSales": total_sales,
-                "growthRate": 15.5,                # placeholder, you can compute if needed
-                "period": "2024-Q4"                # static or dynamically computed
+                "targetInfluence": quota,
+                "closedSales": closed_sales,
+                "growthRate": growth_rate,
+                "period": "2024-Q4"
             })
 
         return result
-    
+
     def get_farms(self, company_id: int) -> List[Dict[str, object]]:
         
         company_farmers = (
