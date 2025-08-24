@@ -13,13 +13,20 @@ class FarmerV2:
         self.Company = Company()
 
     # Create feed program
-    def create_feed_program(self, farmer_user_profile_id: int, feed_product_id: int):
+    def create_feed_program(self, farmer_user_profile_id: int, feed_product_id: int, animal_quantity: int):
 
         self.update_current_active_feed_program(farmer_user_profile_id)
+
+        if animal_quantity is None or animal_quantity <= 0:
+            raise GlobalException(
+                "Animal/flock quantity must be provided or available.",
+                400
+            )
 
         self.Client.table("feed_programs").insert({
             "farmer_user_profile_id": farmer_user_profile_id,
             "feed_product_id": feed_product_id,
+            "animal_quantity": animal_quantity,
         }).execute()
         return None
 
@@ -38,10 +45,71 @@ class FarmerV2:
             raise GlobalException(
                 "There is no current active feed program.", 404)
 
-        return response.data[0]
+        feed_program = response.data[0]
+
+        updated_program = self._update_days_on_feed(feed_program)
+
+        return updated_program
+
+    def _update_days_on_feed(self, feed_program: dict) -> dict:
+        """
+        Update days_on_feed based on complete 24-hour periods since start_date.
+        Only updates when >= 24 hours have passed since the last day increment.
+        """
+        try:
+            start_date_str = feed_program.get("start_date")
+            if not start_date_str:
+                return feed_program
+
+            # Parse the start date
+            start_date = parse(start_date_str)
+
+            # Ensure timezone awareness
+            if start_date.tzinfo is None:
+                start_date = start_date.replace(tzinfo=timezone.utc)
+
+            # Get current UTC time
+            now_utc = datetime.now(timezone.utc)
+
+            # Calculate time difference
+            time_diff = now_utc - start_date
+            total_hours = time_diff.total_seconds() / 3600
+            
+            # Calculate days based on complete 24-hour periods
+            new_days_on_feed = int(total_hours // 24) + 1
+            
+            current_days_on_feed = feed_program.get("days_on_feed", 1)
+
+            # Only update if we've crossed a 24-hour boundary
+            if new_days_on_feed > current_days_on_feed and total_hours >= 24:
+                update_response = (
+                    self.Client.table("feed_programs")
+                    .update({
+                        "days_on_feed": new_days_on_feed,
+                        "updated_at": now_utc.isoformat()
+                    })
+                    .eq("id", feed_program["id"])
+                    .execute()
+                )
+
+                if update_response.data:
+                    feed_program["days_on_feed"] = new_days_on_feed
+                    feed_program["updated_at"] = now_utc.isoformat()
+                    print(f"Successfully updated days_on_feed to {new_days_on_feed} for feed program {feed_program['id']}")
+                else:
+                    print(f"Failed to update days_on_feed for feed program {feed_program['id']}")
+            else:
+                print(f"No update needed. Total hours: {total_hours:.2f}, Current days: {current_days_on_feed}")
+
+            return feed_program
+
+        except Exception as e:
+            print(f"Error updating days_on_feed: {e}")
+            import traceback
+            traceback.print_exc()
+            return feed_program
 
     # Update current active feed program (helper method when farmer switched midway without explicitly marking the current program as incomplete or complete)
-
     def update_current_active_feed_program(self, farmer_user_profile_id: int):
         response = (
             self.Client.table("feed_programs")
@@ -148,7 +216,7 @@ class FarmerV2:
 
     # FEED CALCULATOR
 
-    def create_feed_calculation_log(self, payload: CreateFeedCalculatorPayload) -> Dict:        
+    def create_feed_calculation_log(self, payload: CreateFeedCalculatorPayload) -> Dict:
         response = self.Client.table(
             "feed_calculation_logs").insert(payload).execute()
         return response.data[0] if response.data else {}
@@ -219,6 +287,8 @@ class FarmerV2:
                 feed_program_start_date = feed_program.get("start_date")
                 feed_program_end_date = feed_program.get("end_date")
                 feed_product_id = feed_program.get("feed_product_id")
+                # Get initial flock size from the active feed program
+                initial_flock_size = feed_program.get("animal_quantity", 0)
             except:
                 return self.__get_default_growth_performance()
 
@@ -229,7 +299,8 @@ class FarmerV2:
                     self.Client.table("farm_performance_logs")
                     .select("*")
                     .gte("created_at", feed_program_start_date)
-                    .order("created_at", desc=True)
+                    # Order by oldest first for tracking
+                    .order("created_at", desc=False)
                 )
                 if feed_program_end_date:
                     query = query.lte("created_at", feed_program_end_date)
@@ -237,34 +308,47 @@ class FarmerV2:
                 farm_logs_response = query.execute()
                 farm_performance_logs = farm_logs_response.data or []
 
-            if not farm_performance_logs:
+            # get health incidents within the active feed program
+            health_incidents = []
+            if feed_program_start_date:
+                query = (
+                    self.Client.table("health_incidents")
+                    .select("*")
+                    .eq("farmer_user_profile_id", farmer_user_profile_id)
+                    .gte("created_at", feed_program_start_date)
+                    # Order by oldest first for tracking
+                    .order("created_at", desc=False)
+                )
+                if feed_program_end_date:
+                    query = query.lte("created_at", feed_program_end_date)
+
+                health_incidents_response = query.execute()
+                health_incidents = health_incidents_response.data or []
+
+            if not farm_performance_logs and not health_incidents:
                 return self.__get_default_growth_performance()
 
+            # Calculate dynamic flock tracking from both sources
+            flock_tracking = self.__calculate_dynamic_flock_size(
+                initial_flock_size, farm_performance_logs, health_incidents)
+
+            current_flock_size = flock_tracking["current_flock_size"]
+            total_mortality = flock_tracking["total_mortality"]
+            mortality_percentage = flock_tracking["mortality_percentage"]
+            survival_rate = flock_tracking["survival_rate"]
+
             total_farm_performance_logs = len(farm_performance_logs)
-            latest_farm_performance_log = farm_performance_logs[0]
+            # Re-order for latest first after calculations
+            farm_performance_logs_desc = sorted(farm_performance_logs,
+                                                key=lambda x: x["created_at"], reverse=True)
+            latest_farm_performance_log = farm_performance_logs_desc[0]
 
             # Get the growth rate
             growth_data = self.__calculate_growth_rate(farm_performance_logs)
             growth_rate = growth_data["growth_rate"]
 
-            # get mortality within the feed program period based on dun sa farm performance logs
-            total_mortality = sum(log.get("mortality_count", 0)
-                                  for log in farm_performance_logs)
-
-            # get farmer flocksize
-            flock_size = self.__get_flock_size(farmer_user_profile_id)
-
-            if flock_size > 0:
-                mortality_percentage = round(
-                    (total_mortality / flock_size) * 100, 2)
-                survival_rate = (1 - (total_mortality / flock_size))
-            else:
-                mortality_percentage = 0.0
-                survival_rate = 1.0
-
             # performance calculation section
             try:
-                # average_weight = float(latest_farm_performance_log.get("average_weight_kg", 0.0))
                 total_weight_kg = round(
                     sum(float(log.get("average_weight_kg", 0.0)) for log in farm_performance_logs), 3)
 
@@ -305,8 +389,8 @@ class FarmerV2:
 
             # Build recent records - only for current feed program period
             recent_records = []
-            if feed_program_start_date and farm_performance_logs:
-                for log in farm_performance_logs:
+            if feed_program_start_date and farm_performance_logs_desc:
+                for log in farm_performance_logs_desc:
                     log_date = parse(log["created_at"]).date()
                     recent_records.append({
                         "date": log_date.isoformat(),
@@ -316,7 +400,6 @@ class FarmerV2:
 
             return {
                 "daily_average_growth_rate": growth_rate,
-                # "current_fcr": float(latest_farm_performance_log.get("feed_conversion_ratio", 0.0)),
                 "actual_weight": actual_weight,
                 "target_weight": target_weight,
                 "growth_chart_data": growth_chart_data,
@@ -325,7 +408,12 @@ class FarmerV2:
                     "total_weight_kg": total_weight_kg,
                     "mortality_count": total_mortality,
                     "mortality_percentage": mortality_percentage,
-                    # "performance_index": performance_index,
+                    "initial_flock_size": initial_flock_size,  # Starting flock size
+                    # Current flock size after mortalities
+                    "current_flock_size": current_flock_size,
+                    # "survival_rate": survival_rate,
+                    # Breakdown by source
+                    "mortality_breakdown": flock_tracking["mortality_breakdown"],
                     "recent_records": recent_records,
                 }
             }
@@ -622,19 +710,96 @@ class FarmerV2:
             "recent_issues": []
         }
 
-    def __get_flock_size(self, farmer_user_profile_id: int) -> int:
-        """Get flock size for the farmer"""
-        try:
-            # Get flock size
-            flock_size_response = self.Client.table("farmer_livestock").select("quantity") \
-                .eq("farmer_user_profile_id", farmer_user_profile_id).single().execute()
+    # def __get_flock_size(self, farmer_user_profile_id: int) -> int:
+    #     """Get flock size for the farmer"""
+    #     try:
+    #         # Get flock size
+    #         flock_size_response = self.Client.table("farmer_livestock").select("quantity") \
+    #             .eq("farmer_user_profile_id", farmer_user_profile_id).single().execute()
 
-            if flock_size_response.data:
-                return flock_size_response.data.get("quantity", 0)
-        except Exception:
-            pass
+    #         if flock_size_response.data:
+    #             return flock_size_response.data.get("quantity", 0)
+    #     except Exception:
+    #         pass
 
-        return 0
+    #     return 0
+    
+    def __calculate_dynamic_flock_size(self, initial_flock_size: int, farm_performance_logs: List[Dict], health_incidents: List[Dict]) -> Dict:
+        if initial_flock_size <= 0:
+            return {
+                "current_flock_size": initial_flock_size,
+                "total_mortality": 0,
+                "mortality_percentage": 0.0,
+                "survival_rate": 1.0,
+                "mortality_breakdown": {
+                    "from_performance_logs": 0,
+                    "from_health_incidents": 0
+                }
+            }
+
+        current_flock_size = initial_flock_size
+        mortality_from_performance_logs = 0
+        mortality_from_health_incidents = 0
+
+        # Combine and sort all mortality events chronologically
+        mortality_events = []
+
+        # Add mortality events from farm performance logs
+        for log in farm_performance_logs:
+            mortality_count = log.get("mortality_count", 0)
+            if mortality_count > 0:
+                mortality_events.append({
+                    "date": log["created_at"],
+                    "count": mortality_count,
+                    "source": "performance_log",
+                    "log": log
+                })
+
+        # Add mortality events from health incidents
+        for incident in health_incidents:
+            if incident.get("incident_type") == "mortality":
+                affected_count = incident.get("affected_count", 0)
+                if affected_count > 0:
+                    mortality_events.append({
+                        "date": incident["created_at"],
+                        "count": affected_count,
+                        "source": "health_incident",
+                        "incident": incident
+                    })
+
+        # Sort all mortality events chronologically
+        mortality_events.sort(key=lambda x: parse(x["date"]))
+
+        # Process mortality events in chronological order
+        for event in mortality_events:
+            mortality_count = event["count"]
+            current_flock_size = max(0, current_flock_size - mortality_count)
+            
+            if event["source"] == "performance_log":
+                mortality_from_performance_logs += mortality_count
+            else:
+                mortality_from_health_incidents += mortality_count
+
+        total_mortality = mortality_from_performance_logs + mortality_from_health_incidents
+
+        # Calculate percentages based on initial flock size
+        if initial_flock_size > 0:
+            mortality_percentage = round((total_mortality / initial_flock_size) * 100, 2)
+            survival_rate = round((current_flock_size / initial_flock_size), 4)
+        else:
+            mortality_percentage = 0.0
+            survival_rate = 1.0
+
+        return {
+            "current_flock_size": current_flock_size,
+            "total_mortality": total_mortality,
+            "mortality_percentage": mortality_percentage,
+            "survival_rate": survival_rate,
+            "mortality_breakdown": {
+                "from_performance_logs": mortality_from_performance_logs,
+                "from_health_incidents": mortality_from_health_incidents
+            }
+        }
 
     def __get_target_weight_by_feed_product(self, feed_product_id: Optional[int]) -> float:
         """Get target weight based on feed product ID"""

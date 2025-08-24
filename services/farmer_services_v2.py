@@ -65,7 +65,8 @@ def create_feed_program(payload: FeedProgramPayload):
     
     result = farmer.create_feed_program(
       payload.farmer_user_profile_id,
-      payload.feed_product_id
+      payload.feed_product_id,
+      payload.animal_quantity
     )
     return {"message": "Success", "data": result}
   except Exception as e:
