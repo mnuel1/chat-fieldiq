@@ -41,8 +41,8 @@ def chat_service(body: ChatRequest):
         dispatch = {
             1: lambda: handle_general_questions(chat_id, user_id, prompt),
             2: lambda: handle_health_log(chat_id, user_id, prompt),
-            3: lambda: handle_performance_log(chat_id, user_id, prompt),
-            4: lambda: handle_local_practice_log(chat_id, user_id, prompt)
+            7: lambda: handle_performance_log(chat_id, user_id, prompt),
+            3: lambda: handle_local_practice_log(chat_id, user_id, prompt)
             # 5: lambda: handle_support_forms(intent),
             # 7: lambda: handle_general_log(chat_id, user_id, prompt)
         }
