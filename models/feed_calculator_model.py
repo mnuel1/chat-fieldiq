@@ -46,7 +46,8 @@ class CreateFeedCalculatorPayload(BaseModel):
   
 class UpdateFeedCalculatorPayload(BaseModel):
   id: int
-  farmer_user_profile_id: int
+  # farmer_user_profile_id: int
+  user_profile_id: int
   number_of_animals: int
   feed_frequency: int
   bag_size_kg: int
@@ -60,7 +61,7 @@ class UpdateFeedCalculatorPayload(BaseModel):
   reorder_point_days: float
   alert_level: str
   weekly_consumption_kg: float
-  created_at: datetime
-  update_at: datetime
+  created_at: str
+  updated_at: str
   
   

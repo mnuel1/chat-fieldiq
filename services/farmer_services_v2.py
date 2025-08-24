@@ -168,7 +168,8 @@ def get_feed_calculation_log(id: int):
 def update_feed_calculation_log(id: int, payload: UpdateFeedCalculatorPayload):
     try:
         farmer = FarmerV2()
-        result = farmer.update_feed_calculation_log(id, payload)
+        payload_dict = payload.dict() if hasattr(payload, "dict") else payload.__dict__
+        result = farmer.update_feed_calculation_log(id, payload_dict)        
         if not result:
             raise HTTPException(
                 status_code=404, detail="Feed calculation log not found")

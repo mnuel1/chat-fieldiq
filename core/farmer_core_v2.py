@@ -1,5 +1,5 @@
 from dateutil.parser import parse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional
 from config.config import get_supabase_client
 from core.company_core import Company
@@ -191,10 +191,11 @@ class FarmerV2:
         return feed_calculation_log
 
     def update_feed_calculation_log(self, id: int, payload: UpdateFeedCalculatorPayload) -> Dict:
-        payload.updated_at = datetime.now(datetime.timezone.utc)
+        # payload["updated_at"] = datetime.now(timezone.utc).isoformat()
+        print(payload)
         response = self.Client.table("feed_calculation_logs") \
             .update(payload) \
-            .eq("user_profile_id", id) \
+            .eq("user_profile_id", payload["user_profile_id"]) \
             .execute()
 
         return response.data[0] if response.data else {}
