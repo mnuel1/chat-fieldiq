@@ -1,4 +1,5 @@
 from core.chat_core import Chat
+from core.company_core import Company
 from core.farmer_core_v2 import FarmerV2, create_health_incident_with_program, create_performance_log_with_program
 from core.helper_core_v2 import call_openai, get_feed_program_context, get_max_messages, handle_intent, handle_log, load_functions, load_prompt, store_message_faq
 
@@ -9,6 +10,10 @@ max = get_max_messages()
 def handle_general_questions(chat_id, user_id, prompt):
     chat = Chat()
     farmer = FarmerV2()
+    company = Company()
+    
+    # Get user company ID
+    user_company_id = company.get_user_company(user_id)
 
     system_instruction = load_prompt("prompts/ask_farmer_general_questions.txt")
     functions = load_functions("prompts/ask_farmer_general_questions.json")
@@ -26,7 +31,7 @@ def handle_general_questions(chat_id, user_id, prompt):
 
     parsed = call_openai(messages, functions, "feed_advisory")
 
-    store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"])
+    store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"], user_company_id)
     return parsed
 
 # intent 2 ito
