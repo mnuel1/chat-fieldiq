@@ -460,9 +460,6 @@ class FarmerV2:
                 farm_logs_response = query.execute()
                 farm_performance_logs = farm_logs_response.data or []
 
-            if not farm_performance_logs:
-                return self.__get_default_growth_performance()
-
             # If no logs for this feed program, return defaults
             if not farm_performance_logs:
                 return self.__get_default_feed_intake_behavior()
