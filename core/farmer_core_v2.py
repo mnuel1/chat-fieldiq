@@ -285,6 +285,7 @@ class FarmerV2:
                 query = (
                     self.Client.table("farm_performance_logs")
                     .select("*")
+                    .eq("user_profile_id", farmer_user_profile_id)
                     .gte("created_at", feed_program_start_date)
                     # Order by oldest first for tracking
                     .order("created_at", desc=False)
@@ -438,6 +439,7 @@ class FarmerV2:
                 query = (
                     self.Client.table("farm_performance_logs")
                     .select("*")
+                    .eq("user_profile_id", farmer_user_profile_id)
                     .gte("created_at", feed_program_start_date)
                     .order("created_at", desc=True)
                 )
@@ -506,10 +508,10 @@ class FarmerV2:
     def read_health_watch(self, farmer_user_profile_id: int, filter_type: Optional[str] = None) -> Dict:
         try:
             user_exists = (self.Client.table("user_profiles")
-                           .select("id")
-                           .eq("id", farmer_user_profile_id)
-                           .limit(1)
-                           .execute())
+                        .select("id")
+                        .eq("id", farmer_user_profile_id)
+                        .limit(1)
+                        .execute())
 
             if not user_exists.data:
                 raise GlobalException(
@@ -522,7 +524,7 @@ class FarmerV2:
                 feed_program_end_date = feed_program.get("end_date")
                 feed_product_id = feed_program.get("feed_product_id")
             except GlobalException:
-                return self.__get_default_feed_intake_behavior()
+                return self.__get_default_health_watch()
 
             # Calculate filter date based on filter_type
             filter_start_date = None
@@ -541,9 +543,10 @@ class FarmerV2:
             health_incidents = []
             if feed_program_start_date:
                 query = (self.Client.table("health_incidents")
-                         .select("*")
-                         .gte("created_at", feed_program_start_date)
-                         .order("created_at", desc=True))
+                        .select("*")
+                        .eq("farmer_user_profile_id", farmer_user_profile_id)
+                        .gte("created_at", feed_program_start_date)
+                        .order("created_at", desc=True))
 
                 if feed_program_end_date:
                     query = query.lte("created_at", feed_program_end_date)
@@ -558,8 +561,31 @@ class FarmerV2:
                 incident_logs_response = query.execute()
                 health_incidents = incident_logs_response.data or []
 
-            # If no incidents for this feed program, return defaults
-            if not health_incidents:
+            # Get farm performance logs within the active feed program period and apply additional filter if specified
+            farm_performance_logs = []
+            if feed_program_start_date:
+                query = (
+                    self.Client.table("farm_performance_logs")
+                    .select("*")
+                    .eq("user_profile_id", farmer_user_profile_id)
+                    .gte("created_at", feed_program_start_date)
+                    .order("created_at", desc=True)
+                )
+                if feed_program_end_date:
+                    query = query.lte("created_at", feed_program_end_date)
+
+                # Apply additional date filter if specified
+                if filter_start_date:
+                    # Use the later of feed_program_start_date or filter_start_date
+                    effective_start_date = max(
+                        feed_program_start_date, filter_start_date)
+                    query = query.gte("created_at", effective_start_date)
+
+                farm_logs_response = query.execute()
+                farm_performance_logs = farm_logs_response.data or []
+
+            # If no incidents or performance logs for this feed program, return defaults
+            if not health_incidents and not farm_performance_logs:
                 return self.__get_default_health_watch()
 
             sick_count = 0
@@ -568,6 +594,8 @@ class FarmerV2:
             health_score = 100
 
             recent_issues = []
+
+            # Process health incidents
             for incident in health_incidents:
                 kind = incident.get("incident_type")
                 affected = incident.get("affected_count", 0)
@@ -594,6 +622,28 @@ class FarmerV2:
                     "feed_info": incident.get("feed_info"),
                     "actions_taken": incident.get("actions_taken"),
                 })
+
+            # Process farm performance logs for mortality data
+            for log in farm_performance_logs:
+                log_mortality = log.get("mortality_count", 0)
+                if log_mortality > 0:
+                    mortality_count += log_mortality
+                    health_score -= log_mortality * 4  # Same penalty as health incident mortality
+
+                    # Add to recent issues for visibility
+                    recent_issues.append({
+                        "date": log.get("created_at"),
+                        "incident_type": "mortality",
+                        "affected_count": log_mortality,
+                        "symptoms": "Recorded in performance log",
+                        "suspected_cause": log.get("notes", "Not specified"),
+                        "requires_vet_visit": False,
+                        "feed_info": None,
+                        "actions_taken": None,
+                    })
+
+            # Sort recent issues by date (most recent first)
+            recent_issues.sort(key=lambda x: parse(x["date"]), reverse=True)
 
             health_score = max(0, min(health_score, 100))
 
@@ -802,7 +852,7 @@ class FarmerV2:
         return 0.0
 
 
-def create_health_incident_with_program(farmer_instance: FarmerV2, user_id: int, form_data: dict, parsed: dict) -> bool:
+def create_health_incident_with_program(farmer_instance: FarmerV2, user_id: int, company_id: int, form_data: dict, parsed: dict) -> bool:
     """Create health incident linked to active feed program"""
     try:
         # Create health incident - association with feed program is handled
