@@ -52,36 +52,23 @@ class FarmerV2:
         return updated_program
 
     def _update_days_on_feed(self, feed_program: dict) -> dict:
-        """
-        Update days_on_feed based on complete 24-hour periods since start_date.
-        Only updates when >= 24 hours have passed since the last day increment.
-        """
         try:
             start_date_str = feed_program.get("start_date")
             if not start_date_str:
                 return feed_program
 
-            # Parse the start date
             start_date = parse(start_date_str)
-
-            # Ensure timezone awareness
             if start_date.tzinfo is None:
                 start_date = start_date.replace(tzinfo=timezone.utc)
 
-            # Get current UTC time
             now_utc = datetime.now(timezone.utc)
-
-            # Calculate time difference
             time_diff = now_utc - start_date
             total_hours = time_diff.total_seconds() / 3600
             
-            # Calculate days based on complete 24-hour periods
             new_days_on_feed = int(total_hours // 24) + 1
-            
             current_days_on_feed = feed_program.get("days_on_feed", 1)
 
-            # Only update if we've crossed a 24-hour boundary
-            if new_days_on_feed > current_days_on_feed and total_hours >= 24:
+            if new_days_on_feed != current_days_on_feed:
                 update_response = (
                     self.Client.table("feed_programs")
                     .update({
@@ -95,11 +82,11 @@ class FarmerV2:
                 if update_response.data:
                     feed_program["days_on_feed"] = new_days_on_feed
                     feed_program["updated_at"] = now_utc.isoformat()
-                    print(f"Successfully updated days_on_feed to {new_days_on_feed} for feed program {feed_program['id']}")
+                    # print(f"Successfully updated days_on_feed from {current_days_on_feed} to {new_days_on_feed} for feed program {feed_program['id']}")
                 else:
                     print(f"Failed to update days_on_feed for feed program {feed_program['id']}")
             else:
-                print(f"No update needed. Total hours: {total_hours:.2f}, Current days: {current_days_on_feed}")
+                print(f"No update needed. Days on feed is correct: {current_days_on_feed}")
 
             return feed_program
 
