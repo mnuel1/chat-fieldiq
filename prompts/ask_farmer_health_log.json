@@ -23,7 +23,7 @@
           },
           "incident_date": {
             "type": "string",
-            "description": "Only accept a date in this format YYYY/MM/DD, if not match/given ask"
+            "description": "Extract the descriptive date from the user's text and convert it into the format YYYY/MM/DD, if not stated ask"
           },
           "affected_count": {
             "type": "string",

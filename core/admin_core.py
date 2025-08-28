@@ -1,34 +1,62 @@
+from datetime import date, datetime
 from typing import List, Optional, Dict
 from config.config import get_supabase_client
 from collections import defaultdict
 import json
 import random
 
+from exceptions.global_exception import GlobalException
+
+
 class Admin:
     def __init__(self):
         self.client = get_supabase_client()
-    
+
+
     def get_sales_data(self, company_id: int) -> List[Dict[str, object]]:
-      
+        # Fetch users + their sales_rep info in one query
         user_profiles_response = (
             self.client
             .table("user_profiles")
-            .select("id, first_name, last_name")
+            .select("id, first_name, last_name, sales_reps(territory, quota_monthly)")
             .eq("company_id", company_id)
             .execute()
         )
 
         users = user_profiles_response.data or []
-        user_id_map = {
-            u["id"]: {
-                "full_name": f"{u['first_name']} {u['last_name']}",
-            } for u in users
-        }
-        user_ids = list(user_id_map.keys())
-
-        if not user_ids:
+        if not users:
             return []
-        
+
+        # Map Philippine regions → island groups
+        region_to_island_group = {
+            # Luzon
+            "Ilocos Region": "Luzon",
+            "Cagayan Valley": "Luzon",
+            "Central Luzon": "Luzon",
+            "CALABARZON": "Luzon",
+            "MIMAROPA": "Luzon",
+            "Bicol Region": "Luzon",
+            "NCR": "Luzon",
+            "CAR": "Luzon",
+
+            # Visayas
+            "Western Visayas": "Visayas",
+            "Central Visayas": "Visayas",
+            "Eastern Visayas": "Visayas",
+
+            # Mindanao
+            "Zamboanga Peninsula": "Mindanao",
+            "Northern Mindanao": "Mindanao",
+            "Davao Region": "Mindanao",
+            "SOCCSKSARGEN": "Mindanao",
+            "Caraga": "Mindanao",
+            "BARMM": "Mindanao",
+        }
+
+        # Collect user_ids
+        user_ids = [u["id"] for u in users]
+
+        # Fetch sales reports
         sales_response = (
             self.client
             .table("sales_reports")
@@ -36,28 +64,47 @@ class Admin:
             .in_("reported_by", user_ids)
             .execute()
         )
-
         sales_data = sales_response.data or []
+
+        # Aggregate sales per user
         sales_by_user = defaultdict(float)
         for row in sales_data:
             user_id = row["reported_by"]
             sales_by_user[user_id] += row.get("total", 0.0)
-        
+
+        # Final assembly
         result = []
-        for user_id, total_sales in sales_by_user.items():
-            name = user_id_map[user_id]["full_name"]
+        for u in users:
+            user_id = u["id"]
+            # Handle null names gracefully
+            first_name = u.get("first_name") or ""
+            last_name = u.get("last_name") or ""
+            name = (first_name + " " + last_name).strip() or f"User {user_id}"
+
+            # Handle sales_reps as a list
+            sales_rep_list = u.get("sales_reps") or []
+            sales_rep = sales_rep_list[0] if sales_rep_list else {}
+
+            region = sales_rep.get("territory", "") if sales_rep else ""
+            quota = sales_rep.get("quota_monthly", 0.0) if sales_rep else 0.0
+            continent = region_to_island_group.get(region, "Unknown")
+
+            closed_sales = sales_by_user.get(user_id, 0.0)
+            growth_rate = (closed_sales / quota * 100) if quota else 0.0
+
             result.append({
                 "id": str(user_id),
-                "region": "",                      # can be filled if needed
+                "region": region,
+                "continent": continent,      # Luzon / Visayas / Mindanao
                 "rep": name,
-                "targetInfluence": 1250000,        # placeholder, you can adjust this
-                "closedSales": total_sales,
-                "growthRate": 15.5,                # placeholder, you can compute if needed
-                "period": "2024-Q4"                # static or dynamically computed
+                "targetInfluence": quota,
+                "closedSales": closed_sales,
+                "growthRate": growth_rate,
+                "period": "2024-Q4"
             })
 
         return result
-    
+
     def get_farms(self, company_id: int) -> List[Dict[str, object]]:
         
         company_farmers = (
@@ -327,11 +374,12 @@ class Admin:
             "timeline": timeline
         }
 
-    def get_faqs(self) -> Dict[str, object]:
+    def get_faqs(self, company_id: int) -> Dict[str, object]:
         response = (
             self.client
             .table("faq")
             .select("*")
+            .eq("company_id", company_id)
             .order("created_at", desc=True)
             .execute()
         )
@@ -402,5 +450,109 @@ class Admin:
             .eq("id", faq_id)
             .execute()
         )
-        
+
         return response.status_code == 200
+
+    # SALES GOAL RELATED METHODS
+
+    def get_sales_goals(self, company_id: int) -> List[Dict[str, object]]:
+        response = self.client.table("sales_goals") \
+            .select("*") \
+            .eq("company_id", company_id) \
+            .order("period_start", desc=True) \
+            .execute()
+
+        rows = response.data or []
+        today = date.today()
+
+        for row in rows:
+            # Convert ISO strings from database to date objects for comparison
+            period_end = datetime.fromisoformat(row["period_end"]).date()
+            period_start = datetime.fromisoformat(row["period_start"]).date()
+
+            if today > period_end:
+                row["status"] = "past"
+            elif today < period_start:
+                row["status"] = "future"
+            else:
+                row["status"] = "active"
+
+        return rows
+
+    def create_sales_goal(self, company_id: int, target_amount: float, period_start: date, period_end: date, created_by: int) -> Dict:
+
+        existing = self.client.table("sales_goals") \
+            .select("*") \
+            .eq("company_id", company_id) \
+            .eq("period_start", period_start.isoformat()) \
+            .eq("period_end", period_end.isoformat()) \
+            .execute()
+
+        if existing.data:
+            raise GlobalException(
+                "Sales goal for this period already exists. Please update instead.", 401)
+
+        payload = {
+            "company_id": company_id,
+            "target_amount": target_amount,
+            # Convert date objects to ISO string format for JSON serialization
+            "period_start": period_start.isoformat(),
+            "period_end": period_end.isoformat(),
+            "created_by": created_by,
+        }
+
+        response = self.client.table("sales_goals") \
+            .insert(payload) \
+            .execute()
+
+        return response.data[0] if response.data else {}
+
+    def update_sales_goal(self, goal_id: int, updates: Dict[str, object]) -> Dict:
+        # First fetch
+        existing = (
+            self.client
+            .table("sales_goals")
+            .select("*")
+            .eq("id", goal_id)
+            .single()
+            .execute()
+        )
+        goal = existing.data
+        if not goal:
+            raise ValueError("Sales goal not found.")
+
+        # Check editability
+        today = date.today()
+        # Fix: Convert ISO string from database back to date object
+        start_date = datetime.fromisoformat(goal["period_start"]).date() if isinstance(
+            goal["period_start"], str) else goal["period_start"]
+        end_date = datetime.fromisoformat(goal["period_end"]).date() if isinstance(
+            goal["period_end"], str) else goal["period_end"]
+
+        if end_date < today:  # past goal
+            raise PermissionError(
+                "Past sales goals are locked and cannot be updated.")
+
+        # Update allowed
+        response = (
+            self.client
+            .table("sales_goals")
+            .update(updates)
+            .eq("id", goal_id)
+            .execute()
+        )
+        return response.data[0] if response.data else {}
+
+    def get_current_sales_goal(self, company_id: int) -> Optional[Dict[str, object]]:
+        today = date.today().isoformat()  # Convert to ISO string for database query
+        response = (
+            self.client
+            .table("sales_goals")
+            .select("*")
+            .eq("company_id", company_id)
+            .lte("period_start", today)
+            .gte("period_end", today)
+            .single()
+            .execute()
+        )
+        return response.data

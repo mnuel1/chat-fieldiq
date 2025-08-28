@@ -16,132 +16,159 @@ class ViewModelsCore:
                 .maybe_single() \
                 .execute()
 
-            if not user_exists:
+            if not user_exists.data:
                 raise GlobalException(
                     f"User profile ID {farmer_user_profile_id} does not exist.", status_code=404)
 
-            # Get latest feed usage
+            # Get latest feed usage - handle empty case
             feed_usage_response = self.client.table("feed_usage_logs").select("*") \
                 .eq("farmer_user_profile_id", farmer_user_profile_id) \
                 .order("created_at", desc=True).limit(1).execute()
 
             feed_usage = feed_usage_response.data[0] if feed_usage_response.data else None
-            if not feed_usage:
-                raise GlobalException(
-                    "No feed usage logs found.", status_code=404)
+            
+            # Set defaults for feed usage data
+            if feed_usage:
+                start_date = feed_usage["start_date"]
+                end_date = feed_usage.get("end_date")
+                feed_product_id = feed_usage["feed_product_id"]
+            else:
+                # Default values when no feed usage exists
+                start_date = None
+                end_date = None
+                feed_product_id = None
 
-            start_date = feed_usage["start_date"]
-            end_date = feed_usage.get("end_date")
-            feed_product_id = feed_usage["feed_product_id"]
+            # Get feed product info - handle missing feed_product_id
+            feed_product = {}
+            if feed_product_id:
+                try:
+                    feed_product_response = self.client.table("feed_products").select("*") \
+                        .eq("id", feed_product_id).single().execute()
+                    feed_product = feed_product_response.data or {}
+                except Exception:
+                    # Handle case where feed product doesn't exist
+                    feed_product = {}
 
-            # Get feed product info
-            feed_product_response = self.client.table("feed_products").select("*") \
-                .eq("id", feed_product_id).single().execute()
+            # Get farm performance logs - handle missing start_date
+            logs = []
+            if start_date:
+                farm_logs_query = self.client.table("farm_performance_logs").select("*") \
+                    .eq("user_profile_id", farmer_user_profile_id) \
+                    .gte("created_at", start_date)
 
-            feed_product = feed_product_response.data or {}
+                if end_date:
+                    farm_logs_query = farm_logs_query.lte("created_at", end_date)
 
-            # Get farm performance logs during feed usage
-            farm_logs_query = self.client.table("farm_performance_logs").select("*") \
-                .eq("user_profile_id", farmer_user_profile_id) \
-                .gte("created_at", start_date)
-
-            if end_date:
-                farm_logs_query = farm_logs_query.lte("created_at", end_date)
-
-            farm_performance_log = farm_logs_query.order(
-                "created_at", desc=True).execute()
-            logs = farm_performance_log.data or []
+                farm_performance_log = farm_logs_query.order(
+                    "created_at", desc=True).execute()
+                logs = farm_performance_log.data or []
+            
             total_logs = len(logs)
 
-            # Calculate growth rate
+            # Calculate growth rate - handle empty logs
             growth_data = self.__calculate_growth_rate(logs)
             growth_rate = growth_data["growth_rate"]
             raw_gain_kg = growth_data["raw_gain_kg"]
 
-            # Get farmer ID
-            farmer_response = self.client.table("farmers").select("id") \
-                .eq("user_profile_id", farmer_user_profile_id) \
-                .single().execute()
+            # Get farmer ID - handle missing farmer
+            farmer_id = None
+            flock_size = 0
+            try:
+                farmer_response = self.client.table("farmers").select("id") \
+                    .eq("user_profile_id", farmer_user_profile_id) \
+                    .single().execute()
+                
+                if farmer_response.data:
+                    farmer_id = farmer_response.data["id"]
+                    
+                    # Get flock size - handle missing livestock data
+                    try:
+                        flock_size_response = self.client.table("farmer_livestock").select("quantity") \
+                            .eq("farmer_id", farmer_id).single().execute()
+                        
+                        if flock_size_response.data:
+                            flock_size = flock_size_response.data.get("quantity", 0)
+                    except Exception:
+                        flock_size = 0
+            except Exception:
+                farmer_id = None
+                flock_size = 0
 
-            if not farmer_response.data:
-                raise GlobalException(
-                    "Farmer not found for this user profile.", status_code=404)
-
-            farmer_id = farmer_response.data["id"]
-
-            # Get flock size
-            flock_size_response = self.client.table("farmer_livestock").select("quantity") \
-                .eq("farmer_id", farmer_id).single().execute()
-
-            if not flock_size_response.data:
-                raise GlobalException(
-                    "Flock size information missing for this farmer.", status_code=404)
-
-            flock_size = flock_size_response.data.get("quantity", 0)
-            if not flock_size:
-                raise GlobalException(
-                    "Flock size is zero or undefined. Cannot compute metrics.", status_code=400)
-
+            # Calculate mortality metrics - handle division by zero
             total_mortality = sum(
-                [log["mortality_count"] for log in logs if log["mortality_count"] is not None])
-            mortality_percentage = round(
-                (total_mortality / flock_size) * 100, 2)
-            survival_rate = (1 - (total_mortality / flock_size))
+                [log["mortality_count"] for log in logs if log.get("mortality_count") is not None])
+            
+            if flock_size > 0:
+                mortality_percentage = round((total_mortality / flock_size) * 100, 2)
+                survival_rate = (1 - (total_mortality / flock_size))
+            else:
+                mortality_percentage = 0.0
+                survival_rate = 1.0
 
             latest_log = logs[0] if logs else {}
 
-            # Performance Index calculation
+            # Performance Index calculation - handle missing data
             try:
-                average_weight = float(
-                    latest_log.get("average_weight_kg", 0.0))
+                average_weight = float(latest_log.get("average_weight_kg", 0.0))
                 total_weight_kg = round(
-                    sum(float(log["average_weight_kg"]) for log in logs), 3)
+                    sum(float(log.get("average_weight_kg", 0.0)) for log in logs), 3)
                 fcr = float(latest_log.get("feed_conversion_ratio", 1.0))
-                performance_index = round(
-                    ((average_weight * survival_rate) / fcr) * 100, 2)
-            except Exception as e:
-                raise GlobalException(
-                    "Failed to calculate Performance Index.", status_code=500)
+                
+                if fcr > 0:
+                    performance_index = round(
+                        ((average_weight * survival_rate) / fcr) * 100, 2)
+                else:
+                    performance_index = 0.0
+            except Exception:
+                average_weight = 0.0
+                total_weight_kg = 0.0
+                performance_index = 0.0
 
-            actual_weight = float(latest_log.get(
-                "average_weight_kg", 0.0)) if latest_log else 0.0
+            actual_weight = float(latest_log.get("average_weight_kg", 0.0)) if latest_log else 0.0
 
-            # Get target weight from feed_growth_targets
-            target_weight_response = self.client.table("feed_growth_targets").select("target_weight_kg") \
-                .eq("feed_product_id", feed_product_id).limit(1).single().execute()
+            # Get target weight - handle missing target data
+            target_weight = 0.0
+            if feed_product_id:
+                try:
+                    target_weight_response = self.client.table("feed_growth_targets").select("target_weight_kg") \
+                        .eq("feed_product_id", feed_product_id).limit(1).single().execute()
+                    
+                    if target_weight_response.data:
+                        target_weight = float(target_weight_response.data["target_weight_kg"])
+                except Exception:
+                    target_weight = 0.0
 
-            if not target_weight_response.data:
-                raise GlobalException(
-                    "Target weight data is missing for this feed product.", status_code=404)
+            # Build growth chart data - handle missing start_date
+            growth_chart_data = []
+            if start_date and logs:
+                latest_per_day = {}
+                for log in logs:
+                    date_str = parse(log["created_at"]).date().isoformat()
+                    latest_per_day[date_str] = log
 
-            target_weight = float(
-                target_weight_response.data["target_weight_kg"])
+                growth_chart_data = [
+                    {
+                        "date": date,
+                        "actual_weight": float(log.get("average_weight_kg", 0.0)),
+                        "target_weight": target_weight
+                    }
+                    for date, log in sorted(latest_per_day.items())
+                ]
 
-            latest_per_day = {}
-            for log in logs:
-                date_str = parse(log["created_at"]).date().isoformat()
-                latest_per_day[date_str] = log
-
-            growth_chart_data = [
-                {
-                    "date": date,
-                    "actual_weight": float(log["average_weight_kg"]),
-                    "target_weight": target_weight
-                }
-                for date, log in sorted(latest_per_day.items())
-            ]
-
+            # Build recent records - handle missing start_date
             recent_records = []
-            for log in logs:
-                log_date = parse(log["created_at"]).date()
-                day_number = (log_date - parse(start_date).date()).days + 1
-                recent_records.append({
-                    "date": log_date.isoformat(),
-                    "day": f"Day {day_number}",
-                    "actual_weight": float(log["average_weight_kg"]),
-                    "note": log.get("notes", "")
-                })
+            if start_date and logs:
+                for log in logs:
+                    log_date = parse(log["created_at"]).date()
+                    day_number = (log_date - parse(start_date).date()).days + 1
+                    recent_records.append({
+                        "date": log_date.isoformat(),
+                        "day": f"Day {day_number}",
+                        "actual_weight": float(log.get("average_weight_kg", 0.0)),
+                        "note": log.get("notes", "")
+                    })
 
+            # Feed intake analysis
             feed_intake_summary = {
                 "eating_well": 0,
                 "picky": 0,
@@ -177,35 +204,38 @@ class ViewModelsCore:
                     (weighted_score / total_feed_behavior_logs) * 100, 2)
 
             dominant_status = max(
-                feed_intake_summary, key=feed_intake_summary.get) if total_feed_behavior_logs else None
+                feed_intake_summary, key=feed_intake_summary.get) if total_feed_behavior_logs else "no_data"
 
-            # Feed calc log
-            calc_resp = (
-                self.client
-                .table("feed_calculation_logs")
-                .select("*")
-                .eq("user_profile_id", farmer_user_profile_id)
-                .order("created_at", desc=True)
-                .limit(1)
-                .single()
-                .execute()
-            )
+            # Feed calculation log - handle missing data
+            feed_calc = {}
+            if farmer_user_profile_id:
+                try:
+                    calc_resp = (
+                        self.client
+                        .table("feed_calculation_logs")
+                        .select("*")
+                        .eq("user_profile_id", farmer_user_profile_id)
+                        .order("created_at", desc=True)
+                        .limit(1)
+                        .single()
+                        .execute()
+                    )
+                    feed_calc = calc_resp.data or {}
+                except Exception:
+                    feed_calc = {}
 
-            if not calc_resp.data:
-                raise GlobalException(
-                    "No recent feed calculation log found.", status_code=404)
-
-            feed_calc = calc_resp.data
-
-            # Health incidents
-            incident_response = (
-                self.client.table("health_incidents")
-                .select("*")
-                .eq("farmer_user_profile_id", farmer_user_profile_id)
-                .order("incident_date", desc=True)
-                .execute()
-            )
-            incidents = incident_response.data or []
+            # Health incidents - handle empty response
+            try:
+                incident_response = (
+                    self.client.table("health_incidents")
+                    .select("*")
+                    .eq("farmer_user_profile_id", farmer_user_profile_id)
+                    .order("incident_date", desc=True)
+                    .execute()
+                )
+                incidents = incident_response.data or []
+            except Exception:
+                incidents = []
 
             sick_count = 0
             mortality_count = 0
@@ -214,10 +244,9 @@ class ViewModelsCore:
 
             recent_issues = []
             for incident in incidents:
-                kind = incident["incident_type"]
-                affected = incident["affected_count"]
-                has_note = bool(incident.get("symptoms")
-                                or incident.get("suspected_cause"))
+                kind = incident.get("incident_type")
+                affected = incident.get("affected_count", 0)
+                has_note = bool(incident.get("symptoms") or incident.get("suspected_cause"))
 
                 if kind == "sickness":
                     sick_count += affected
@@ -230,7 +259,7 @@ class ViewModelsCore:
                     health_score -= 1
 
                 recent_issues.append({
-                    "date": incident["incident_date"],
+                    "date": incident.get("incident_date"),
                     "incident_type": kind,
                     "affected_count": affected,
                     "symptoms": incident.get("symptoms"),
@@ -242,7 +271,7 @@ class ViewModelsCore:
 
             health_score = max(0, min(health_score, 100))
 
-            # Final response
+            # Final response - always return data even if some parts are missing
             return {
                 "used_feed": {
                     "feed_product_id": feed_product.get("id"),
@@ -255,7 +284,7 @@ class ViewModelsCore:
                 },
                 "growth_performance": {
                     "daily_average_growth_rate": growth_rate,
-                    "current_fcr": float(logs[0]["feed_conversion_ratio"]) if logs else 0.0,
+                    "current_fcr": float(logs[0].get("feed_conversion_ratio", 0.0)) if logs else 0.0,
                     "actual_weight": actual_weight,
                     "target_weight": target_weight,
                     "growth_chart_data": growth_chart_data,
@@ -268,9 +297,7 @@ class ViewModelsCore:
                         "recent_records": recent_records,
                     }
                 },
-                "feed_calculation_log": {
-                    **feed_calc
-                },
+                "feed_calculation_log": feed_calc,
                 "feed_intake_behavior": {
                     "behavior_score": behavior_score,
                     "behavior_status": dominant_status,
@@ -305,8 +332,8 @@ class ViewModelsCore:
         last_log = logs[0]
 
         try:
-            weight_start = float(first_log["average_weight_kg"])
-            weight_end = float(last_log["average_weight_kg"])
+            weight_start = float(first_log.get("average_weight_kg", 0.0))
+            weight_end = float(last_log.get("average_weight_kg", 0.0))
             date_start = parse(first_log["created_at"])
             date_end = parse(last_log["created_at"])
 

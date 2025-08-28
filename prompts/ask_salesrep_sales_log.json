@@ -24,7 +24,7 @@
           },
           "sale_date": {
             "type": "string",
-            "description": "Date of sale in YYYY/MM/DD format if given, else ask."
+            "description": "Extract the descriptive date from the user's text and convert it into the format YYYY/MM/DD, if not stated ask."
           },
           "product_sold": {
             "type": "string",

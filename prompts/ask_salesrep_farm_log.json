@@ -36,7 +36,7 @@
             "type": [
               "string"
             ],
-            "description": "Date of visit in YYYY/MM/DD format if given, else ask."
+            "description": "Extract the descriptive date from the user's text and convert it into the format YYYY/MM/DD, if not stated ask."
           },
           "location": {
             "type": [

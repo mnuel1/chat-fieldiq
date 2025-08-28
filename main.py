@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from exceptions.global_exception import GlobalException
-from services import farmer_services, salesrep_services, view_models_services, admin_services
+from services import farmer_services, farmer_services_v2, salesrep_services, view_models_services, admin_services
 
 app = FastAPI(
     title="My FastAPI App",
@@ -38,6 +38,7 @@ app.add_middleware(
 
 # Include routes from services
 app.include_router(farmer_services.router, prefix="/farmer", tags=["Farmer"])
+app.include_router(farmer_services_v2.router, prefix="/farmer_v2", tags=["FarmerV2"])
 app.include_router(salesrep_services.router,
                    prefix="/salesrep", tags=["Sales Rep"])
 app.include_router(view_models_services.router,

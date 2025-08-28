@@ -46,14 +46,14 @@ class Farmer:
         return None
 
     def create_farm_performance_log(self, farmer_user_profile_id: int, form_data: Dict):
-
+        
         # Get the company associated with farmer
-        company_id = Company.get_farmer_associated_company_id(
+        company_id = self.Company.get_farmer_associated_company_id(
             farmer_user_profile_id)
 
         self.client.table("farm_performance_logs").insert({
             "company_id": company_id,
-            "farmer_user_profile_id": farmer_user_profile_id,
+            "user_profile_id": farmer_user_profile_id,
             **form_data
         }).execute()
         

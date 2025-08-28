@@ -4,6 +4,7 @@ from core.helper_core import load_prompt, call_openai, extract_json, store_messa
 
 max = get_max_messages()
 
+
 def handle_general_questions(chat_id, user_id, prompt):
   chat = Chat()
   farmer = Farmer()
@@ -12,6 +13,7 @@ def handle_general_questions(chat_id, user_id, prompt):
   functions = load_functions("prompts/ask_farmer_general_questions.json")
   days_on_feed, current_feed = farmer.get_feed_use(user_id)
 
+  
   history = chat.get_recent_messages(chat_id, max_messages=max)
   history.append({
     "role": "user",
@@ -46,8 +48,8 @@ def handle_general_log(chat_id, user_id, prompt):
     "prompts/ask_farmer_log",
     "report_details",
     "log_performance_report",
-    lambda farmer, user_id, form_data, parsed: farmer.create_farmer_performance_log(
-        user_id, form_data
+    lambda farmer, user_id, form_data, parsed: farmer.create_farm_performance_log(
+      user_id, form_data
     )
   )
 

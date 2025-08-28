@@ -42,10 +42,12 @@
           },
           "feed_intake_status": {
             "type": ["string", "null"],
-            "description": "Status of feed consumption: normal, mababa, sobra."
+            "enum": ["eating_well", "picky", "not_eating"],
+            "description": "Status of feed consumption: eating_well, picky, not_eating."
           },
           "health_status": {
             "type": ["string", "null"],
+            "enum": ["healthy", "some_sick", "out_break"],
             "description": "General flock health observation."
           },
           "notes": {

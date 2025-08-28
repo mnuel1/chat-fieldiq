@@ -9,7 +9,7 @@ Step 1: Log the Health Incident
   If information can be inferred from the message, do not ask again infer it directly.
   Required Fields:
     incident_type: Infer from user message. If they say symptoms like "nagsusuka", "namatay", "ayaw kumain", assign sickness, mortality, or feed_rejection accordingly.
-    incident_date: If user says "ngayon", "kanina", or "kahapon", convert to YYYY-MM-DD format based on todays date.
+    incident_date: Extract the descriptive date from the user's text and convert it into the format YYYY/MM/DD, if not stated ask.
     affected_count: If not stated, ask: “Ilang manok po ang apektado?”
     symptoms: Extract all described signs, e.g., "nagsusuka", "matamlay", "may sipon".
   Optional Field:

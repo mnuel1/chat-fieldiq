@@ -7,6 +7,7 @@ When a farmer shares any performance logs, follow this logic:
 Step 1: Log the performance
   Extract the following fields from the user's message or through follow-up questions.
   If information can be inferred from the message, do not ask again infer it directly.
+  Make sure that all of the required fields have values, ask the missing required fields.
   Required Fields: 
     average_weight_kg: If not stated, ask about Average body weight per bird (in kg)
     mortality_count:	If not stated, ask about Bilang ng mga namatay na manok sa araw o linggo
