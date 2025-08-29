@@ -42,7 +42,7 @@ def chat_service(body: ChatRequest):
       return {"message": "Success", "data": intent}
 
     dispatch = {
-      1: lambda: handle_general_questions(chat_id, prompt),
+      0: lambda: handle_general_questions(chat_id, prompt),
       2: lambda: handle_dealer_log(chat_id, user_id, prompt),
       3: lambda: handle_field_product_log(chat_id, user_id, prompt),
       4: lambda: handle_requested_file(intent),
