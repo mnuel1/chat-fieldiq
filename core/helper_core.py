@@ -22,6 +22,20 @@ def load_functions(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
+def detect_language(prompt):
+  # detect language
+  system_instruction_language = load_prompt("prompts/language_detector.txt")
+  functions_language = load_functions("prompts/language_detector.json")
+
+  messages = [
+    {"role": "system", "content": system_instruction_language},
+    {"role": "user", "content": prompt}
+  ]
+
+  language = call_openai(messages, functions_language, "detect_language")
+
+  return language.get("user_language")
+
 
 def call_openai(messages, functions, function_name):
     response = client.chat.completions.create(
@@ -124,8 +138,14 @@ def handle_log_sales(chat_id, user_id, prompt, prompt_file, form_key, function_n
     "role": "user",
     "content": f"{prompt}\n\nToday’s date is {today}. \n\n(Previously collected info):\n{form_summary}"
   })
-  messages = [{"role": "system", "content": system_instruction}] + chat_history
-  # response_text = call_openai(messages)
+
+  detected_language = detect_language(prompt)
+
+  messages = [{
+      "role": "system", 
+      "content": system_instruction + f" Strictly follow this language: {detected_language} when responding."
+  }] + history
+
   parsed = call_openai(messages, functions, function_name)
 
   new_fields = parsed.get(form_key, {})

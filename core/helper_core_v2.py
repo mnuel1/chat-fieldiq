@@ -23,7 +23,23 @@ def load_functions(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
+def detect_language(prompt):
+    # detect language
+    system_instruction_language = load_prompt("prompts/language_detector.txt")
+    functions_language = load_functions("prompts/language_detector.json")
+
+    messages = [
+        {"role": "system", "content": system_instruction_language},
+        {"role": "user", "content": prompt}
+    ]
+
+    language = call_openai(messages, functions_language, "detect_language")
+
+    return language.get("user_language")
+
+
 def call_openai(messages, functions, function_name):
+
     response = client.chat.completions.create(
         model=gptModel,
         messages=messages,
@@ -33,6 +49,7 @@ def call_openai(messages, functions, function_name):
 
     # Extract the function call arguments as JSON
     arguments = response.choices[0].message.function_call.arguments
+
     return json.loads(arguments)
 
 def extract_json(text):
@@ -58,8 +75,6 @@ def handle_log(chat_id, user_id, prompt, prompt_file, form_key, function_name, o
     farmer = FarmerV2()
     company = Company()
 
-    print(user_id)
-    
     # Check if user has active feed program first
     try:
         active_program = farmer.get_active_feed_program(user_id)
@@ -90,8 +105,12 @@ def handle_log(chat_id, user_id, prompt, prompt_file, form_key, function_name, o
         "content": f"{prompt}\n\nToday's date is {today}.\n\n{feed_context}\n\n(Previously collected info):\n{form_summary}"
     })
 
-    messages = [
-        {"role": "system", "content": system_instruction}] + chat_history
+    detected_language = detect_language(prompt)
+
+    messages = [{
+        "role": "system", 
+        "content": system_instruction + f" Strictly follow this language: {detected_language} when responding."
+    }] + history
     
     parsed = call_openai(messages, functions, function_name)
 

@@ -1,7 +1,7 @@
 from core.chat_core import Chat
 from core.company_core import Company
 from core.farmer_core_v2 import FarmerV2, create_health_incident_with_program, create_performance_log_with_program
-from core.helper_core_v2 import call_openai, get_feed_program_context, get_max_messages, handle_intent, handle_log, load_functions, load_prompt, store_message_faq
+from core.helper_core_v2 import call_openai, get_feed_program_context, get_max_messages, handle_intent, handle_log, load_functions, load_prompt, store_message_faq, detect_language
 
 
 max = get_max_messages()
@@ -17,7 +17,7 @@ def handle_general_questions(chat_id, user_id, prompt):
 
     system_instruction = load_prompt("prompts/ask_farmer_general_questions.txt")
     functions = load_functions("prompts/ask_farmer_general_questions.json")
-    
+
     # Get active feed program context
     feed_program_context = get_feed_program_context(farmer, user_id)
     
@@ -27,7 +27,13 @@ def handle_general_questions(chat_id, user_id, prompt):
         "content": f"{prompt}\n\n{feed_program_context}"
     })
 
-    messages = [{"role": "system", "content": system_instruction}] + history
+    detected_language = detect_language(prompt)
+
+    messages = [{
+        "role": "system", 
+        "content": system_instruction + f" Strictly follow this language: {detected_language} when responding."
+    }] + history
+
 
     parsed = call_openai(messages, functions, "feed_advisory")
 

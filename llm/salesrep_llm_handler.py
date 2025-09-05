@@ -1,6 +1,7 @@
 
 
 from core.helper_core import load_prompt, call_openai, extract_json, store_message_faq, get_max_messages, handle_log_sales, handle_intent, load_functions
+from core.helper_core_v2 import detect_language
 from core.chat_core import Chat
 
 max = get_max_messages()
@@ -17,12 +18,17 @@ def handle_general_questions(chat_id, prompt):
     "role": "user",
     "content": prompt
   })
+  
+  detected_language = detect_language(prompt)
 
-  messages = [{"role": "system", "content": system_instruction}] + history
-  # response_text = call_openai(messages)
+  messages = [{
+      "role": "system", 
+      "content": system_instruction + f" Strictly follow this language: {detected_language} when responding."
+  }] + history
+
   parsed = call_openai(messages, functions, "feed_advisory")
 
-  store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"])
+  # store_message_faq(chat_id, prompt, parsed["response"], parsed["log_type"])
   return parsed
 
   

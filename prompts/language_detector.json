@@ -1,0 +1,37 @@
+{
+  "name": "detect_language",
+  "description": "Detects the language of the current user content",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "user_language": {
+        "type": "string",
+        "enum": [
+          "English",
+          "Tagalog",
+          "Taglish",   
+          "Bisaya",    
+          "Bislish",
+          "Ilocano",
+          "Hiligaynon",
+          "Kapampangan",
+          "Pangasinan",
+          "Waray",
+          "Bicolano",
+          "Chavacano",
+          "Tausug",
+          "Maguindanaon",
+          "Maranao",
+          "Kinaray-a",
+          "Surigaonon",
+          "Aklanon",
+          "Ibanag",
+          "Ifugao",
+          "Kankanaey"
+        ],
+        "description": "Language classification of the current user prompt only."
+      }
+    },
+    "required": ["user_language"]
+  }
+}
