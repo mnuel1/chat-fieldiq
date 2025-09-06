@@ -6,7 +6,7 @@
     "properties": {
       "response": {
         "type": "string",
-        "description": "Friendly, clear guidance in the detected language, including recommended immediate actions and a reminder to consult a vet. Ask only one missing info at a time."
+        "description": "Friendly, clear guidance, including recommended immediate actions and a reminder to consult a vet. Ask only one missing info at a time."
       },
       "log_type": {
         "type": "string",
@@ -19,7 +19,7 @@
           "incident_type": {
             "type": "string",
             "enum": ["sickness", "mortality", "feed_rejection", "other"],
-            "description": "Auto-inferred from farmer’s message (symptoms like nagsusuka = sickness, namatay = mortality, ayaw kumain = feed_rejection)."
+            "description": "Auto-inferred from farmer’s message."
           },
           "incident_date": {
             "type": "string",
@@ -31,7 +31,7 @@
           },
           "symptoms": {
             "type": "string",
-            "description": "Extract all symptoms mentioned (e.g., nagsusuka, matamlay, may sipon)."
+            "description": "Extract all symptoms mentioned"
           },
           "suspected_cause": {
             "type": "string",

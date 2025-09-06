@@ -6,7 +6,7 @@
     "properties": {
       "response": {
         "type": "string",
-        "description": "Full user-facing explanation in detected language. Should be warm, clear, supportive, and end with a reminder to consult a vet or clarify if DIY is not validated."
+        "description": "Full user-facing explanation. Should be warm, clear, supportive, and end with a reminder to consult a vet or clarify if DIY is not validated."
       },
       "log_type": {
         "type": "string",

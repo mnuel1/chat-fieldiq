@@ -6,7 +6,7 @@
     "properties": {
       "response": {
         "type": "string",
-        "description": "Full, user-facing explanation in the detected language. Should be warm, clear, and supportive."
+        "description": "Full, user-facing. Should be warm, clear, and supportive."
       },
       "matched_product": {
         "type": "object",

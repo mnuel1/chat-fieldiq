@@ -144,7 +144,7 @@ def handle_log_sales(chat_id, user_id, prompt, prompt_file, form_key, function_n
   messages = [{
       "role": "system", 
       "content": system_instruction + f" Strictly follow this language: {detected_language} when responding."
-  }] + history
+  }] + chat_history
 
   parsed = call_openai(messages, functions, function_name)
 
