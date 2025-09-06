@@ -80,9 +80,7 @@ class Chat:
             for msg in raw_messages
             if msg["role"] in ("user", "model") and msg["message"]
         ]
-
-        print(formatted_messages)
-
+        
         return formatted_messages
 
     

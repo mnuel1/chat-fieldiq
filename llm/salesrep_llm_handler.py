@@ -72,20 +72,20 @@ def handle_sales_log(chat_id, user_id, prompt):
 
 def handle_farm_log(chat_id, user_id, prompt):
   def on_farm_complete(salesrep, user_id, form_data, parsed):
-    visit_details = parsed["visit_details"]
+    visit_details = parsed["visit_details"]    
     visit_type = visit_details["visit_type"]
     ticket_number = visit_details.get("ticket_number")
 
     if visit_type == "planned_visit":
       ticket_number = salesrep.generate_ticket_number(user_id)
       visit_details["ticket_number"] = ticket_number
+      form_data["ticket_number"] = ticket_number
       salesrep.create_visit_report(user_id, form_data)
 
     elif visit_type == "completed_visit" and ticket_number:
       if salesrep.check_ticket_number_validity(ticket_number, user_id):
         salesrep.update_visit_report(ticket_number, user_id, form_data)
         parsed["visit_details"]["ticket_number"] = ticket_number
-
 
   return handle_log_sales(
       chat_id,

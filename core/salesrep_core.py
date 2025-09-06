@@ -25,6 +25,7 @@ class SalesRep:
         return None
     
     def create_sales_report(self, reported_by: int, form_data: Dict):
+        print(form_data)
         self.client.table("sales_reports").insert({            
             **form_data,            
             "reported_by": reported_by,

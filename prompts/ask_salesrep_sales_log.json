@@ -39,7 +39,7 @@
           },
           "quantity": {
             "type": [
-              "string",
+              "number",
               "null"
             ],
             "description": "Number of units or bags sold."
