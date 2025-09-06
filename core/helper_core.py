@@ -141,10 +141,12 @@ def handle_log_sales(chat_id, user_id, prompt, prompt_file, form_key, function_n
 
   detected_language = detect_language(prompt)
 
-  messages = [{
+  chat_history.append({
       "role": "system", 
-      "content": system_instruction + f" Strictly follow this language: {detected_language} when responding."
-  }] + chat_history
+      "content": f" Strictly follow this language: {detected_language} when responding." + system_instruction 
+  })
+
+  messages = chat_history
 
   parsed = call_openai(messages, functions, function_name)  
   new_fields = parsed.get(form_key, {})

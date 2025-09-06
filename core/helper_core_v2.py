@@ -99,19 +99,17 @@ def handle_log(chat_id, user_id, prompt, prompt_file, form_key, function_name, o
     # Add active feed program context to form summary
     feed_context = get_feed_program_context(farmer, user_id)
     form_summary = "\n".join([f"{k.replace('_', ' ').capitalize()}: {v}" for k, v in form_data.items() if v]) or "None yet"
-
+    detected_language = detect_language(prompt)
     chat_history.append({
         "role": "user",
         "content": f"{prompt}\n\nToday's date is {today}.\n\n{feed_context}\n\n(Previously collected info):\n{form_summary}"
     })
-
-    detected_language = detect_language(prompt)
-
-    messages = [{
+    chat_history.append({
         "role": "system", 
-        "content": system_instruction + f" Strictly follow this language: {detected_language} when responding."
-    }] + history
+        "content": f" Ignore all previous instructions about language matching. Always answer in {detected_language}.\n" + system_instruction 
+    })
     
+    messages = chat_history
     parsed = call_openai(messages, functions, function_name)
 
     if form_key != "":

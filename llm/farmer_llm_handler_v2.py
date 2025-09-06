@@ -26,13 +26,14 @@ def handle_general_questions(chat_id, user_id, prompt):
         "role": "user",
         "content": f"{prompt}\n\n{feed_program_context}"
     })
-
     detected_language = detect_language(prompt)
 
-    messages = [{
+    history.append({
         "role": "system", 
-        "content": system_instruction + f" Strictly follow this language: {detected_language} when responding."
-    }] + history
+        "content": f" Ignore all previous instructions about language matching. Always answer in {detected_language}.\n" + system_instruction
+    })
+
+    messages = history
 
 
     parsed = call_openai(messages, functions, "feed_advisory")
